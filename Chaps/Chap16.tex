@@ -1,0 +1,683 @@
+%!TEX root = ../CallenThermo.tex
+\chapter{正则系综：Helmholtz 表象下的统计力学}\label{chap16}
+\section{概率分布}\label{sec16.1}
+上一章所讲的微正则系综在原理上看起来很简单，但实际计算起来却仅仅对少数几种高度理想化的系统适用。计算在任意大小的“盒子”里分配给定能量的方案数量往往超出了我们的数学能力。而将能量给定这个约束去除的方案是存在的——考虑与热库所接触的系统，而不是绝热的。与热库相接触的系统的统计力学可以看做是在“Helmholtz表象”下的，或者用这儿的术语，在{\it 正则系综理论~(canonical formalism)}下的。
+
+对于一个与热库接触的系统而言，从零到任意高能量的全部态都是可能的。但是，与封闭系统相比，这里在各个态上并{\it 没}有相同的概率。即，系统在各个态上停留的时间并不相同。正则系综的关键在于确定系统处在诸微观态上的概率。这可以通过考察这个系统与热库共同组成的{\it 封闭}系统来得到解决，对于这个大系统，微观态的等概率原理依旧适用。
+
+我们可以通过一个简单的例子来说明。考虑三个骰子，其中一个是红的，另两个白的。三个骰子都掷了数千次。记录当且仅当三个骰子数之和为$12$时，红色骰子的点数。那么红色骰子点数为一、二、\dots 、六的频率各是多少呢？
+
+结果留给读者：红色骰子点数为一的频率是$2/25$、为二的概率为$3/25$、\dots 、为五的概率为$6/25$，为六的概率为$5/25$。在这个约束下，掷出一个六点的红骰子概率是$1/5$。
+
+这个红色骰子就正如我们所关心的系统一样，而白色骰子好比热源，点数对应于能量，总点数为$12$的限制又与（系统与热库的）总能量为常数类似。
+
+{\it 子系统处于宏观状$j$的概率$f_j$，等于子系统处于宏观状$j$（其能量为$E_j$）的微观状态数比上系统和热库全部微观状态数：}
+\begin{equation}
+\label{equ16.1}
+f_j = \frac{\Omega_\text{热库}(E_\text{tot}-E_j)}{\Omega_\text{tot}(E_\text{tot})},
+\end{equation}
+这里$E_\text{tot}$为系统与热库的能量之和，$\Omega_\text{tot}$为系统与热库的全部状态数。分子上的$\Omega_\text{热库}(E_\text{tot}-E_j)$为子系统处于状态$j$时（给热库留下了$E_\text{tot}-E_j$的能量）热库的全部可能状态数。
+
+这是正则系综理论里最精华%
+\mpar{译注：原文为`seminal'，意为含精液的，引申为有重大意义的。}%
+的一个关系式，其可以重新改写成一个更便利的形式。分母项可以通过\eqref{equ15.1}式用复合系统的熵来表达，而分子和热库的熵相关。这样我们有
+\begin{equation}
+f_j = \frac{\exp\left\{k_\text{B}^{-1}S_\text{热库}(E_\text{tot}-E_j)\right\}}{\exp\left\{k_\text{B}^{-1}S_\text{tot}(E_\text{tot})\right\}} ,
+\end{equation}
+记$U$为子系统的平均能量，从熵的可加性，我们有
+\begin{equation}
+S_\text{tot}(E_\text{tot}) = S(U) + S_\text{热库}(E_\text{tot}-U).
+\end{equation}
+此外，将熵$S_\text{热库}(E_\text{tot}-E_j)$在平衡点$E_\text{tot}-U$附近展开
+\begin{equation}
+\begin{aligned}
+S_\text{热库}(E_\text{tot}-E_j)& = S_\text{热库}(E_\text{tot}-U+U-E_j)\\
+&= S_\text{热库}(E_\text{tot}-U) + (U-E_j)/T
+\end{aligned}
+\end{equation}
+展开式中不存在更多的项（这也是热库的定义）。将后两个方程带入$f_j$的表达式
+\begin{equation}
+f_j = {\mathrm e}^{\{U-TS(U)\}/(k_\text{B}T)} {\mathrm e}^{-E_j/(k_\text{B}T)},
+\end{equation}
+习惯上，我们将到处乱跑的因子$1/k_\text{B}T$记做
+\begin{equation}
+\beta \equiv 1/(k_\text{B}T)
+\end{equation}
+另外，$U-TS(U)$是系统的Helmholtz势，因此最后可以得到子系统处于状态$f_j$的概率为
+\begin{equation}
+f_j = {\mathrm e}^{\beta F}{\mathrm e}^{-\beta E_j}.
+\label{equ16.7}
+\end{equation}
+
+当然，Helmholtz势具体是多少，我们是不知道的，而是得把它给算出来。计算的关键在于，注意到\eqref{equ16.7}式中${\mathrm e}^{\beta F}$与态无关，而仅仅是扮演一个归一化因子的角色
+\begin{equation}
+\sum\limits_j f_j = {\mathrm e}^{\beta F}\sum\limits_j {\mathbf e}^{-\beta E_j} = 1,
+\end{equation}
+或者写作
+\begin{equation}
+{\mathrm e}^{-\beta F}=Z,
+\label{equ16.9}
+\end{equation}
+其中“正则配分求和”$Z$定义为%
+\mpar{译注：这个量现在常被称为正则配分函数，而本书作者一直到\ref{sec16.11}节前都坚持使用配分求和这个名字。}
+\begin{equation}
+Z\equiv \sum\limits_j {\mathrm e}^{-\beta E_j}.
+\label{equ16.10}
+\end{equation}
+
+{\it 至此，我们得到了一套计算正则系综的完整算法。给出一个系统的全体可行态$j$及其能量$E_j$，计算配分求和\ref{equ16.10}式，由此可以得到配分求和作为温度（或$\beta$）以及影响能级的其他外参量（$V,N_1,N_2,\dots$）的函数。由\eqref{equ16.9}式可以得到Helmholtz势作为$T,V,N_1,N_r$的函数。这就是我们所需要的基本关系。}
+
+整个算法归结为
+\begin{equation*}
+-\beta F = \ln \sum\limits_j \mathrm e^{-\beta E_j} \equiv \ln Z,
+\end{equation*}
+读者可得好好记着这个式子。
+
+注意到$f_j$是占据状态$j$的概率，\eqref{equ16.7}、\eqref{equ16.9}及\eqref{equ16.10}式可以改写如下形式
+\begin{equation}
+f_j  = {\mathrm e}^{-\beta E_j}/\sum\limits_i \mathrm e^{-\beta E_i},
+\end{equation}
+平均能量自然就是
+\begin{equation}
+U = \sum\limits_j E_jf_j = \sum\limits_j E_j{\mathrm e}^{-\beta E_j}/\sum\limits_i \mathrm e^{-\beta E_i},
+\label{equ16.12}
+\end{equation}
+或者写成
+\begin{equation}
+U = -(\mathrm d/\mathrm d\beta)\ln Z
+\label{equ16.13}
+\end{equation}
+带入\eqref{equ16.9}式，用$F$表示$Z$，并记住$\beta = 1/k_\text{B}T$，可以验证热力学中早已得到的一个关系式$U=F+TS=F-T(\partial F/\partial T)$。\eqref{equ16.12}和\eqref{equ16.13}式在统计力学中非常有用，但得强调一遍它们并不算是基本关系。基本关系由\eqref{equ16.9}和\eqref{equ16.10}式给出，为$F$（而不是$U$）作为$\beta,V,N$的函数。
+
+对单位和整体结构作一个回顾将是有启发性的。$\beta$，作为倒数温度，是一个“自然单位”。正则系综用$\beta,V$和$N$表示出了$\beta F$。即，$F/T$作为$1/T,V$以及$N$的函数被给出。{\it 这就是在$S[1/T]$表象下的基本方程}（请回忆\ref{sec5.4}节）。正如同微正则系综理论自然的给出熵表象一样，正则系综理论自然的给出$S[1/T]$表象。而我们在\ref{chap17}中所要讨论的巨正则系综理论，将自然给出Massieu函数。当然我们还是得记住正则系综是基于Helmholtz势的，可别弄错了表象%
+\mpar{译注：原文为``misrepresentation''，为“歪曲、误传”之意，此处应有双关``mis-representation''，弄错表象之意}%
+。
+
+{\noindent\bf 习题}
+\begin{itemize}
+\item[16.1-1] 证明\eqref{equ16.13}式等价于$U=F+TS$。
+\item[16.1-2] 从\eqref{equ16.9}和\eqref{equ16.10}式给出的正则算法出发，将压强用配分求和的某个导数表示出来。进一步的，将压强用导数$\partial E_j/\partial V$（以及$T$和$E_j$）表示出来。你能否对这个式子给一个有启发性的解释？
+\item[16.1-3] 证明$S/k_\text{B}=\beta^2\partial F/\partial\beta$，并将$S$用$Z$与其对$\beta$的导数表示。
+\item[16.1-4] 证明$c_v=-\beta(\partial s/\partial\beta)_v$，将$c_v$用配分求和及其对$\beta$的导数表示。
+\begin{flushright}
+{\it 答案：}\\
+$c_v=N^{-1}k_\text{B}\beta^2\frac{\partial^2\ln Z}{\partial \beta^2}$
+\end{flushright}
+\end{itemize}
+
+
+\section{可加的能量与配分求和的可分性}\label{sec16.2}
+
+为了展现正则系综理论在实际问题上显著的简易性，我们重新回顾一下\ref{sec15.3}节中所提到的二态模型。$\tilde N$个可分辨的``原子''，各自可能处于两个态上，其能量分别为$0$和$\varepsilon$。对于微正则系综理论而言，即便是将问题拓展到仅仅三个态上，单去求激发能量，这也是难以求解的。而正则系综理论则能相当简单的处理这个问题！
+
+考虑一个系统由$\tilde N$个可分辨的``单元''构成，每个单元都对应于系统一个独立（无相互作用的）的激发模式。对于由无相互作用的物质成分组成的系统，如理想气体分子，这里``单元''就对应于单个的分子。而对于强相互作用的系统，单元可能对应于某种波状的集体激发，例如振动模式或者电磁模式。{\it ``单元''的标识性特征是，系统的总能量等于所有单元的能量之和，这些能量都是相互独立而没有相互作用的。}
+
+每个单元可以布居在一系列{\it 轨道态(orbital states)}（此后我们使用{\it 轨道态}来描述单元的态，以与集体系统的态相区分）上。第$i$个单元处在第$j$个轨道态上的能量记为$\varepsilon_{ij}$。这些单元的能量和轨道态的数目不一定得要是一样的。{\it 系统的总能量等于各个单元能量之和，每个单元所能处在的轨道态与其他单元的布居无关。}故配分求和为
+\begin{align}
+Z &= \sum\limits_{j,j',j'',\dots}\mathrm e^{-\beta (\varepsilon_{1j}+\varepsilon_{2j}+\varepsilon_{3j}+\dots)}\label{equ16.14} \\
+ &= \sum\limits_{j,j',j'',\dots}\mathrm e^{-\beta\varepsilon_{1j}}\mathrm e^{-\beta\varepsilon_{2j}}\mathrm e^{-\beta\varepsilon_{3j}}\dots \\
+ &= \sum\limits_{j}\mathrm e^{-\beta\varepsilon_{1j}}\sum\limits_{j'}\mathrm e^{-\beta\varepsilon_{2j}}\sum\limits_{j''}\mathrm e^{-\beta\varepsilon_{3j}}\dots \\
+ &= z_1z_2z_3\dots, \label{equ16.17}
+\end{align}
+其中$z_i$为“第$i$个单元的配分求和”，定义为
+\begin{equation}
+z_i = \sum\limits_{j}\mathrm e^{-\beta\varepsilon_{ij}},
+\end{equation}
+{\it 配分求和因子。进一步的，Helmholtz势对于诸单元是可加的}
+\begin{equation}
+-\beta F = \ln Z = \ln z_1+\ln z_2+\dots, \label{equ16.19}
+\end{equation}
+这个结果贼简单、贼强并且贼有用，让我们不得不再强调一遍，它对于任何满足如下条件的系统适用：(a)能量等于诸单元能量之和，以及(b)每个单元所能处在的轨道态与其他单元的布居无关。
+
+\ref{sec15.3}节中提到的“二态模型”满足上述的条件，即
+\begin{equation}
+Z = z^{\tilde N}= (1+\mathrm e^{-\beta\varepsilon})^{\tilde N},
+\end{equation}
+和
+\begin{equation}
+F = -\tilde Nk_\text{B}T\ln(1+\mathrm e^{-\beta\varepsilon}).
+\label{equ16.21}
+\end{equation}
+证明其与\ref{sec15.3}节的结果的等价性的任务留给读者。如果轨道数是三而不是二，单粒子配分求和$z$就有三项，而Helmholtz势对数函数的变量中也会多加一项。
+
+Einstein晶体模型(\ref{sec15.2}节)也能体现正则系综理论的简洁性。这里“单元”是振动模式，单个模式的配分求和为
+\begin{equation}
+z = 1 + \mathrm e^{-\beta\hbar\omega_0} + \mathrm e^{-2\beta\hbar\omega_0} + \mathrm e^{-3\beta\hbar\omega_0} + \dots = \sum\limits_{n=0}^{\infty} \mathrm e^{-n\beta\hbar\omega_0},
+\label{equ16.22}
+\end{equation}
+“几何级数”\mpar{译注：即等比级数}的和为
+\begin{equation}
+z = \frac{1}{1-\mathrm e^{-\beta\hbar\omega_0}}.
+\label{equ16.23}
+\end{equation}
+由于存在着$3\tilde N$个振动模式，故在正则系综理论下，Einstein模型的基本方程为
+\begin{equation}
+F = -\beta\ln z^{3\tilde N}=3\tilde Nk_\text{B}T\ln(1-\mathrm e^{-\beta\hbar\omega_0}).
+\label{equ16.24}
+\end{equation}
+显然，在这套框架下，Einstein关于所有振动模式的频率都相同的简化假设成了没有必要的。在\ref{sec16.7}节中，我们将讨论由P. Debye提出的一个物理上更可信的假设。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.2-1] 考虑一个包括三个不同粒子的系统。第一个粒子有两个轨道态，能量分别为$\varepsilon_{11}$和$\varepsilon_{12}$。第二个粒子可能的能量分别为$\varepsilon_{21}$和$\varepsilon_{22}$，第三个粒子是$\varepsilon_{31}$和$\varepsilon_{32}$。根据\eqref{equ16.14}式写下配分求和，并通过详细的过程将其化成\eqref{equ16.17}式的形式。
+\item[16.2-2] 证明，对于二能级系统，通过\eqref{equ16.21}式算出的Helmholtz势与\ref{sec15.3}节中给出的基本方程等价。 
+\item[16.2-3] 考虑无电荷质点作为气体粒子（并略去引力相互作用），其能量是否是可加的？若半数粒子带正电，另外半数粒子带负电，配分求和是否是可分的？如果粒子是遵循Pauli不相容原理的fermion（例如中微子），配分求和是否是可分的？
+\item[16.2-4] 根据\eqref{equ16.24}式计算单个模式的热容。
+\item[16.2-5] 根据\eqref{equ16.24}式计算单个模式的能量。当$T\rightarrow 0$以及$T\rightarrow \infty$时，$U(T)$的领头项是什么？
+\item[16.2-6] 某种二元合金由$\tilde N_A$个$A$类原子和$\title N_B$个$B$类原子构成。每个$A$类原子分别可以处在基态和一个激发态上，其间有能量差$\varepsilon$（其他态的能量都太高了，以至于在所考虑的温度范围内没有影响）。每个$B$类原子同样分别可以处在基态和一个激发态上，其间有能量差$2\varepsilon$。整个系统处于温度$T$。
+	\begin{itemize}
+	\item[a)] 计算系统的Helmholtz势。
+	\item[b)] 计算系统的热容。
+	\end{itemize}
+\item[16.2-7] 某类顺磁盐由\SI{1}{\mole}无相互作用的离子构成，各自拥有一单位Bohr磁矩($\mu_\text{B}=\SI{9.274e-24}{\joule\per\tesla}$)。磁场$B_e$给定在某方向上，离子可能分别处在磁矩方向平行或反平行于磁场方向的态上。
+	\begin{itemize}
+	\item[a)] 假定系统温度维持在$T=\SI{4}{\kelvin}$，$B_e$从\SI{1}{\tesla}增大至\SI{10}{\tesla}，热库中流出了多少热量？
+	\item[b)] 假定系统与外界绝热，$B_e$从\SI{10}{\tesla}减小至\SI{1}{\tesla}，系统末态的温度是多少？（这个过程被称为绝热去磁降温。）
+	\end{itemize}
+\end{itemize}
+
+\section{气体的内部模式}\label{sec16.3}
+
+对于分子气体，其激发包括三个整体平动模式、振动模式、转动模式、电子的模式以及原子核的激发模式。为简单起见，我们暂且先假定这些模式之间是独立的，后面再来检验这个假定的合理性。配分求和对于这些模式是可分的
+\begin{equation}
+Z = Z_\text{平动}Z_\text{振动}Z_\text{转动}Z_{电子}Z_{核},
+\end{equation}
+进一步的，可以分解成对于单个分子的乘积
+\begin{equation}
+Z_\text{振动}=z_\text{振动}^{\tilde N},\quad Z_\text{转动}=z_\text{转动}^{\tilde N},
+\end{equation}
+对于电子和核的配分求和也是类似的。
+
+气体是否是“理想的”将会影响到平动配分求和。其需要特别的小心处理，我们将这一部分内容推后放在了\ref{sec16.10}节。现在先简单的假定任何分子间的碰撞都不会与内部模式（转动、振动等）相耦合。
+
+$\tilde N$个同一类振动模式（分别分布在各个分子上）与Einstein 晶体模型原则上都是一样的，即谐振子。对于频率为$\omega_0$的成分
+\begin{equation}
+Z_\text{振动}=z_\text{振动}^{\tilde N}=(1-\mathrm e^{-\beta\hbar\omega_0})^{-\tilde N},
+\end{equation}
+该振动模式对Helmholtz势的贡献由\eqref{equ16.24}式给出（将$3\tilde N$替换成$\tilde N$）。其对热容的贡献在图\ref{fig15.2}中给出（此时纵坐标单位应该是$c/R$而不是$c/3R$）。正如\ref{sec13.1}节中所描述的一样，热容在$k_\text{B}T\simeq \hbar\omega_0$附近“呈阶梯状地上升”了一个渐进于$c=R$的量。图\ref{fig13.1}所绘制的包括了两个振动模式的贡献，满足$\omega_2=15\omega_1$。
+
+典型的振动温度$\hbar\omega_0/k_\text{B}$从数千开尔文（对于包含较轻部件的分子，例如\ce{H_2}约为\SI{6300}{\kelvin}），到数百开尔文（对于包含较重部件的分子，例如\ce{Br_2}是\SI{309}{\kelvin}）。
+
+我们从异核双原子分子（例如\ce{HCl}）出发讨论气体中的转动模式；为了描述其取向，我们需要两个角度坐标。这类异核双原子分子的转动能量是量子化的，其能量本征值由下式给出
+\begin{equation}
+\varepsilon_\ell = \ell(\ell+1),\quad \ell =0,1,2,\dots
+\label{equ16.28}
+\end{equation}
+诸能级的简并度为$(2\ell+1)$。能量单位$\varepsilon$等于$\frac{1}{2}\hbar^2/(\text{转动惯量})^2$，对于\ce{HCl}来说约等于\SI{2e-21}{\joule}。典型的能级间隔和$\varepsilon$的量级相当，\ce{HCl}这里大概对应于温度$\varepsilon/k_\text{B}\simeq \SI{15}{\kelvin}$——当然，比轻分子更大，比重分子更小。
+
+单个分子的转动配分求和是
+\begin{equation}
+z_\text{转动}=\sum\limits_{\ell=0}^{\infty}(2\ell+1)\mathrm e^{-\beta\ell(\ell+1)\varepsilon}.
+\label{equ16.29}
+\end{equation}
+如果有$k_\text{B}T\gg\varepsilon$，求和可以由积分近似给出。注意到$2\ell+1$正好是$\ell(\ell+1)$的导数，故可将积分变量$x$选作$\ell(\ell+1)$
+\begin{equation}
+z_\text{转动}\simeq\int_{0}^{\infty}\mathrm e^{-\beta\varepsilon x}\,\mathrm dx =\frac{1}{\beta\varepsilon}=\frac{k_\text{B}T}{\varepsilon}.
+\end{equation}
+
+如果$k_\text{B}T$比$\varepsilon$小，亦或是同一个量级，那么实践中我们通常精确计算级数的前$\ell'$项，满足$\ell'(\ell'+1)\gg k_\text{B}T$，然后通过积分（从$\ell'$积到无穷大）近似计算后面的那些项。具体可以参考习题16.3-2。
+
+读者可以尝试证明，当$k_\text{B}T\gg\varepsilon$时，平均能量为$k_\text{B}T$。
+
+对于同核双原子分子，例如\ce{O_2}或者\ce{H_2}，其受到一些量子的对称性条件的约束，我们不会在这里做具体讨论。对于不同的同核双原子分子，配分求和中仅有偶数项或奇数项才是允许的。在高温极限下，这个约束的影响等价于给单分子配分函数简单的除二。
+
+原子核以及电子的贡献也可以用类似的办法来算，但一般来说只有它们各自的基态才会有贡献。$z_\text{核}$简单的等于其基态的简并度。这些因子在Helmholtz势中仅贡献一项$\tilde Nk_\text{B}T\ln(\text{简并度})$。
+
+重新讨论最开始对于这些模式独立性的假定会是有意思的。这个假定一般来说是一个好的（但{\it 并非}是严格的）近似。双原子分子的振动会改变核间距，从而影响转动惯量。这只是因为一般来说振动相对转动来说相对很快，振动模式只能感受到一个{\it 平均}的核间距，从而相当于与振动态相独立。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.3-1] 在$k_\text{B}T\gg \varepsilon$的区域中计算异核双原子分子的单分子平均转动能量以及其对热容的贡献。
+\item[16.3-2] 在\eqref{equ16.29}式中，通过精确计算前两项并用积分近似替代剩下的项，来计算转动对于单分子Helmholtz势的贡献。Euler-McLaurin求和公式会对这个问题有帮助
+\begin{equation*}
+\sum\limits_{j=0}^{\infty}f(j) \simeq \int_0^{\infty}f(\theta)\,\mathrm d\theta +\frac{1}{2}f(0)-\frac{1}{12}f'(0)+\dots
+\end{equation*}
+式中$f'(0)$代表$f(\theta)$的导数。
+\item[16.3-3] 某种同核双原子分子气体具有一个振动模式，频率为$\omega$，转动能量参数为$\varepsilon$（\eqref{equ16.28}式）。假定分子之间没有相互作用，即气体为理想气体。完整计算在温度满足$T\gg \varepsilon/k_\text{B}$以及$T\simeq \hbar\omega/k_\text{B}$时体系的基本方程。
+\end{itemize}
+
+\section{可分系统中的概率}\label{sec16.4}
+我们可能会质疑可分宏观系统配分求和中一个单元的对应的因子$z$其{\it 物理}意义何在。据\eqref{equ16.17}式，我们将其称为“单元配分求和”。而在\eqref{equ16.19}式中，可以看到$-k_\text{B}T\ln z$就是这个单元对于Helmholtz势可以直接相加的一项贡献。容易证明（习题16.4-1），对于一个可分系统，第$i$个单元占据第$j$个轨道态的概率为
+\begin{equation}
+f_j^i = \mathrm e^{-\beta\varepsilon_{ij}}/z_i.
+\label{equ16.31}
+\end{equation}
+在方方面面，单个单元的统计力学和一个宏观系统的一模一样。
+
+这时就值得回顾一下\ref{sec15.4}节中的高分子链模型。考虑如图\ref{fig15.4}所示的悬挂着重物的一根高分子链，重物所受重力为$\mathcal T$。由\eqref{equ15.14}式可知链长为
+\begin{equation}
+L_x = (N_x^+-N_x^-)a,
+\end{equation}
+系统的总能量（包括链和重物）为
+\begin{equation}
+E = (N_y^++N_y^-)\varepsilon-\mathcal TL_x = (N_y^++N_y^-)\varepsilon+(N_x^--N_x^+)a\mathcal T.
+\label{equ16.33}
+\end{equation}
+$-\mathcal TL_x$一项是重物的势能（势能等于重力乘以高度，高度以$L_x=0$处为基点）。根据\eqref{equ16.33}式，给每个沿$-x$方向的分子单元加上能量$a\mathcal T$，沿$+x$方向的分子单元加上能量$-a\mathcal T$，沿$+y$或$-y$方向的加上能量$\varepsilon$。则分子单元的配分求和是
+\begin{equation}
+z = \mathrm e^{-\beta a\mathcal T}+\mathrm e^{+\beta a\mathcal T}+\mathrm e^{-\beta\varepsilon}+\mathrm e^{-\beta\varepsilon}.
+\label{equ16.34}
+\end{equation}
+其Helmholtz势为
+\begin{equation}
+-\beta F=\tilde F\ln z.
+\label{equ16.35}
+\end{equation}
+此外，分子单元沿$-x$的概率为
+\begin{equation}
+p_{-x} = \mathrm e^{-\beta a\mathcal T}/z,
+\end{equation}
+沿$+x$的概率为
+\begin{equation}
+p_{+x} = \mathrm e^{\beta a\mathcal T}/z.
+\end{equation}
+进而，链的平均长度为
+\begin{align}
+\langle L_x\rangle &= \tilde N(p_{+x}-p_{-x})a\\
+&= 2\tilde Na\sinh(\beta a\mathcal T)/z.
+\end{align}
+从基本方程（\eqref{equ16.34}式或\eqref{equ16.35}式）出发计算平均势能$U$，并验证能量和长度都和\ref{sec15.4}节结果相符的任务留给读者。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.4-1] 第$i$个单元占据第$j$个轨道态的概率等于整个系统布居在那些第$i$个单元占据第$j$个轨道态的宏观态的概率之和。借此证明对于一个“可分系统”，第$i$个单元占据第$j$个轨道态的概率可由\eqref{equ16.31}式给出。
+\item[16.4-2] 展示本节中导出的基本方程与\ref{sec15.4}节中导出的等价性。
+\end{itemize}
+\section{小系统的统计力学：系综}\label{sec16.5}
+前面几节展现了宏观系统与可分系统的一个独立“单元”在统计力学上普遍的相似性。单元配分求和与整个配分求和有着相同的结构，也遵循着同样的概率诠释。单元配分求和的对数给Helmholtz势提供了可加的一项。这是不是说我们可以直接将统计力学应用到每个单元上？是的，{\it 只要单元满足\ref{sec16.2}节中给出的可分性判据}。
+
+据此，我们还可以作出进一步的结论。{\it 正则系综理论对于与热库作热接触的小（非宏观的）系统适用}。
+
+假定我们有这样一个小系统。它被拷贝了若干份，每一份都和同一个热库作热接触，从而它们之间也相互有（间接的）热接触。这些拷贝所构成的“系综”组合成了一个大的热力学系统，从而可以适用统计力学和热力学。这些拷贝之间的相互作用会被中间的大热库屏蔽掉，而不会影响各自的性质。统计力学对单个单元的作用与其对整个系综的作用是同构的。
+
+{\it 统计力学对于与热库热接触的单个单元是完全适用的。}作为对比，{\it 热力学，由于其强调势的广延性，仅对于单元构成的系综，亦或是宏观系统适用}。
+
+\begin{example}
+某原子有若干能级，其能量分别为$0,\varepsilon_1,\varepsilon_2,\varepsilon_3,\dots$，简并度分别为$1,2,2,1,\dots$。原子与温度为$T$的热电磁辐射达到平衡态。这个温度下对与$j>4$的情形，$\mathrm e^{-\beta\varepsilon_j}$相对于$1$可以被忽略。计算平均能量以及均方偏差。
+
+\noindent{\bf 求解：}
+
+配分求和为
+\begin{equation*}
+z = 1+2\mathrm e^{-\beta\varepsilon_1}+2\mathrm e^{-\beta\varepsilon_2}+\mathrm e^{-\beta\varepsilon_3},
+\end{equation*}
+平均能量为
+\begin{equation*}
+\langle\varepsilon\rangle = \left(2\varepsilon_1\mathrm e^{-\beta\varepsilon_1}+2\varepsilon_2\mathrm e^{-\beta\varepsilon_2}+\varepsilon_3\mathrm e^{-\beta\varepsilon_3}\right)/z,
+\end{equation*}
+均方能量为
+\begin{equation*}
+\langle\varepsilon^2\rangle = \left(2\varepsilon_1^2\mathrm e^{-\beta\varepsilon_1}+2\varepsilon_2^2\mathrm e^{-\beta\varepsilon_2}+\varepsilon_3^2\mathrm e^{-\beta\varepsilon_3}\right)/z,
+\end{equation*}
+均方偏差等于$\langle\varepsilon^2\rangle-\langle\varepsilon\rangle^2$。对于一个小系统来说，其均方偏差会非常大。仅仅对于宏观系统，涨落对于平均值或者观测值而言才是可略的。
+
+注意一个二重简并的能级对应具有相同能量的{\it 两个态}。配分求和是对态求和，而不是对“能级”求。
+\end{example}
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.5-1] 某个分子的轨道态能量分别为$\varepsilon_0=0,\varepsilon_1/k_\text{B}=\SI{200}{\kelvin},\varepsilon_2/k_\text{B}=\SI{300}{\kelvin},\varepsilon_3/k_\text{B}=\SI{400}{\kelvin}$，剩下的那些态能量都相当高。在分子达到平衡温度$T=\SI{300}{\kelvin}$时，计算能量偏差的均方根$\sigma=\sqrt{\langle\varepsilon^2\rangle-\langle\varepsilon\rangle^2}$。各个态上的占据概率是多少？
+\item[16.5-2] 与温度为$T$的辐射场达到热平衡的氢原子可能处在基态（`1-s'能级，两重自旋简并）和第一激发态（八重简并）上。略去更高能量的能级。原子处在p轨道上的概率是多少？
+\item[16.5-3] 一个小系统有两个振动模式，其本征频率分别为$\omega_1$和$\omega_2=2\omega_1$。在温度$T$下，系统能量低于$5\hbar\omega_1/2$的概率是多少？设$T=0$时系统能量为零。
+\begin{flushright}
+\it 答案：\\
+$(1+x)(1+x^2)(1+x+2x^2)\quad \text{其中}x\equiv \exp(-\beta\hbar\omega_1)$
+\end{flushright}
+\item[16.5-4] DNA~(DeoxyriboNucleic Acid, 脱氧核糖核酸)，作为基因分子，由一对扭在一起的高分子链构成，每条链有$\tilde N$个单元。The two polymer molecules are cross-linked by $\tilde N$ ``base pairs''. It requires energy $\varepsilon$ to unlink each base pair, and a base pair can be unlinked only if it has a neighboring that is already unlinked (or if it is at the end of the molecule). Find the probability that $n$ pairs are unlinked at temperture $T$ if
+	\begin{itemize}
+	\item[a)] one end of the molecule is prevented from unlinking, so that the molecule ``unwinds'' from one end only.
+	\item[b)] the molecule can unwind from both ends.
+	\end{itemize}
+	Reference: C. Kittel, {\it Amer. J. Phys.} {\bf 37}, 917 (1969).
+\item[16.5-5] 计算温度$T$下本征频率为$\omega_0$的谐振子处在奇数态（$n=1,3,5,\dots$）下的概率。你觉得当温度趋向于零和无穷大时，这个结果会趋向于多少？验证你的猜测，并给出$P_\text{odd}$在这两个温度区间中的领头项。
+\item[16.5-6] 某个小系统有两个能级，能量分别为$0$和$\varepsilon$，简并度分别为$g_0$和$g_1$。计算温度$T$下这个系统的熵值。计算温度$T$下这个系统的能量和比热。在高温区和低温区，热容各呈现什么行为？大致画出热容的图像。这个图像如何随比值$g_1/g_0$而改变？定性的解释这个行为。
+\item[16.5-7] 两个具有本征频率$\omega$的简单谐振子，通过某种相互作用耦合在一起，其效果是当两者处在同一个量子态上时，总能量为$(2n+1)\hbar\omega+\Delta$，而处在不同量子态上时则没有作用。这个系统处在温度$T$的平衡态下。计算两个谐振子处在同一个态上的概率。对于所有可能的$\Delta$值，解释你的结果在零温极限下的行为。
+\end{itemize}
+\section{态密度与轨道态密度}\label{sec16.6}
+让我们回到宏观系统，简要展示正则系综理论在晶体和电磁辐射上的应用。这类应用基于“态密度函数”的概念。它超出了统计力学的范畴，而却应用广泛，因此先简单讨论一下将是有益的。
+
+在正则系综理论下，我们反复提到计算如下形式的求和
+\begin{equation}
+\text{``求和''} = \sum\limits_j(\dots)\mathrm e^{-\beta E_j},
+\end{equation}
+这个求和遍及系统的所有状态$j$，其中$E_j$是第$j$个态的能量。如果括号里的是单位一，这个``和式''便是配分求和$Z$。如果括号里是能量，那么``和式''比上$Z$就是平均能量$U$（见\eqref{equ16.12}式）。对于其他动力学变量也有类似的结果。
+
+对于宏观系统而言，能量$E_j$通常（并不总是）是密集分布的，即$\beta (E_{j+1}-E_j)\ll 1$。在这个情况下，求和可以用积分来替代
+\begin{equation}
+\text{``求和''}\simeq \int_{E_{\min}}^\infty (\dots)\mathrm e^{-\beta E}D(E)\,\mathrm dE.
+\label{equ16.41}
+\end{equation}
+其中$E_{\min}$为系统的基态能量（容许的最小能量），$D(E)$为“态密度”函数定义为
+\begin{equation}
+[E,E+\mathrm dE]\text{区间内的状态数}=D(E)\,\mathrm dE.
+\label{equ16.42}
+\end{equation}
+
+在许多系统中，能量本征态是轨道（单个单元）态的组合，配分求和因子、以及\eqref{equ16.41}、\eqref{equ16.42}式对单个单元也适用。此时与$D(E)$相对应的量便成了``轨道态密度''，这里我们依旧用$D(E)$来标记。
+
+此外，轨道态往往是以类似波动的正则模式。不论晶体的振动模式还是腔内的电磁场模式都是这样。基于量子力学的观点，甚至对于气体的平动模式都是这样：这儿波对应分子的量子波函数。这类轨道态密度函数可以用统一的办法来考察，下面就来简要的介绍这一点。
+
+考虑一个边长为$L$的立方``盒子''（结果不依赖于具体的形状，仅仅是为方便起见而作的选择）。一个平行于边界的驻波的波长$\lambda$需要满足半波长的整数倍刚好就是边长$L$。即波矢$k\equiv 2\pi/\lambda$有着$n\pi/L$的形式。而对于三维中任意朝向的波，$\mathbf k$的三个分量都需要满足类似约束\mpar{译注：原文下式的约束条件写作整数，更正成正整数。而事实上，所有可能的驻波成分应该由$n_1,n_2,n_3\in \text{非负整数} \& n_1+n_2+n_3>0$来约束。但是这两个约束之间的差异对于一个宏观系统而言可以忽略。}
+\begin{equation}
+\begin{aligned}
+&{\mathbf k}=\left(\frac{\pi}{L}\right)(n_1,n_2,n_3)=\left(\frac{\pi}{V^{1/3}}\right)(n_1,n_2,n_3),\\
+&n_1,n_2,n_3\in \text{正整数}.
+\label{equ16.43}
+\end{aligned}
+\end{equation}
+我们仅考虑各向同性的介质，即频率仅仅是$\mathbf k$的幅值$k$的函数
+\begin{equation}
+\omega=\omega(k),\text{亦或是},k=k(\omega).
+\end{equation}
+频率低于$\omega$的轨道态的数目为满足如下条件的正整数集合$\{n_1,n_2,n_3\}$的数目
+\begin{equation}
+(n_1^2+n_2^2+n_3^2)^{1/2}\le V^{1/3}\frac{k(\omega)}{\pi}.
+\end{equation}
+设想某个抽象空间，$n_1,n_2,n_3$分别为沿三个坐标轴距原点的整数距离，那么$(n_1^2+n_2^2+n_3^2)^{1/2}$便是半径。半径小于$V^{1/3}k(\omega)/\pi$的整数格点数应该等于这个半径内的体积。由于\eqref{equ16.43}式要求$n_1,n_2,n_3$都为正，故只有八分之一的球体体积是需要的。从而频率低于$\omega$的轨道态的数目为
+\begin{equation}
+\text{频率低于$\omega$的轨道态的数目}=\left(\frac{1}{8}\right)\left(\frac{4\pi}{3}\right)\left[V^{1/3}\frac{k(\omega)}{\pi}\right]^3,
+\end{equation}
+对其求导便得到区间$\mathrm d\omega$内的轨道态数目$D'(\omega)\,\mathrm d\omega$
+\begin{equation}
+D'(\omega)\,\mathrm d\omega = \frac{V}{6\pi^2}\frac{\mathrm dk^3(\omega)}{\mathrm d\omega}\,\mathrm d\omega=\frac{V}{2\pi}k^2(\omega)\frac{\mathrm dk(\omega)}{\mathrm d\omega}\,\mathrm d\omega.
+\label{equ16.47}
+\end{equation}
+这里的$D'(\omega)\,\mathrm d\omega$对应于``和式''中的$D(\omega)\,\mathrm d\omega$（见\eqref{equ16.41}式），参考习题16.6-1。
+
+这就是所需要的一般性结果。由于不同的模型有着不同的函数依赖$\omega(k)$，通过计算``轨道态密度''函数$D'(\omega)$，我们可以利用\eqref{equ16.41}式将求和转化为积分。至此，我们已经准备好将正则系综理论应用到实际系统中了。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.6-1] 证明能量区间$\mathrm d\varepsilon=\hbar\,\mathrm d\omega$中的轨道态数目是$D(\omega)=D'(\omega)/\hbar$，其中$D'(\omega)\,\mathrm d\omega$是频率区间$\mathrm d\omega$中的轨道态数目。
+\item[16.6-2] 对于气体中的粒子$\varepsilon=p^2/2m=(\hbar^2/2m)k^2$，即$\omega=\varepsilon/\hbar=\hbar k^2/2m$。计算轨道态密度函数$D'(\omega)$。
+\begin{flushright}
+{\it 答案：}\\
+$D'(\omega)=\frac{V}{2\pi^2}k^2/\left(\frac{\hbar k}{m}\right)=\frac{m^{3/2}V}{2^{1/2}\pi^2\hbar^{3/2}}\omega^{1/2}.$
+\end{flushright}
+\item[16.6-3] 对于满足关系$\omega=Ak^n,n>0$的激发，计算轨道态密度函数$D'(\omega)$。
+\end{itemize}
+\section{非金属晶体的Debye模型}\label{sec16.7}
+在\ref{sec16.2}节的结论，我们回顾了Einstein的晶体模型，发现正则系综理论可以求解更复杂的模型。``Debye 模型''相对稍微复杂一点，同时取得了巨大的成功。
+
+同样，考虑晶格上有$\tilde N$个原子，相邻原子之间由简谐力（``弹簧''）束缚。振动包含有$\tilde N$个纵模和$2\tilde N$个横模，它们都有正弦型的，或者``类波''的结构。最短的波长差不多是两倍的原子间距。那些相当长的波长对晶格结构不敏感，而类似于连续介质中的声波。$\omega$关于$k(=2\pi/\lambda)$的色散曲线相应的在长波极限下趋于线性，如图\ref{fig16.1}所示。到了短波区，色散曲线被``抚平''了，其结构依赖于晶体结构的具体细节。P. Debye%
+\footnote{P. Debye, {\it Ann. Phys.} {\bf 39}, 789 (1912)}%
+在Einstein的基础上，绕过了这其中复杂的动力学，提出了一个能够抓住问题主要矛盾的简单可行的近似。Debye模型假定所有模式都满足线性色散（图\ref{fig16.1}），就如同在连续介质中一样。纵模色散曲线的斜率为$v_L$，即介质中的声速。横模色散曲线的斜率是$v_t$。
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Pictures/fig16.1.png}
+\figcaption{振动模式的色散关系示意图。波长最短大概是原子间距的量级。有$\tilde N$个纵模和$2\tilde N$个横模。Debye近似利用长波区色散关系的线性外推替代了实际的色散关系，即纵模为$\omega=v_Lk$，横模为$\omega=v_tk$。}
+\label{fig16.1}
+\end{figure}
+
+这个模型的热力学性质可以通过计算配分求和来得到。不同模式的能量是可加的，因此配分求和是可分的。对于每个模式，其容许的能量为$n\hbar\omega(\lambda)$，其中$n=1,2,3,\dots$，而$\omega(\lambda)=2\pi\nu(\lambda)$由图\ref{fig16.1}中点画线给出。同Einstein模型一样（\eqref{equ16.22}式与\eqref{equ16.23}式）
+\begin{equation}
+z(\lambda)=\frac{1}{1-\mathrm e^{-\beta\hbar\omega(\lambda)}},
+\label{equ16.48}
+\end{equation}
+以及
+\begin{equation}
+Z=\prod\limits_{\text{模式}}z(\lambda)=\prod\limits_{\text{模式}}\left[1-\mathrm e^{-\beta\hbar\omega(\lambda)}\right]^{-1},
+\label{equ16.49}
+\end{equation}
+其中$\prod_{\text{模式}}$表示对于全部$3\tilde N$个模式求和。Helmholtz势为
+\begin{equation}
+F=k_\text{B}T\sum\limits_\text{模式}\ln(1-\mathrm e^{-\beta\hbar\omega(\lambda)}).
+\end{equation}
+读者可证明摩尔热容有如下形式
+\begin{equation}
+c_v = \beta^2\hbar^2k_\text{B}\sum\limits_\text{模式}\frac{\omega^2\mathrm e^{\beta\hbar\omega}}{(\mathrm e^{\beta\hbar\omega}-1)^2}.
+\label{equ16.51}
+\end{equation}
+对模式的求和最好用积分替换
+\begin{equation}
+c_v = \frac{\hbar^2}{k_\text{B}T^2}\int_0^{\omega_{\max}}\frac{\omega^2\mathrm e^{\beta\hbar\omega}}{(\mathrm e^{\beta\hbar\omega}-1)^2}D'(\omega)\,\mathrm d\omega.
+\label{equ16.52}
+\end{equation}
+其中$D'(\omega)\,\mathrm d\omega$代表$\mathrm d\omega$区间内的模式数。利用\eqref{equ16.47}式可以计算$D'(\omega)$。对于纵模而言函数关系为（图\ref{fig16.1}）
+\begin{equation}
+k=\omega/v_L,
+\end{equation}
+对于横模的两个偏振方向也是类似的。由\eqref{equ16.47}式可知
+\begin{equation}
+D'(\omega) = \frac{V}{2\pi^2}\left(\frac{1}{v_L^3}+\frac{2}{v_t^3}\right)\omega^2.
+\end{equation}
+最大频率%
+\footnote{文献中$\omega_{\max}$常用``Debye温度''来替代，其定义为$\theta_D=\hbar\omega_{\max}/k_\text{B}$。}%
+由模式数的归一化条件决定
+\begin{equation}
+\int_0^{\omega_{\max}}D'(\omega)\,\mathrm d\omega = 3N_A,
+\end{equation}
+据此有
+\begin{equation}
+\omega_{\max}^3 = \frac{18N_A\pi^2}{V}\left(\frac{1}{v_L^3}+\frac{2}{v_t^3}\right)^{-1}.
+\end{equation}
+将$D'(\omega)$带入\eqref{equ16.52}式，并将积分变量从$\omega$替换成$u(=\beta\hbar\omega)$
+\begin{equation}
+c_v=\frac{9N_Ak_\text{B}}{u_m^3}\int_0^{u_m}\frac{u^4\mathrm e^u}{(\mathrm e^u-1)^2}\,\mathrm du.
+\label{equ16.57}
+\end{equation}
+据此算出的摩尔热容的大致图像绘于图\ref{fig16.2}。
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Pictures/fig16.2.png}
+\figcaption{由Debye近似得到晶体的振动热容}
+\label{fig16.2}
+\end{figure}
+
+在高温极限下（$k_\text{B}T\gg\hbar\omega_{\max}$），热容的行为可以通过考察\eqref{equ16.51}式得到。在这个极限下$u^2\mathrm e^u/(\mathrm e^u-1)^2\rightarrow 1$。因此每个模式贡献$k_\text{B}$的摩尔热容（我们稍后会看到这是一个相当普适的结果）。故高温极限下的摩尔热容是$3N_Ak_\text{B}$，或者说$3R$。
+
+在低温下，即$\beta\hbar\omega_m\equiv u_m\gg 1$，\eqref{equ16.57}式的积分上界可以近似成无穷大，那么积分就成了个常数，$c_v$的温度依赖就仅仅局限在$u_m^3$一项中。那么低温区$c_v\sim T^3$，这和实验上对非金属晶体的测量结果相当吻合。自然，在中间区域热容曲线的具体形状就不那么精确了。除了低温区的尖锐指数行为被替换成了平缓的$T^3$，整体的定性行为同Einstein模型非常类似。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.7-1] 基于Debye近似计算晶体的能量。证明由你的结果出发可以得到同\eqref{equ16.57}式一样的热容。
+\item[16.7-2] 基于Debye近似计算晶体的熵。证明由你的结果出发可以得到同\eqref{equ16.57}式一样的热容。
+\item[16.7-3] 振动模式的频率$\omega(\lambda)$与波长$\lambda$的函数关系会因晶体被压缩而改变。为了描述这一效应，Gruneisen引入了``Gruneisen 参数''
+\begin{equation*}
+\gamma = -\frac{V}{\omega(\lambda)}\frac{\mathrm d\omega(\lambda)}{\mathrm dV},
+\end{equation*}
+假定$\gamma$为一个常数（与$\lambda,V,T$等无关），计算 Debye-Gruneisen 晶体的力学状态方程$P(T,V,N)$。并证明对于 Debye-Gruneisen 晶体有
+\begin{equation*}
+v\alpha = \gamma\kappa_Tc_v.
+\end{equation*}
+\end{itemize}
+\section{电磁辐射}\label{sec16.8}
+通过正则系统理论得到电磁辐射的基本方程\eqref{equ3.57}式同样也相当简单。假定辐射场局限在一个封闭的容器中，为简单起见假定为由理想导体包围的立方体。能量分布在腔体的电磁共振模式上。与Einstein和Debye的模型一样，一个频率为$\omega$的模式能量为$n\hbar\omega$，其中$n=0,1,2,\dots$。\eqref{equ16.48}及\eqref{equ16.49}式同样适用，以及
+\begin{equation}
+F=k_\text{B}T\sum\limits_\text{模式}\ln(1-\mathrm e^{-\beta\hbar\omega(\lambda)}).
+\end{equation}
+求和可以用积分近似替代（模式相对于能量是密集分布的）
+\begin{equation}
+F=k_\text{B}T\int_0^\infty \ln(1-\mathrm e^{-\beta\hbar\omega})D'(\omega)\,\mathrm d\omega.
+\end{equation}
+仅有的不同在于这里没有最高频率（而Debye模型中有）。固体中振动模式的最短波长（相应于最高频率）由核间距决定，而电磁波中就没有相应的这个东西。同Debye模型一样，色散关系依旧是线性的，总共有两个偏振模式
+\begin{equation}
+D'(\omega)=\frac{V}{\pi^2c^3}\omega^2,
+\end{equation}
+其中$c$为光速（\SI{2.998e8}{\meter\per\second}）。从而基本方程为
+\begin{equation}
+F= \frac{Vk_\text{B}T}{\pi^2c^3}\int_0^\infty \omega^2\ln(1-\mathrm e^{-\beta\hbar\omega})\,\mathrm d\omega.
+\end{equation}
+
+为了计算能量，我们需要用到恒等式（回忆\eqref{equ16.13}式）
+\begin{equation}
+U=F+TS=F-T\frac{\partial F}{\partial T}=\frac{\partial(\beta F)}{\partial\beta},
+\end{equation}
+从而有
+\begin{equation}
+U=\frac{V\hbar}{\pi^2c^3}\int_0^\infty \frac{\mathrm e^{-\beta\hbar\omega}}{1-\mathrm e^{-\beta\hbar\omega}}\omega^3\,\mathrm d\omega.
+\end{equation}
+积分$\int_0^\infty x^3(\mathrm e^x-1)\,\mathrm dx$的结果是$3!\zeta(4)=\pi^4/15$，其中$\zeta$为Rimann zeta函数%
+\footnote{参考 M. Abromowitz and I. A. Stegun, {\it Handbool of Mathematical Functions,} National Bureau of Standards Applied Mathematics Series, No. 55, 1964. 一书中的23.2.7式。}%
+，从而有
+\begin{equation}
+U=\frac{\pi^2k_\text{B}^4}{15\hbar^3c^3}VT^4.
+\end{equation}
+这被称为``Stefan-Boltzmann 定律''，之前在\eqref{equ3.52}式时就已经引入了。通过一些简单的统计力学计算，我们将\eqref{equ3.52}式中的常数$b$用基本物理常数表示了出来。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.8-1] 证明包含了``零点能''电磁模式（即，$E_n=(n+1/2)\hbar\omega$）会导致无穷大的能量密度$U/V$！这个无穷大的能量密度大概是个不会改变的常数，从而在物理上不可观测%
+\mpar{事实上，通过改变$\omega$我们可以观测到零点能产生的物理效应，可以参考\href{https://www.zhihu.com/question/28813026}{Casmir 效应}}。
+\item[16.8-2] 证明单位体积内频率区间$\mathrm d\omega$内的电磁辐射能量由``Planck 辐射定律''给出
+\begin{equation*}
+\frac{U_\omega}{V}\,\mathrm d\omega = \frac{\hbar\omega^3}{\pi^2c^3}(\mathrm e^{\beta\hbar\omega}-1)^{-1}\,\mathrm d\omega,
+\end{equation*}
+在高温极限（$k_\text{B}T\gg\hbar\omega$）%
+\mpar{或者说在长波段}%
+下，约化为``Rayleigh-Jeans 定律''
+\begin{equation*}
+\frac{U_\omega}{V}\,\mathrm d\omega \simeq \frac{\omega^2}{\pi^2c^3}k_\text{B}T\,\mathrm d\omega.
+\end{equation*}
+\item[16.8-3] 计算单位体积频率区间$\mathrm d\omega$内的光子数，即
+\begin{equation*}
+(U_\omega/V)\,\mathrm d\omega = (U_\omega/V)\,\mathrm d\omega/\hbar\omega,
+\end{equation*}
+其中$U_\omega$由习题16.8-2给出，计算单位体积内的总光子数。证明光子的平均能量$(U/N)$近似为$2.2k_\text{B}T$。涉及到的积分可以用Riemann zeta函数来表示，参考之前的脚注。
+\item[16.8-4] 由于腔内的辐射沿各个方向的传播速度均为$c$，撞单位面积壁上的能流（或者说通过腔内一个虚拟的单位表面）由``Stefan-Boltzmann 定律''给出：
+\begin{equation}
+\text{单位面积能流}=\frac{1}{4}c(U/V)=\frac{1}{4}cbT^4\equiv \sigma_\text{B}T^4.
+\end{equation}
+因子$c/4$来自于$\frac{1}{2}(c/2)$：第一个$\frac{1}{2}$是因为只要从``右''往``左''的辐射（或者相反），而$c/2$表示垂直于面元的平均速度。常数$\sigma_\text{B}(=cb/4)$是广为人知的``Stefan-Boltzmann 常数''。作为基础运动学的一个联系，试导出Stefan-Boltzmann 定律（详细给出计算平均的过程）。
+\end{itemize}
+\section{经典态密度}\label{sec16.9}
+在正则系综理论下使用基础算法计算基本方程，只需要知道系统全部离散能级的能量就行了。或者，如果能量本征值分布得比较密，那么知道轨道态密度就成了。不论在哪种情况下，总假定着态具有离散性（以及可数性）。这个事实会引发两个问题。首先，我们如何将统计力学用于经典系统？其次，在那量子力学和离散态的概念还远没有诞生的19世纪，Willard Gibbs 是如何发明统计力学的呢？
+
+我们回到理论的中心方程来寻找线索——对类波模式配分求和的\eqref{equ16.47}式
+\begin{equation}
+z=\mathrm e^{-\beta\tilde F}=\int\mathrm e^{-\beta\varepsilon}D'(\omega)\,\mathrm d\omega = \int\mathrm e^{-\beta\varepsilon}\frac{V}{2\pi^2}k^2(\omega)\,\mathrm dk(\omega),
+\end{equation}
+我们尝试将这个式子写成与经典力学兼容的形式，首先把$\hbar\bf k$记做（广义）动量
+\begin{equation}
+\hbar {\mathbf k} = {\mathbf p},
+\end{equation}
+那么有
+\begin{equation}
+z=\frac{1}{2\pi^2\hbar^3}\int\mathrm e^{-\beta\varepsilon}Vp^2\,\mathrm dp.
+\end{equation}
+为了把坐标和动量写成一样的形式，体积可以写作对空间坐标的积分。此外，经典力学中能量$E$的角色由 Hamiltonian 函数$\mathscr H(x,y,z,p_x,p_y,p_z)$来扮演%
+\mpar{准确地说，作者这里的意思是，量子力学中不同能级的能量本征值到了经典力学中成了 Hamiltonian 函数。}%
+最后我们再把$4\pi p^2\,\mathrm dp$改写成$\mathrm dp_x\mathrm dp_y\mathrm dp_z$，作为``动量空间的体积元''，那么配分求和就变成了
+\begin{equation}
+z=\frac{1}{h^3}\int \mathrm e^{-\beta\mathscr H}\,\mathrm dx\mathrm dy\mathrm dz\mathrm dp_x\mathrm dp_y\mathrm dp_z.
+\label{equ16.68}
+\end{equation}
+除了一个经典上无法理解的前因子$(1/h^3)$，这个对单模式的配分求和就完全是经典的。Josiah Willard Gibbs 于1875年至1878年间在{\it Journal of the Connecticut Academy}上发表的一系列文章中所得到的统计力学就写成了这个形式。Gibbs对\eqref{equ16.68}式的假定（以及毫无经典上的正当理由地引入$h$），必定是物理学史上最具天才的洞察之一了。对于Gibbs而言，$h$的具体值可以通过简单的比对经验数据就可以确定。
+
+\eqref{equ16.68}式中包含了三个位置坐标和三个动量坐标，就如同对单粒子写出来的一样。但这仅仅是形式上的。$x,y,z$可以是任何的``广义坐标''$(q_1,q_2,\dots)$，动量$p_x,p_y,p_z$则为相应的``共轭动量''。坐标和动量的数目由体系的结构决定，一般来讲我们可以写出
+\begin{equation}
+Z=\int\mathrm e^{-\beta\mathscr H}\prod\limits_j\left(\frac{\mathrm dq_j\mathrm dp_j}{h}\right).
+\label{equ16.69}
+\end{equation}
+这就是适用于经典系统的统计力学的基本方程。
+
+最后我们来简单说说``经典轨道态密度''函数。{\it 在经典相空间中，}（坐标动量空间）{\it 每个``边长''为$h^{1/2}$的超立方体都对应于一个量子态。}这就如同轨道态都在相空间中``紧密堆积在一起''，占据着Heisenberg不确定性原理$\Delta q_j\Delta p_j\ge h$所容许的空间一样%
+\mpar{进一步的，读者可以参考这几个概念：Liouville定理，WKB近似，作用量与Sommerfeld量子化条件。}%
+。
+
+不论诠释如何，也不论这一节所给出论据的合理性如何，经典统计力学就是由\eqref{equ16.68}式和\eqref{equ16.69}式定义的。
+\section{经典理想气体}\label{sec16.10}
+经典单原子理想气体可以用作经典态密度和计算配分函数的经典算法\eqref{equ16.69}式的一个简明直接的应用。
+
+我们用用体积为$V$的容器内$\tilde N=(NN_A)$个质点``原子''作为气体的模型，与温度为$T$的热库作热接触。气体的能量等于所有单个原子能量之和。分子之间的相互作用被剔除在考虑范围外（除非这类相互作用对能量没有贡献——例如硬球模型中的瞬时碰撞）。
+
+能量等于对单粒子的``动能''求和，再附加上配分求和因子。我们先着手处理单粒子平动配分求和$z_\text{平动}$，由\eqref{equ16.69}可知
+\begin{equation}
+\begin{aligned}
+z_\text{平动}&=\frac{1}{h^3}\iiint\mathrm dx\mathrm dy\mathrm dz\int_{-\infty}^\infty\int_{-\infty}^\infty\int_{-\infty}^\infty\mathrm dp_x\mathrm dp_y\mathrm dp_z\mathrm e^{-\beta(p_x^2+p_y^2+p_z^2)/2m}\\
+&= \frac{V}{h^3}\left[2\pi mk_\text{B}T\right]^{3/2}.
+\end{aligned}
+\label{equ16.70}
+\end{equation}
+
+值得注意的是，通过对离散态求和，再将求和用积分近似，我们可以基于{\it 量子力学}的处理得到这个结果。这个计算作为练习留给读者（习题16.10-4）。
+
+有了$z$，那么看上去$Z$自然就是$z^{\tilde N}$，进而可以计算Helmholtz势$F$。但是如果我们这样做的话，我们会发现算得的Helmholtz势不是一个广延量！事实上，注意到单粒子配分函数$z$是广延量（\eqref{equ16.70}）而不是所预期的强度量（$F=-\tilde Nk_\text{B}T\ln z$），我们就应该能提前算到这个灾难性的结局了。这个问题不是什么计算错误造成的，而是基于一个基础的原理。{\it 令$Z$等于$z^{\tilde{N}}$，相当于假定所有粒子都是可以区分的}，就像每个都有一个标记或者数字一样（类似于一桌台球）。量子力学，不同于经典力学，给予了不可分辨性非常深刻的含义。不可分辨性{\it 不}仅仅是在说这些粒子是``全同''的——它还要求这些全同粒子在交换下满足一些特定的条件，而其没有经典力学对应。全同粒子必须遵从 Fermi-Dirac 或者 Bose-Einstein 交换对称性，其在统计力学下所导致的结果我们会在第\ref{chap17}章中详细讨论。而现在我们仅仅需要一个经典的解决方案。将$z^{\tilde N}$作为对一组{\it 可分辨}粒子的配分求和。然后把这个结果除以$\tilde N!$。理由是对$\tilde N$个不可分辨粒子的``标记''的全部$\tilde N!$种置换都应当认同作是一个态。最终我们得到了经典单原子理想气体的配分求和
+\begin{equation}
+Z=(1/\tilde N!)z_\text{平动}^{\tilde N},
+\label{equ16.71}
+\end{equation}
+其中$z_\text{平动}$由\eqref{equ16.70}式定义。
+
+Helmholtz势为
+\begin{equation}
+F=-k_\text{B}T\ln Z=-\tilde Nk_\text{B}T\ln\left[\frac{V}{\tilde N}\left(\frac{2\pi mk_\text{B}T}{h^2}\right)^{3/2}\right]-\tilde Nk_\text{B}T,
+\end{equation}
+其中使用了对于较大的$\tilde N$适用的Stirling近似($\ln\tilde N!\simeq \tilde N\ln\tilde N-\tilde N$)。
+
+为了将这个结果与第\ref{chap3}章中给出的基本方程作对比，我们通过一个Legendre变换将其变换到熵表象
+\begin{equation}
+S=\tilde Nk_\text{B}\left[\frac{5}{2}-\frac{3}{2}\ln(3\pi\hbar^2/m)\right]+\tilde Nk_\text{B}\ln(U^{3/2}V/\tilde N^{5/2}).
+\end{equation}
+这就是我们所熟知的单原子理想状态方程。热力学框架下无法确定的常数$s_0$现在可以用基本物理常数给出了。
+
+仔细考察对状态计数的问题，能够发现除以$\tilde N!$仅仅经典上是对于不可分辨性的一个粗糙处理。很快我们就能发现不对头的地方：考虑一个双粒子系统，每个都有两个轨道态（图\ref{fig16.3}）。经典上来讲，对于可分辨粒子总共有四个态，除以$2!$来``修正''不可分辨性的影响。如果粒子是fermion，那么一个单粒子态上只能布居一个粒子，因此系统只有{\it 一}个容许的状态。对于boson，单粒子态上的粒子数没有限制，因此系统有{\it 三}个容许的状态（图\ref{fig16.3}）。不论对哪种实际粒子，``经典修正''都没有给出正确的结果%
+\mpar{译注：这个经典修正给出的结果到底对应于怎样一个排列组合问题，本身就是一个有趣的问题。}%
+！
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Pictures/fig16.3.png}
+\figcaption{分别根据经典、Fermi和Bose计数法得到双粒子系统的可能状态。}
+\label{fig16.3}
+\end{figure}
+
+在充分高的温度下，气体分子布居在从低能量到相当高能量的许多状态上。此时两个粒子呆在同一个状态的概率变得相当低。由于问题总是和同一个单粒子态有多个粒子布居相联系，那么经典计数造成的误差就不那么显著了。{\it 在充分高的温度下，所有气体都趋向于理想气体的行为。}
+
+考虑两类单原子理想气体的混合物。配分求和是可分的，利用\eqref{equ16.71}式
+\begin{equation}
+Z=Z_1Z_2=\frac{1}{\tilde N_1!}z_1^{\tilde N_1}\frac{1}{\tilde N_2!}z_2^{\tilde N_2}.
+\label{equ16.74}
+\end{equation}
+Helmholtz势等于两个气体的Helmholtz势之和。在它们{\it 每}个Helmholtz势中的体积项都是它们{\it 共同}所占据的总体积。温度自然是共同的温度。这样得到的基本方程与\ref{sec3.4}节中所引入的（\eqref{equ3.40}式）一样，只是再一次对热力学意义下任意的常数给出了具体值。
+
+\noindent{\bf 习题}
+\begin{itemize}
+\item[16.10-1] 证明通过由\eqref{equ16.70}式给出的$z$计算$Z=z^{\tilde N}$，对于每个原子都各自占据一个不同的体积$V$的系统成立。证明在这种诠释下由$Z=z^{\tilde N}$给出的基本方程具有恰当的广沿性。
+\item[16.10-2] 证明由\eqref{equ16.74}式给出的``多组分理想气体''基本方程等价于\eqref{equ3.40}式。
+\item[16.10-3] \eqref{equ16.74}式中的因子$(1/\tilde N_1!)(1/\tilde N_2!)$给出了一项不依赖于$z_1$和$z_2$具体形式的，对于Helmholtz势可加的贡献。证明这个因子在熵中给（{\it 不}出现在Helmholtz势中！）出了一个``混合''项
+\begin{equation*}
+\tilde s_\text{混合}=(-x_1\ln x_1-x_2\ln x_2)k_\text{B}.
+\end{equation*}
+这个混合项不仅出现在理想气体中，同样也出现在流体中。它被认为是两种流体的混合过程不可逆的象征（请回顾\ref{sec4.5}节中的例\ref{eg4.2}）。
+\item[16.10-4] 考虑体积为$V$的立方容器中一质量为$m$的粒子。证明其相邻两个能级的间距大约为$\Delta E\simeq\pi^2\hbar^2/2mV^{2/3}$，并对于\SI{1}{\meter\cubic}容器中的 helium 原子大致计算$\Delta E$的值。证明，对于温度高于$\simeq$\SI{e-8}{\kelvin}，量子的配分求和就可以用积分近似替代。证明这个``近似''能得出\eqref{equ16.70}式。
+\item[16.10-5] 考虑一个容积为$2V$的容器，被一个开有小孔的隔板隔开成相等的两份，其中有一个带电粒子。隔板上的小孔附近带有电场，使得粒子在隔板两端具有$\varepsilon_e$的势能差异。如果系统温度为$T$，那么该粒子在隔板两端被发现的概率各为多少？这个结果会怎么被粒子的内部模式所影响？如果粒子的色散关系是能量正比于动量而不是动量平方，结果会怎样？如果容器中有\SI{1}{\mole}这样的粒子（尽管它们都带有电荷，但请忽略其间的相互作用！），两边的压强各是多少？
+\end{itemize}
+\section{高温下的性质——能均分定理}\label{sec16.11}
+
+在\eqref{equ16.70}式中计算得到的$z_\text{平动}$正比于$T^{3/2}$，是一个一般性定理的特殊情况。考察系统的一些正则模式——可能是平动、振动、转动亦或是其他更抽象的东西。令这个模式相应的广义坐标为$q$，共轭动量为$p$。假定其能量（Hamiltonian）具有形式
+\begin{equation}
+E=Aq^2+Bp^2.
+\end{equation}
+通过经典方案计算的配分函数包含如下因子
+\begin{equation}
+z\sim\iint \frac{\mathrm dq\mathrm dp}{h}\mathrm e^{-\beta(Aq^2+Bp^2)},
+\end{equation}
+同\eqref{equ16.70}式中一样，若$A\ne 0$以及$B\ne 0$，有
+\begin{equation}
+z\sim \left(\frac{\pi k_\text{B}T}{hA}\right)^{1/2}\left(\frac{\pi k_\text{B}T}{hB}\right)^{1/2}.
+\label{equ16.77}
+\end{equation}
+如果$A$或者$B$是零的话，那么相应的积分值就是一个由积分限决定的（有界的）常数。\eqref{equ16.70}式中对$x$的积分就是一个例子，相应的结果是$V^{1/3}$。
+
+\eqref{equ16.77}式的意义在于，{\it 在充分高的温度下}（此时使用经典态密度是可行的）{\it 能量中每一个平方项对配分函数贡献一个$T^{1/2}$因子。}
+
+等价的，在充分高的温度下能量中每一个平方项都会给$-\beta F$贡献一项$\frac{1}{2}\tilde N\ln T$，或者说给 Helmholtz 势$F$贡献一项$-\frac{1}{2}\tilde Nk_\text{B}T\ln T$，或者说给熵贡献一项$\frac{1}{2}\tilde Nk_\text{B}T(1+\ln T)$.
+
+或者，在最后，这个结果可以写成最明显的形式：{\it 在充分高的温度下，能量中每一个平方项对热容贡献一项$\frac{1}{2}\tilde Nk_\text{B}$。}这就是经典统计力学的``能均分定理''。
+
+质点粒子构成的气体在能量中有三个平方项：$(p_x^2+p_y^2+p_z^2)/2m$。这类气体高温下的定体热容量就是$\frac{3}{2}\tilde Nk_\text{B}$，或者$\frac{3}{2}R$每mole。
+
+我们举例说明能均分定理在多原子分子气体上的应用。首先考虑异核双原子分子。它有三个平动模式；每个模式都有一个动能平方项，但没有势能；三个模式对高温摩尔热容贡献$\frac{3}{2}k_\text{B}$。另外分子还有一个振动模式；其具有动能平方项和势能平方项，贡献$\frac{2}{2}k_\text{B}$。最后分子有两个转动模式（即，其需要两个角度来确定取向）。转动模式有动能平方项而没有势能项，其贡献$\frac{2}{2}k_\text{B}$。则高温下的热容为$\frac{7}{2}k_\text{B}$每分子（或者$\frac{7}{2}R$每摩尔）。
+
+一般而言分子中的模式数等于原子数的三倍。这源于模式振幅是一组可以替代分子中各个原子笛卡尔坐标的坐标。而诸原子笛卡尔坐标数目之和显然等于原子数目的三倍。
+
+考察一个异核三原子分子。其具有九个模式。其中，三个平动模式，每个贡献$\frac{1}{2}k_\text{B}$。三个转动模式，对应于描述一个一般物体在空间中取向的三个角度。每个转动模式都只有一个动能项，每个给热容贡献一个$\frac{1}{2}k_\text{B}$。扣掉这些之后剩下的都是振动模式，各自同时具有动能项和势能项，每个贡献$\frac{2}{2}k_\text{B}$。因此高温下其具有每分子$6k_\text{B}$的热容量。
+
+如果三原子分子是线性的，那么会少一个转动模式而多一个振动模式。高温热容量上升到$\frac{13}{2}k_\text{B}$。通过测量气体的热容可以分辨分子的形状！
+
+在上面的全部讨论中我们都略去了原子内部结构可能造成的影响。这些贡献一般有着高得多的能量，仅仅在极高的温度下才起作用。
+
+如果分子是{\it 同核(homonuclear)}的（不可区分的原子），与异核不同，量子力学对称性的要求再一次使得数态变得复杂了。尽管如此，类似的能均分定理依然在高温下成立。经典配分函数需要为两个原子的不可区分性额外加上$(1/2)^N$的因子，并为$\tilde N$个分子的不可区分性加上$1/\tilde N!$的因子。

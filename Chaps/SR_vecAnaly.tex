@@ -1,0 +1,264 @@
+\chapter{狭义相对论中的向量分析}
+\label{chap:SR_vecAnaly}
+
+参考文献：Schutz, A first course in general relativity, 2nd ed. Chap 2.
+
+\section{四维向量}
+\label{sec:fourVec}
+设$\MO, \MObar$为两个惯性系，$\MObar$相对于$\MO$沿$x$轴运动，速度为$v$。\mpar{$v > 0$：速度方向为$x$轴正方向；$v < 0$：速度方向为$x$轴负方向。}
+
+它们之间的Lorentz变换为（原书(1.12)式）：
+\begin{equation}
+\label{equ:LorTra1}
+\begin{dcases}
+    \bar{t} = \frac{1}{\sqrt{1 - v^2}} t + \frac{-v}{\sqrt{1 - v^2}} x. \\
+    \bar{x} = \frac{-v}{\sqrt{1 - v^2}} t + \frac{1}{\sqrt{1 - v^2}} x. \\
+    \bar{y} = y. \\
+    \bar{z} = z. 
+\end{dcases}
+\end{equation}
+定义$x^\mu = (t, x, y, z)^T, x^{\bar{\mu}} = (\bar{t}, \bar{x}, \bar{y}, \bar{z})^T$, 其中上标$\mu, \bar{\mu} = 0, 1, 2, 3$, 指代四个分量。于是\eqref{equ:LorTra1}式可以用矩阵形式写为
+\begin{align}
+\displaystyle
+    x^{\bar{\mu}} &= \Lambda\indices{^{\bar{\mu}}_\nu} x^\nu, \\
+    \begin{pmatrix}
+        \bar{t} \\ \bar{x} \\ \bar{y} \\ \bar{z}
+    \end{pmatrix} 
+    &= 
+    \begin{pmatrix}
+        \frac{1}{\sqrt{1 - v^2}} & \frac{-v}{\sqrt{1 - v^2}} & 0 & 0 \\
+        \frac{-v}{\sqrt{1 - v^2}} & \frac{1}{\sqrt{1 - v^2}} & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        t \\ x \\ y \\ z
+    \end{pmatrix}. \label{equ:LonTraMat1}
+\end{align}
+
+根据惯性系时空坐标的变换规律——Lorentz变换，定义狭义相对论中的{\bf 四维向量}$\grave{A}$如下：
+\begin{itemize}
+    \item $\grave{A}$在惯性系$\MO$中的分量为:
+    \[ \grave{A} \stackrel{\MO}{\rightarrow} (A^0, A^1, A^2, A^3) \equiv A^\mu, \quad \mu = 0, 1, 2, 3. \]
+    $A^\mu$称为四维向量$\grave{A}$在$\MO$系中的分量，$A^0$称为第$0$分量，等等。
+    \item $\grave{A}$在$\MObar$系中的分量为
+    \begin{equation}
+        A^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_\beta} A^\beta.
+    \end{equation}
+    即四维向量不同坐标系的分量之间的变换规律与坐标的变换规律相同，均为Lorentz变换。
+\end{itemize}
+
+\section{向量代数}
+\label{sec:vecAlg}
+\subsection{坐标系的基}
+\label{subsec:basis}
+$\MO$系的{\bf 基向量}（简称{\bf 基}） $\{ \grave{e}_0, \grave{e}_1, \grave{e}_2, \grave{e}_3 \}$ 定义为:\mpar{在这里基向量是由它们在某一惯性系$\MO$中的分量定义的，根据Lorentz变换，基向量在其它惯性系的坐标也确定。}
+\begin{equation}
+\begin{split}
+	\grave{e}_0 &\stackrel{\MO}{\rightarrow} (1, 0, 0, 0), \quad	\grave{e}_1 &\stackrel{\MO}{\rightarrow} (0, 1, 0, 0), \\
+	\grave{e}_2 &\stackrel{\MO}{\rightarrow} (0, 0, 1, 0), \quad
+	\grave{e}_3 &\stackrel{\MO}{\rightarrow} (0, 0, 0, 1). \\
+\end{split}
+\end{equation}
+可见基$\grave{e}_\alpha$在$\MO$系的$\beta$分量（$\alpha, \beta = 0, 1, 2, 3$）的规律为：
+\begin{itemize}
+	\item 若$\alpha = \beta$，则$\grave{e}_\alpha$的$\beta$分量为$1$。例如基向量$\grave{e}_3$的第3分量为1.
+	\item 若$\alpha \neq \beta$，则则$\grave{e}_\alpha$的$\beta$分量为$0$。例如基向量$\grave{e}_2$的第0分量为0.
+\end{itemize}
+这可以简单地用Kronecker $\delta$符号$\delta_{\alpha \beta}$\mpar{$\delta_{\alpha \beta} \equiv \begin{cases} 1, & \alpha = \beta. \\ 0, & \alpha \neq \beta. \end{cases}$}表示为：
+\begin{equation}
+	(\grave{e}_\alpha)^\beta = \delta\indices{_\alpha^\beta}.
+\end{equation}
+
+同理，$\MObar$系的基矢为
+\begin{equation}
+\begin{split}
+	\grave{e}_{\bar{0}} &\stackrel{\MObar}{\rightarrow} (1, 0, 0, 0), \quad
+	\grave{e}_{\bar{1}} &\stackrel{\MObar}{\rightarrow} (0, 1, 0, 0), \\
+	\grave{e}_{\bar{2}} &\stackrel{\MObar}{\rightarrow} (0, 0, 1, 0), \quad
+	\grave{e}_{\bar{3}} &\stackrel{\MObar}{\rightarrow} (0, 0, 0, 1). \\
+\end{split}
+\end{equation}
+一般$\grave{e}_\alpha \neq \grave{e}_{\bar{\alpha}}$.
+
+任意向量可以用分量+基向量表示：
+\begin{align}
+	\grave{A} &\stackrel{\MO}{\rightarrow} (A^0, A^1, A^2, A^3). \\
+	\grave{A} &= A^0 \grave{e}_0 + A^1 \grave{e}_1 + A^2 \grave{e}_2 + A^3 \grave{e}_3 \underbrace{=}_{\mathclap{\text{Einstein summation rule}}} A^\alpha \grave{e}_\alpha.
+\end{align}
+
+向量是具有绝对性的几何对象，而向量的分量依坐标系的不同而变，具有相对性。然而由上式可知不同坐标系的分量+基向量等于向量本身，因此也具有绝对性：
+\begin{equation}
+	\grave{A} = \underbrace{A^{\bar{\alpha}} \grave{e}_{\bar{\alpha}} }_{\MObar \text{系}} = \underbrace{ A^\rho \grave{e}_{\rho} }_{\MO \text{系} }.
+\end{equation}
+由此可导出不同坐标系基向量的变换规律：
+\begin{align}
+	\grave{A} &= A^{\bar{\alpha}} \grave{e}_{\bar{\alpha}} = A^\rho \grave{e}_{\rho}  \notag \\
+	&= \Lambda\indices{^{\bar{\alpha}}_{\rho}} A^\rho \grave{e}_{\bar{\alpha}}. \\
+	\grave{e}_{\mu} &= \to \Lambda\indices{^{\bar{\alpha}}_\mu} \grave{e}_{\bar{\alpha}}.  \quad \text{此即为基向量变换式.} \label{equ:basTra1}
+\end{align}
+注意基向量变换式与向量分量变换式$A^{\bar{\mu}} = \Lambda\indices{^{\bar{\mu}}_\nu} A^\nu$区分。
+
+
+\subsection{Lorentz变换的逆变换与变换矩阵}
+Lorentz变换$\Lambda\indices{^{\bar{\beta}}_\alpha}$与$\MObar$系相对于$\MO$系的速度$\vec{v}$有关，因此可以记作
+\begin{align}
+	\Lambda\indices{^{\bar{\beta}}_\alpha} &= \Lambda\indices{^{\bar{\beta}}_\alpha} (\vec{v}). \\
+	\grave{e}_{\alpha} &= \Lambda\indices{^{\bar{\beta}}_\alpha} (\vec{v}) \grave{e}_{\bar{\beta}}.
+\end{align}
+显然$\MO$系相对于$\MObar$系的速度为$-\vec{v}$，逆向\mpar{即从$\MObar$系变换到$\MO$系。}的Lorentz变换为
+\begin{equation}
+	\grave{e}_{\bar{\mu}} = \Lambda\indices{^\nu_{\bar{\mu}}} (-\vec{v}) \grave{e}_\nu.
+\end{equation}
+
+为得到$\Lambda\indices{^\nu_{\bar{\mu}}} (-\vec{v})$的具体矩阵形式，将\eqref{equ:LonTraMat1}式中的$v$替换成$(-v)$即可：
+\begin{equation}
+\label{equ:LorMatminv}
+\Lambda\indices{^\nu_{\bar{\mu}}} (-\vec{v}) = 
+    \begin{pmatrix}
+        \frac{1}{\sqrt{1 - v^2}} & \frac{+v}{\sqrt{1 - v^2}} & 0 & 0 \\
+        \frac{+v}{\sqrt{1 - v^2}} & \frac{1}{\sqrt{1 - v^2}} & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}.
+\end{equation}
+
+变换矩阵$\Lambda$相应的相对速度总是$\Lambda${\it 上标对应的坐标系}相对于{\it 下标对应的坐标系}。例如$\Lambda\indices{^\nu_{\bar{\mu}}} = \Lambda\indices{^\nu_{\bar{\mu}}}(-\vec{v})$, $-\vec{v}$正是$\MO$系（$\Lambda\indices{^\nu_{\bar{\mu}}}$上标对应的坐标系）相对于$\MObar$系（下标坐标系）的速度。
+
+与\eqref{equ:basTra1}式同理可得
+\begin{equation}
+\label{equ:basTra2}
+	\grave{e}_{\bar{\beta}} = \Lambda\indices{^\nu_{\bar{\beta}}} (-\vec{v}) \grave{e}_\nu.
+\end{equation}
+再从\eqref{equ:basTra1}式出发，并结合上式可得：
+\begin{align}
+	\grave{e}_\alpha &\underbrace{=}_{\eqref{equ:basTra1}\text{式} } \Lambda\indices{^{\bar{\beta}}_\alpha} (\vec{v}) \grave{e}_{\bar{\beta}} \underbrace{=}_{\eqref{equ:basTra2}\text{式} }  \Lambda\indices{^{\bar{\beta}}_\alpha}(\vec{v}) \, \Lambda\indices{^\nu_{\bar{\beta}}} (-\vec{v}) \, \grave{e}_\nu. \\
+	&\to  \Lambda\indices{^{\bar{\beta}}_\alpha}(\vec{v}) \, \Lambda\indices{^\nu_{\bar{\beta}}} (-\vec{v}) = \delta\indices{^\nu_\alpha}.
+\end{align}
+从上式可见，$\Lambda\indices{^\nu_{\bar{\beta}}} (-\vec{v})$的逆矩阵即为$\Lambda\indices{^{\bar{\beta}}_\alpha}(\vec{v})$.
+
+\section{四维速度}
+\label{sec:fourVelocity}
+粒子（质点）的{\bf 四维速度}（简称{\bf 四速}）记作$\grave{U}$，定义为粒子世界线在粒子的瞬时共动参考系\mpar{瞬时共动参考系：Momentarily Comoving Reference Frame, 今后简称为MCRF.}({\bf MCRF})内长度为$1$的切向量。
+
+(We define the four-velocity $\grave{U}$ to be a vector tangent to the world line of the particle, and of such a length that it stretches one unit of time in that particle's frame.)
+
+考虑一个匀速直线运动的粒子，它在MCRF中静止，根据四速的定义，粒子的四速在MCRF中的分量为$(1, 0, 0, 0) \stackrel{\text{MCRF}}{\leftarrow} \grave{e}_0$.
+
+一个变速运动粒子的四速在该粒子的MCRF中定义。设粒子世界线上某一事件$A$的MCRF为$\MObar$系，则粒子在$A$的四速即定义为$\MObar$系的基向量$\grave{e}_{\bar{0}}$.
+
+\section{四维动量}
+\label{sec:fourMomentum}
+粒子的{\bf 四维动量}$\grave{p}$（简称为{\bf 四动量}）定义为：
+\begin{equation}
+	\grave{p} \equiv m \grave{U}.
+\end{equation}
+其中$m$为粒子的静质量，即在粒子静止的参考系中测得的粒子质量。
+
+$\grave{p}$在任意惯性系$\MO$中的分量为
+\begin{equation}
+    \grave{p} \stackrel{\MO}{\rightarrow} (E, p^1, p^2, p^3).
+\end{equation}
+其中$E \equiv p^0$，称为粒子在参考系$\MO$中的{\bf 能量}\mpar{后面会看到这个称呼的合理性，即$p^0$为啥是能量。}，空间分量$p^i$即为三维动量。
+
+\paragraph{例}
+静质量为$m$的粒子相对于$\MO$系的速度沿$x$轴，分量为$v$($v > 0$: 速度方向为$x$轴正方向; $v < 0$: 速度方向为$x$轴负方向)。 求粒子的四速、四动量在$\MO$系中的分量。
+
+{\it 
+粒子的MCRF记作$\MObar$系，粒子相对于$\MObar$相对静止，故$\MObar$相对于$\MO$的速度为$v$.
+
+根据定义，
+\begin{equation}
+    \grave{U} = \grave{e}_{\bar{0}}, \quad \grave{p} = m\grave{U} = m \grave{e}_{\bar{0}}.
+\end{equation}
+四速、四动量在$\MO$系的分量通过Lorentz变换得到：
+\begin{align}
+    U^\alpha &= \Lambda\indices{^\alpha_{\bar{\beta}}} (\grave{e}_{\bar{0}})^{\bar{\beta}} = \Lambda\indices{^\alpha_{\bar{0}}}, \\
+    p^\alpha &= m \Lambda\indices{^\alpha_{\bar{0}}}.
+\end{align}
+Lorentz变换矩阵的具体形式见\eqref{equ:LorMatminv}式。
+
+于是
+\begin{equation}
+    U^\alpha =  
+        \begin{pmatrix}
+            \frac{1}{\sqrt{1 - v^2}} \\
+            \frac{v}{\sqrt{1 - v^2}} \\
+            0 \\
+            0
+        \end{pmatrix}, \quad 
+    p^\alpha = 
+        \begin{pmatrix}
+            \frac{m}{\sqrt{1 - v^2}} \\
+            \frac{mv}{\sqrt{1 - v^2}} \\
+            0 \\
+            0
+        \end{pmatrix}.
+\end{equation}
+
+粒子在$\MO$系中的能量$E$为
+\begin{equation}
+    E \equiv p^0 = \frac{m}{\sqrt{1 - v^2}} \underbrace{=}_{v \ll 1, \text{非相对论极限}} \overbrace{m}^{\mathclap{\text{静（质）能}} }+ \overbrace{\frac{1}{2} mv^2}^{\text{非相对论动能}}.
+\end{equation}
+从上式可见将$p^0$定义为粒子能量的合理性。
+}
+
+粒子在相互作用前后的四维动量守恒（基本假设，只能由实验验证）：
+\begin{equation}
+    \grave{p} = \sum_{\text{所有粒子}(i)} \grave{p}_{(i)}.
+\end{equation}
+
+对于多个粒子组成的质点系，定义它的{\bf 动量中心参考系(center for momentum, CM frame)}为质点系总动量为零的惯性系，即
+\begin{equation}
+    \sum_{\text{粒子编号}(i)} \grave{p}_{(i)} \stackrel{CM}{\longrightarrow} (E_t, 0, 0, 0).
+\end{equation}
+经常在CM系中简化质点系问题。
+
+
+\section{标量积}
+\label{sec:scaPro}
+四维向量$\grave{A}$的{\bf 模}$|\grave{A}|$定义为
+\begin{align}
+    |\grave{A}| & \equiv \sqrt{|\grave{A}^2|}, \label{equ:vecModDef}\\ 
+    \grave{A}^2 & \equiv -(A^0)^2 + (A^1)^2 + (A^2)^2 + (A^3)^2 = \eta_{\mu \nu} A^\mu A^\nu.
+\end{align}
+我们希望这样定义的向量的模（“长度”）在任意惯性系中相等，这由Lorentz变换的性质保证：
+\begin{align}
+    \underbrace{\eta_{\bar{\mu} \bar{\nu}} A^{\bar{\mu}} A^{\bar{\nu}} }_{\MObar\text{系的模（平方）}} &= \eta_{\bar{\mu} \bar{\nu}} (\Lambda\indices{^{\bar{\mu}}_\alpha} A^\alpha ) (\Lambda\indices{^{\bar{\nu}}_\beta} A^\beta )\\
+    &= \underbrace{ \eta_{\bar{\mu} \bar{\nu}} \Lambda\indices{^{\bar{\mu}}_\alpha} \Lambda\indices{^{\bar{\nu}}_\beta} }_{=\eta_{\alpha \beta} } A^\alpha A^\beta \\
+    &= \underbrace{\eta_{\mu \nu} A^\mu A^\nu}_{\MO\text{系的模（平方）}} \checkmark
+\end{align} 
+其中关键的一步$\eta_{\bar{\mu} \bar{\nu}} \Lambda\indices{^{\bar{\mu}}_\alpha} \Lambda\indices{^{\bar{\nu}}_\beta} = \eta_{\alpha \beta}$留作习题。
+
+注意\eqref{equ:vecModDef}式根号中$\grave{A}^2$加了绝对值，因为$\grave{A}^2$可能小于等于零。根据$\grave{A}^2$的正负可以将四维向量分为三类：
+\begin{itemize}
+    \item $\grave{A}^2 > 0:$ 类空向量(spacelike vector)。
+    \item $\grave{A}^2 = 0:$ 空向量(null vector) 或 类光向量(lightlike vector)。
+    \item $\grave{A}^2 < 0:$ 类时向量(timelike vector)。
+\end{itemize}
+
+两个向量$\grave{A}, \grave{B}$的标量积定义为
+\begin{equation}
+    \grave{A} \cdot \grave{B} \stackrel{\MO}{=} -A^0 B^0 + A^1 B^1 + A^2 B^2 + A^3 B^3.
+\end{equation}
+根据定义可见$\grave{A} \cdot \grave{B} = \grave{B} \cdot \grave{A}$, 
+$(\grave{A} + \grave{B}) \cdot \grave{C} = \grave{A} \cdot \grave{C} + \grave{B} \cdot \grave{C}$.
+
+注意标量积的定义是在$\MO$系进行的，然而标量积实际上与坐标系无关（即在任意坐标系中相等），这可以仿照前文用Lorentz变换的性质证明，不过有更机智的证法。考虑向量$\grave{A} + \grave{B}$的模\mpar{“标量”是在任意坐标系都相等的量。}：
+\begin{equation}
+    \underbrace{ (\grave{A} + \grave{B})^2 }_{\text{标量}} = (\grave{A} + \grave{B}) \cdot (\grave{A} + \grave{B}) = \underbrace{\grave{A}^2}_{\text{标量}} + \underbrace{\grave{B}^2}_{\text{标量}} + 2\grave{A} \cdot \grave{B}.
+\end{equation}
+可见$\grave{A} \cdot \grave{B}$也是标量。
+
+\paragraph{例}
+{\it 任意惯性系$\MO$的基向量$\{ \grave{e}_\mu, \mu = 0, 1, 2, 3.\}$满足（不难验证）：
+\begin{equation}
+    \grave{e}_\alpha \cdot \grave{e}_\beta = \eta_{\alpha \beta}.
+\end{equation}
+根据定义，四速$\grave{U}$即为粒子MCRF（记作$\MObar$系）中的时间基向量$\grave{e}_{\bar{0}}$，因而四速的模为：
+\begin{equation}
+    \grave{U}^2 = \grave{U} \cdot \grave{U} = \grave{e}_{\bar{0}} \cdot \grave{e}_{\bar{0}} = \eta_{\bar{0} \bar{0}} = -1.
+\end{equation}
+}
+
+\section{应用}

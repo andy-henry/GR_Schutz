@@ -1,0 +1,226 @@
+
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+%times,
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Legrand Orange Book
+% LaTeX Template
+% Version 2.0 (9/2/15)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,fleqn,twoside]{book}
+\makeatletter	% @ is now a normal "letter" for TeX
+
+
+
+
+\usepackage{longtable}
+\usepackage{pifont}
+\newcommand\cirfootnote{\ding{\numexpr171+\value{footnote}}}
+\usepackage{ctex,amsmath}
+\usepackage{mathrsfs}
+\usepackage[per-mode=symbol,inter-unit-product=\ensuremath{{}\cdot{}}]{siunitx}
+\DeclareSIUnit[number-unit-product=\,]\degreeF{\degree F}
+\DeclareSIUnit[number-unit-product=\,]\degreeR{\degree R}
+\DeclareSIUnit[number-unit-product=\,]\calorie{cal}
+\usepackage{cancel}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{ulem}
+\usepackage[version=3]{mhchem}
+\usepackage{setspace}
+\usepackage{marginfix}
+
+\usepackage{tensor}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{xeCJK}
+\usepackage{cancel}
+\usepackage{bm}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{ulem}
+\usepackage{fontspec}
+\setCJKmainfont[BoldFont={Hiragino Sans GB},ItalicFont={KaiTi}]{SimSun}
+\usepackage{draftwatermark}
+\SetWatermarkText{\textsc{Draft Translation}}
+\SetWatermarkLightness{0.96}
+\SetWatermarkScale{0.4}
+\usepackage{setspace}
+\usepackage{marginfix}
+
+\usepackage{tabularx}
+
+\newenvironment{mymath}{$}{
+	\quad\refstepcounter{equation}(\theequation)$
+}
+
+\usepackage{xypic}
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J
+\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V
+\do\W\do\X\do\Y\do\Z\do\[\do\\\do\]\do\^\do\_\do\`\do\a\do\b
+\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n
+\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z
+\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,
+\do\?\do\'\do+\do\=\do\#}
+
+\makeatletter \newcommand\figcaption{\def\@captype{figure}\caption} \newcommand\tabcaption{\def\@captype{table}\caption} \makeatother
+
+
+\newcounter{mparcnt}[chapter]
+\renewcommand\themparcnt{\small{$^{\arabic{mparcnt}}$}}
+\newcommand\mpar[1]{\refstepcounter{mparcnt}{$^{\arabic{mparcnt}}$}\marginpar{\themparcnt\scriptsize#1}}
+\makeatother
+
+\linespread{1.5}
+\usepackage{eso-pic}
+
+
+\input{structure}
+\usepackage{booktabs}
+
+%----------------------------------------------------------------------------------------
+
+
+\newcommand{\MO}{\mathcal{O}}
+\newcommand{\MObar}{\bar{\mathcal{O}}}
+\newcommand{\dbar}{\mathrm d\hspace*{-0.1em}\bar{}\hspace*{0.08em}}
+\newcommand\rd{\mathrm{d}}
+\newcommand\trd{\tilde{\mathrm{d}}}
+\newcommand{\Ve}{\vec{e}}
+\DeclareMathOperator{\tr}{\mathrm{tr}}
+\DeclareMathOperator{\Sinh}{\mathrm{sinh}}
+\DeclareMathOperator{\Cosh}{\mathrm{cosh}}
+\DeclareMathOperator{\Arctan}{\mathrm{arctan}}
+
+%----------------------------------------------------------------------------------------
+
+
+
+
+\begin{document}
+\allowdisplaybreaks
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\coordinate [below=12cm] (midpoint) at (current page.north);
+\node at (current page.north west)
+{\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{background}}; % Background image
+\draw[anchor=north] (midpoint) node [fill=orange,fill opacity=0.2,text opacity=1,inner sep=1cm]{\Huge\centering\sffamily\parbox[c][][t]{\paperwidth}{\bf \centering \zihao{-0}  广义相对论入门\\[1pt] % Book title
+{\bf \zihao{3} 原著：Bernard Schutz \quad 翻译：chzruan}\\[1pt] % Author name
+{\bf \zihao{3} \chntoday}
+}};
+\end{tikzpicture}};
+\end{tikzpicture}
+\vfill
+\endgroup
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+\begin{spacing}{1.4}
+
+%\pagestyle{empty} % No headers
+
+%%% store graphics in a box
+%\newsavebox{\mygraphic}
+%	\sbox{\mygraphic}{%
+%		\includegraphics[keepaspectratio, height=0.2\textheight,%
+%							width=0.2\textwidth]{jty.png}}
+%	\AddToShipoutPicture{
+%	    \put(480,0){\makebox(-15,0)[bl]{\usebox{\mygraphic}}}}
+
+%\chapterimage{nozakikun.png}
+%\input{Preface}
+
+\chapterimage{aete.png}
+\tableofcontents % Print the table of contents itself
+
+\pagestyle{fancy} % Print headers again
+\setcounter{page}{0}
+
+
+
+\chapterimage{yukino.png}
+\input{./Chaps/Chap1}
+
+\chapterimage{heqin.png}
+\input{./Chaps/Chap2}
+
+\chapterimage{ruru.png}
+\input{./Chaps/Chap3}
+
+%\chapterimage{hatsuyuki01.png}
+\input{./Chaps/Chap4}
+
+%\chapterimage{tsukimime.png}
+\input{./Chaps/Chap5}
+
+%\chapterimage{akira.png}
+\input{./Chaps/Chap6}
+
+%\chapterimage{kurisu.png}
+\input{./Chaps/Chap7}
+
+%\begin{table}[h]
+%\centering
+%\begin{tabular}{l l l}
+%\toprule
+%\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
+%\midrule
+%Treatment 1 & 0.0003262 & 0.562 \\
+%Treatment 2 & 0.0015681 & 0.910 \\
+%Treatment 3 & 0.0009271 & 0.296 \\
+%\bottomrule
+%\end{tabular}
+%\caption{Table caption}
+%\end{table}
+
+%\chapter*{Bibliography}
+%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Bibliography}}
+%\section*{Books}
+%\addcontentsline{toc}{section}{Books}
+%\printbibliography[heading=bibempty,type=book]
+%\section*{Articles}
+%\addcontentsline{toc}{section}{Articles}
+%\printbibliography[heading=bibempty,type=article]
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+
+%\cleardoublepage
+%\phantomsection
+%\setlength{\columnsep}{0.75cm}
+%\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+%\printindex
+
+%----------------------------------------------------------------------------------------
+%\cleardoublepage
+%\bibliographystyle{apsrev4-1}
+%\bibliography{bibliography}
+\end{spacing}
+
+
+
+\end{document}

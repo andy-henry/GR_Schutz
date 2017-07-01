@@ -1,0 +1,268 @@
+\chapter{熵与无序：广义正则系综}\label{chap17}
+\section{熵作为一种无序的度量}
+\label{sec17.1}
+前两章考虑了两种物理情境，一种是孤立系统，另一种是与热库接触的系统。它们的熵关于状态概率$\{ f_j \}$的表达式因而非常不同。
+
+孤立系统处于每个可能状态（一共有$\Omega$个）的概率都等于：
+\begin{equation}
+	f_j = \frac{1}{\Omega}
+\label{equ17.1}
+\end{equation}
+相应的熵是
+\begin{equation}
+	S = k_B \ln \Omega
+\label{equ17.2}
+\end{equation}
+
+与热库接触的系统，处于状态$j$的概率为
+\begin{equation}
+	f_j = \frac{e^{-\beta E_j}}{Z}, \quad Z = \sum_j e^{-\beta E_j}
+\label{equ17.3}
+\end{equation}
+熵($U/T + F/T$)写为如下形式：
+\begin{equation}
+	S = k_B \beta \sum_j f_j E_j + k_B \ln Z
+\label{equ17.4}
+\end{equation}
+我们在此稍作停留，探究上述结果体现出的熵的潜在意义。它们只是形式上的特定计算结果呢，还是蕴含着关于熵的概念直觉性、启发性的深刻见解？
+
+Claude Shannon\footnote{C. E. Shannon and W. Weaver, {\it The Mathematical Theory of Communications} (Univ. of Illinois Press, Urbana, 1949).}在20世纪40年代晚期创立“信息论”的概念框架，正是它为熵的诠释提供了基础——Shannon的{\it 无序性 (disorder)}度量。
+
+“有序性 (order)”（或者它的反义词，“无序性”）的概念广为人知。整齐砌好的砖墙要比一堆砖块更有序，四张由A组成的扑克牌比四张随机的牌更有序，按照字典顺序排列的一串字母要比猴子用打字机输出的结果更有序。
+
+不过，“一堆砖块”可能是某个现代艺术家的精心创作，随便移动其中一块砖都会让他火冒三丈；某个看起来随便的纸牌组合也许是某种规则的王牌；表面上看起来像猴子作品的序列或许是编码加密后的有用信息。进行量化的有序性必须在某种规定的评判准则之下，例如建筑标准、扑克牌规则、官方公认的英文语料库等等。某组规则下的无序也许是另一组规则的有序。
+
+统计力学关注系统关于可能的微观态的分布的无序性。
+
+下面还是用类比来说明问题。假设有个熊孩子被要求待在一间房间（哪个房间由他选择）里直到父母回来（这就是定义了有序性的规则！），但是他当然不会听话地只待在一个房间——他会不知疲倦地各个房间乱跑，处于第$j$个房间的时间占总时间的比例记作$f_j$.
+
+Shannon解决了给定分布$\{ f_j \}$之后，定量度量无序性的定义问题。
+
+度量无序性所需的条件体现在如下几点：
+\begin{enumerate}
+	\item 无序性的度量应该完全用概率分布$\{ f_j \}$描述。
+	\item 若其中一个$f_j$等于1（因而其余的全为零），则系统处于完全有序，相应的无序性定量值为零。
+	\item 无序性最大的状态对应于所有$f_j$都等于$1 / \Omega$——也就是说，那个熊孩子在每个房间的概率相等，完全随机地乱跑。
+	\item 最大无序性应该是$\Omega$的增函数（在大房子的各房间随机乱跑的熊孩子比在小房子乱跑的无序性要大）。
+	\item 复合系统的无序性应为各子系统的“局部无序性”之和。这意味着，设$f^{(1)}$是熊孩子在房子一楼的时间比例，他在一楼房间分布的无序性记作$\text{Disorder}^{(1)}$；$f^{(2)}$与$\text{Disorder}^{(2)}$同理（房子一共两层）。则总的无序性为：
+	\begin{equation}
+		\text{Disorder} = f^{(1)} \times \text{Disorder}^{(1)} + f^{(2)} \times \text{Disorder}^{(2)}
+	\label{equ17.5}
+	\end{equation}
+\end{enumerate}
+这些定性的、合理的条件唯一地确定了无序性的度量\footnote{证明可见A. I. Khinchin, {\it Mathematical Foundations of Information Theory} (Dover Publications, New York, 1957)}。其具体形式为
+\begin{equation}
+	\text{Disorder} = -k \sum_j f_j \ln f_j
+\label{equ17.6}
+\end{equation}
+其中$k$是任意的正的常数。
+
+容易验证，若某个$f_j$等于1而其余的均为零，则无序性也为零，正如所要求的那样。无序性的最大值（对应与每个$f_j = 1 / \Omega$）是$k \ln \Omega$ （见习题17.1-1），并且随着$\Omega$单调增加，符合上面第4条的要求。
+
+最大无序性$k \ln \Omega$正是之前发现的封闭系统的熵\eqref{equ17.1}式。只要让$k$等于Boltzmann常量$k_B$，它们就完全相同。{\it 封闭系统的熵对应于系统关于它可能的微观态分布的Shannon度量的最大无序性。}
+
+再考虑与热库接触的系统，它满足$f_j = \exp (-\beta E_j) / Z$ （\eqref{equ17.3}式）。将$f_j$的值带入无序性的定义\eqref{equ17.6}式，得到相应的无序性为：
+\begin{equation}
+	\text{Disorder} = k_B \beta \sum_j f_j E_j + k_B \ln Z
+\label{equ17.7}
+\end{equation}
+这与方程\eqref{equ17.4}的熵一模一样，oh yeah。
+
+熵与无序的这种一致性对于其它所有边界条件（例如与压强库接触的系统、与粒子库接触的系统，等等）也成立。
+
+因此，人们认为熵的物理意义是：\textit{熵是系统关于其可能微观态的分布的无序性的定量度量。}
+
+(Thus we recognize that the physical interpretation of the entropy is that {\it he entropy is the quantitative measure of the disorder in the relevant distribution of the system over its permissible microstates.})
+
+这个结论不难接受。统计力学的基本假设是背景环境的随机扰动保证了封闭系统处于其所有微观态的概率相等——也就是{\it 最大无序性}。在热力学中，熵的最大值对应平衡态，熵就是这样被引入的。认为熵与无序性等同，也就将封闭系统的热力学与统计力学观点联系了起来。
+
+\subsection*{习题}
+\begin{itemize}
+\item[17.1-1.]  Consider the quantity $x \ln x$ in the limit $x \to 0$. Show by L'H$\hat{o}$pital's rule that $x \ln x$ vanishes in this limit. How is this related to the assertion after equation \eqref{equ17.6}, that the disorder vanishes when one of the $f_j$ is equal to unity?
+\item[17.1-2.] Prove that the disorder, defined in equation \eqref{equ17.6}, is nonnegative for all physical distributions.
+\item[17.1-3.] Prove that the quantity $-k \sum_j f_j \ln f_j$ is maximum if all the $f_j$ are equal by applying the mathematical inequality valid for any continuous convex function $\Phi(x)$
+\[
+	\Phi \left( \frac{1}{\Omega} \sum_{k = 1}^\Omega a_k \right) \le \frac{1}{\Omega} \sum_{k = 1}^\Omega \Phi (a_k)
+\]
+Give a graphical interpretation of the inequality.
+\end{itemize}
+
+\section{最大无序性分布}
+\label{sec17.2}
+把熵诠释为无序性的定量度量蕴含着正则分布的新的观点，这个新观点既简单又富有启发性，并且它建立了一种对其它分布也有效的方法。
+
+暂时忘记Legendre变换和温度等等概念，回到出发地，热力学系统由广延量$U, V, N_1, \dots, N_r$描述。考虑一个$V, N_1, \dots, N_r$被限制不变、只有能量$U$自由可变的系统。$V, N_1, \dots, N_r$的值限制了系统可能的微观态，而任意的$U$对应的态都可以达到。进行一次热力学观测——测得系统能量为$U$，这个观测到的能量值是各状态能量的加权平均（权重为各状态的概率$f_j$，目前未知）：
+\begin{equation}
+	U = \sum_j f_j E_j
+\label{equ17.8}
+\end{equation}
+
+出于好奇，我们考虑如下问题：\textit{在能量的观测值$U$(\eqref{equ17.8})给定的条件下，什么样的分布$\{ f_j \}$ 可以使系统的无序性最大？}
+
+无序性等于
+\begin{equation}
+	\text{Disorder} = -k_B \sum_j f_j \ln f_j
+\label{equ17.9}
+\end{equation}
+如果它取最大值，则：
+\begin{equation}
+	\delta (\text{Disorder}) = -k_B \sum_j (\ln f_j + 1) \delta f_j = 0
+\label{equ17.10}
+\end{equation}
+如果各$f_j$相互独立，那么上式就意味着所有$\delta f_j$的系数为零，事情就解决了。然而$f_j$不是独立的，它们受附加条件\eqref{equ17.8}式归一化条件的约束：
+\begin{equation}
+	\sum_j f_j = 1
+\label{equ17.11}
+\end{equation}
+处理这些附加条件的数学工具是Lagrange乘数法\footnote{可以参阅 G. Arfken,
+\textit{Mathematical Methods for Physicists} (Academic Press, New York, 1960) 或者任何类似的介绍物理中的数学方法的文献。}。首先计算每个约束条件的微分：
+\begin{align}
+	\sum_j \delta f_j &= 0 \label{equ17.12} \\
+	\sum_j E_j \delta f_j &= 0 \label{equ17.13}
+\end{align}
+两式分别乘以“变分参数”$\lambda_1, \lambda_2$，并加到\eqref{equ17.10}式上：
+\begin{equation}
+	-k_B \sum_j ( \ln f_j + 1 + \lambda_1 + \lambda_2 E_j) f_j = 0
+\label{equ17.14}
+\end{equation}
+Lagrange乘数法保证了\eqref{equ17.14}式中的每一项分别都独立地等于零，只要最终选择变分参数满足两个约束条件\eqref{equ17.8}, \eqref{equ17.11}即可。
+
+因此，对每个$j$都有
+\begin{align}
+	\ln f_j + 1 + \lambda_1 + \lambda_2 E_j = 0 \label{equ17.15} \\
+\intertext{整理得}
+	f_j = e^{-(1 + \lambda_1 + \lambda_2 E_j)} \label{equ17.16}
+\end{align}
+接着必须得确定$\lambda_1, \lambda_2$以满足约束条件。对于\eqref{equ17.11}式：
+\begin{equation}
+	e^{-(1 + \lambda_1)} \sum_j e^{-\lambda_2 E_j} = 1
+\label{equ17.17}
+\end{equation}
+对于\eqref{equ17.8}式：
+\begin{equation}
+	e^{-(1 + \lambda_1)} \sum_j E_j e^{-\lambda_2 E_j} = U
+\label{equ17.18}
+\end{equation}
+这与正则分布的方程一模一样！$\lambda_2$就是换了个马甲的$\beta$：
+\begin{equation}
+	\lambda_2 \equiv \beta = \frac{1}{k_B T}
+\label{equ17.19}
+\end{equation}
+从\eqref{equ17.18}和\eqref{equ16.12}得：
+\begin{equation}
+	e^{-(1 + \lambda_1)} = \frac{1}{\sum_j e^{-\beta E_j}} = \frac{1}{Z}
+\label{equ17.20}
+\end{equation}
+也就是说，\textit{除了符号有点不同，我们就是重新导出了一遍正则分布。}
+
+\textit{正则分布就是$V, N_1, \dots, N_r$固定的系统，在能量平均值（观测值）给定的条件下的最大无序性对应的状态分布。无序性的在约束条件下最大值就是正则分布的熵。}
+
+在将这些结论进一步推广之前，我们应该注意$f_j$指的是“概率”。通常概率的概念有两种不同的诠释。“客观概率”指的是一种\textit{频率}，或者说\textit{发生比例 (fractional occurrence)}；“新生儿是男性的概率稍微小于一半”这一断言是从人口普查数据得到的推论。“客观概率”是\textit{a measure of expectation based on less than optimum information.} 一位医生估计一个\textit{尚未出生的}婴儿是男性的（主观）概率，取决于该医生对婴儿家庭史的了解、产妇的荷尔蒙激素水平以及超声波影像，最终他得出有根据但仍然是主观的猜测。
+
+“无序性”作为概率的函数，也有两种相应的诠释。通常而言的\textit{无序性}对应于概率的客观诠释，基于客观的发生比例。基于$f_j$主观诠释的“无序性”则度量了基于各$f_j$的预言的不确定性，例如，如果其中一个$f_j$等于1而其余均为零，那么预言就是完全确定的。如果所有$f_j$都相等，则不确定性达到最大值，预言也是不靠谱的。
+
+有一种热力学学派\footnote{参见 M. Tribus, \textit{Thermostatistics and Thermodynamics} (D. Van Nostrand and Co., New York, 1961) E. T. Jaynes, \textit{Papers on Probability, Statistics, and Statistical Physics}, Edited by R. D. Rosenkrantz, (D. Reidel, Dordrecht and Boston, 1983)}认为热力学是主观的预言科学。如果能量已知，则它限制了人们对系统其它性质的猜测。如果\textit{只有}能量已知，则对于其它性质最靠谱的猜测就是使得其余量不确定性最大的概率分布。\textit{这种诠释下的最大熵原理是对理论预言优化的策略。}
+
+重复一下，我们还是将概率$f_j$视为客观的发生次数的比例。熵是系统关于其微观态分布的客观无序性的度量，这种无序性是由环境与系统随机的相互作用或者其它随机过程（后者占主导）引起的。
+
+\subsection*{习题}
+\begin{itemize}
+	\item[17.2-1.] Show that the maximum value of the disorder, as calculated in this section, does agree with the entropy of the canonical distribution (equation \eqref{equ17.4}).
+	\item[17.2-2.] Given the identification of the disorder as the entropy, and of $f_j$ as given in equation \eqref{equ17.16}, prove that $\lambda_2 = 1 / (k_B T)$ (equation \eqref{equ17.19}).
+\end{itemize}
+
+
+\section{巨正则系综}
+\label{sec17.3}
+正则系综的推广过程非常直接，只要将其它广延量带入能量的表达式就行了。本节以其中一种有用而广泛的系综——“巨正则系综”为例对推广过程进行阐述。
+
+考虑一个体积固定、与能量库与粒子库接触的系统，例如吸附于表面、处在气体浴中的分子层，再例如位于海床上的开口细颈瓶的内容物。
+
+系统和库可以视为一个封闭系统，封闭系统每个可能状态的概率相等，仿照\eqref{equ16.1}式的思路，该系统特定的能量$E_j$与摩尔数$N_j$对应状态的占据数占总状态数之比为：
+\begin{equation}
+	f_j = \frac{\Omega^{\text{库}} (E_{\text{total}} - E_j, N_{\text{total}} - N_j)}{\Omega^{\text{total}} (E_{\text{total}}, N_{\text{total}})}
+\label{equ17.21}
+\end{equation}
+再一次用熵表示出$\Omega$:
+\begin{equation}
+	f_j = \exp \left[ \left( \frac{1}{k_B} \right) S^{\text{库}} (E_{\text{total}} - E_j, N_{\text{total}} - N_j) - \left( \frac{1}{k_B} \right) S^{\text{tot}} (E_{\text{total}}, N_{\text{total}}) \right]
+\label{equ17.22}
+\end{equation}
+按照方程\eqref{equ16.3}到\eqref{equ16.5}那样展开可得：
+\begin{equation}
+	f_j = e^{\beta \Psi} e^{-\beta (E_j - \mu N_j)}
+\label{equ17.23}
+\end{equation}
+其中$\Psi$是“巨正则势 (grand canonical potential)”：
+\begin{equation}
+	\Psi = U - TS - \mu N = U[T, \mu]
+\label{equ17.24}
+\end{equation}
+因子$e^{\beta \Psi}$是归一化因子：
+\begin{equation}
+	e^{\beta \Psi} = \mathcal{Z}^{-1}
+\label{equ17.25}
+\end{equation}
+其中“巨正则配分求和”$\mathcal{Z}$等于
+\begin{equation}
+	\mathcal{Z} = \sum_j e^{-\beta (E_j - \mu N_j)}
+\label{equ17.26}
+\end{equation}
+
+计算基本方程要计算作为$T$和$\mu$的函数的巨正则配分求和$\mathcal{Z}$（当然也隐含着是$V$的函数），然后对$\mathcal{Z}$取对数就得到$\beta \Psi$。这种函数关系有两种方式来看待，参见图17.1中辅助记忆的正方形图。
+
+通常的观点是$\Psi (T, V, \mu)$是$U$的Legendre变换，即$\Psi (T, V, \mu) = U[T, \mu]$\mpar{原文为$\Psi (T, V, \mu) = U(T, \mu)$，疑有误。译文进行了修改。}。图17.1的第一个正方形展示了这一Legendre变换，它与我们熟悉的正方形差不多，只是把广延量从$V$换成了$N$，并且调转了相应箭头的方向。
+
+更加根本、也更加方便的观点是基于Massieu函数，或者说熵的变换（\ref{sec5.4}节）。17.1的第二个和第三个正方形展示了这个变换。第三个正方形把温标从$T$变为$k_B T$，或者说从$1 / T$变到了$\beta$。巨正则配分求和$\mathcal{Z}$就是Massieu变换$\beta \Psi$的对数。
+
+{
+	\centering
+	\includegraphics[width=\textwidth]{./Pictures/fig17.1.png}
+	\figcaption{巨正则势的正方形辅助记忆图。}
+	\label{fig17.1}
+}
+
+从这些关系可以导出如下的特别有用的恒等式：
+\begin{equation}
+	U = \frac{\partial (\beta \Psi)}{\partial \beta} = -\left( \frac{\partial \ln \mathcal{Z}}{\partial \beta} \right)_{\beta\mu}
+\label{equ17.27}
+\end{equation}
+这个等式也可以直接从$f_j$的概率诠释中导出（见习题17.3-1）。In carring out the indicated differentitation (after having valculated $\mathcal{Z}$ or $\beta \Psi$) we must pair a factor $\beta$ with every factor $\mu$, and we then maintain all such $\beta \mu$ products constant as we differentiate with respect to the remaining $\beta's$.
+
+在讨论巨正则系综的应用之前，我们先来说明它也可以从最大无序性分布导出。为了使无序性（熵）
+\begin{equation}
+	S = -k_B \sum_j f_j \ln f_j
+\label{equ17.28}
+\end{equation}
+在约束条件
+\begin{align}
+	\sum_j f_j &= 1 \label{equ17.29} \\
+	\sum_j f_j E_j &= E \label{equ17.30} \\
+\intertext{以及}
+	\sum_j f_j N_j &= N \label{equ17.31}
+\end{align}
+则有
+\begin{equation}
+	\delta S = -k_B \sum_j (\ln f_j + 1) \delta f_j = 0
+\label{equ17.32}
+\end{equation}
+对方程\eqref{equ17.29}-\eqref{equ17.31}做微分，分别乘以Lagrange乘子$\lambda_1, \lambda_2, \lambda_3$并相加：
+\begin{equation}
+	\sum_j (\ln f_j + 1 + \lambda_1 + \lambda_2 E_j + \lambda_3 N_j) = 0
+\label{equ17.33}
+\end{equation}
+就像\eqref{equ17.15}那样，每一项括号内的项分别等于零，从而得到
+\begin{equation}
+	f_j e^{-(1 + \lambda_1 + \lambda_2 E_j + \lambda_3 N_j)}
+\label{equ17.34}
+\end{equation}
+Lagrange乘子从方程\eqref{equ17.29}-\eqref{equ17.31}算出。与\eqref{equ17.23}式比较可以得出$\beta (= \lambda_2), \beta \mu (= -\lambda_3), \beta \Psi (= -1 - \lambda_1)$的对应。
+
+应该注意，摩尔数$N_j$可以用粒子数$\tilde{N}_j$（$\tilde{N}_j = N_j \times \ $Avagadro常数）替换，这样单位摩尔的Gibbs势$\mu$就替换为单位粒子的Gibbs势，尽管后者应该记作$\tilde{\mu}$，\textit{我们把单位粒子和单位摩尔的Gibbs势都用$\mu$表示，读者应能从上下文分辨出来。}
+
+\subsection*{例：表面之上的分子吸收}
+考虑与固体表面接触的气体。气体分子可以被表面的某些特定区域（与表面的分子结构有关）所吸收，这些区域在表面稀疏分布，因此它们之间的相互作用可以忽略。假设一共有$\tilde{N}$个特殊区域，一个区域可以吸收0, 1或2个分子，空区域的能量取为0，被1个分子的占据能量为$\varepsilon_1$，被2个分子占据的能量为$\varepsilon_2$。能量$\varepsilon_1, \varepsilon_2$可能是正的或负的；正的吸收能量表示系统倾向于空状态，负的吸收能表示倾向于被吸收。固体表面处于温度为$T$，压强为$P$的气体浴中（其摩尔数足够大可以视为能量库与粒子库）。下面来计算表面的“覆盖比例 (fractional coverage)”，也就是被吸收的分子数与吸收区域数目之比。
+
+用巨正则势来解决这个问题的好处是只需要关注表面区域。这些区域可以用能量和粒子数表示，从而方便地用系综处理。
+
+表面所处的气体浴是
