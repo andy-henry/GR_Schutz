@@ -92,8 +92,186 @@
 \section{标量积}
 \label{sec2.5}
 
+\subsection*{四维向量的模}
+类比间隔的定义，四维向量$\vec{A}$的\textit{模 (magnitude)}定义为
+\begin{equation}
+    \vec{A}^2 = -(A^0)^2 + (A^1)^2 + (A^2)^2 + (A^3)^2.
+\label{equ2.24}
+\end{equation}
+根据向量分量的\textit{定义}，向量分量在坐标变换下与$(\Delta t, \Delta x, \Delta y, \Delta z)$的变换规律相同，服从Lorentz变换，这就\textit{保证了}
+\begin{equation}
+    -(A^0)^2 + (A^1)^2 + (A^2)^2 + (A^3)^2 = -(A^{\bar{0}})^2 + (A^{\bar{1}})^2 + (A^{\bar{2}})^2 + (A^{\bar{3}})^2.
+\label{equ2.25}
+\end{equation}
+向量的模就定义成这样的不依赖于坐标系的量，即Lorentz变换下的标量 (scalar)。
+
+向量模不一定是正数。我们把向量按照间隔那样进行分类：
+\begin{itemize}
+    \item 如果$\vec{A}^2$是正数，则称$\vec{A}$是\textit{类空 (spacelike)}向量；
+    \item 如果$\vec{A}^2$等于零，则称$\vec{A}$是\textit{null}向量\footnote{通译为“零向量”，然而这个名字给人一种\sout{钦定的}所有分量都为零的感觉，事实上并非如此（例如向量$(1, 1, 0, 0)$的模$\big( -(1)^2 + 1^2 \big) = 0$. 因此我们不采用“零向量”的译法，暂时称呼它为“null 向量”。}；
+    \item 如果$\vec{A}^2$是负数，则称$\vec{A}$是\textit{类时 (timelike)}向量。
+\end{itemize}
+这样，空间中的向量的模是正数，就像欧几里得空间的情况那样。必须注意，null向量\textit{不同于}zero向量。也就是说，null向量满足$\vec{A}^2 = 0$，但它的所有$A^\alpha$不一定都为零；而zero向量的所有分量都是零。只有在$\vec{A}^2$均为正定(positive-definite)的空间中，$\vec{A}^2 = 0$才意味着$\forall\, \alpha, A^\alpha = 0$.
+
+\subsection*{两个向量的标量积}
+向量$\vec{A}, \vec{B}$（在某个惯性系$\MO$）的标量积 (scalar product)定义为
+\begin{shaded}
+\begin{equation}
+    \vec{A} \cdot \vec{B} = -A^0 B^0 + A^1 B^1 + A^2 B^2 + A^3 B^3.
+\label{equ2.26}
+\end{equation}
+\end{shaded}
+下面来证明这个标量积在其它惯性系也是同样的值。
+
+首先注意到$\vec{A} \cdot \vec{A}$就是$\vec{A}^2$，我们已经知道后者是个坐标变换下的不变量。因此$(\vec{A} + \vec{B}) \cdot ( \vec{A} + \vec{B} )$，即$\vec{A} + \vec{B}$的模，也是不变量。根据\eqref{equ2.24}和\eqref{equ2.26}式可得
+\begin{equation*}
+    (\vec{A} + \vec{B}) \cdot ( \vec{A} + \vec{B} ) = \vec{A}^2 + \vec{B}^2 + 2 \vec{A} \cdot \vec{B}.
+\end{equation*}
+因为等号左侧的项以及右侧的前两项在所有坐标系中相等，因此最后一项也在所有坐标系中相等。这就证明了向量积是坐标系不变量。
+
+如果$\vec{A} \cdot \vec{B} = 0$，则称向量$\vec{A}$与$\vec{B}$\textit{垂直 (orthogonal)}。标量积定义中的负号意味着相互垂直的两个向量不一定非得在时空图中成直角（见下文的例子）。一种极端情况是null向量，它与\textit{自身}垂直！这种现象在标量积是正定的空间中不会出现。
+
+\subsection*{例1}
+$\MO$系的基向量满足：
+\begin{align*}
+    \vec{e}_0 \cdot \vec{e}_0 &= -1, \\
+    \vec{e}_1 \cdot \vec{e}_1 &= \vec{e}_2 \cdot \vec{e}_2 = \vec{e}_3 \cdot \vec{e}_3 = +1, \\
+    \vec{e}_\alpha \cdot \vec{e}_\beta &= 0, \quad \text{如果} \ \alpha \neq \beta.
+\end{align*}
+因此它们组成了一组相互正交的向量四元组：一组\textit{规范正交基}，这意味着这组基的所有基向量\textit{相互正交}并且\textit{归一化}——具有单位模. （类空向量的“单位模”意味着模为$-1$.）上式可以总结为
+\begin{shaded}
+\begin{equation}
+    \vec{e}_\alpha \cdot \vec{e}_\beta = \eta_{\alpha \beta},
+\label{equ2.27}
+\end{equation}
+\end{shaded}
+其中$\eta_{\alpha \beta}$和Kronecker\ $\delta$符号有点像——当$\alpha \neq \beta$时$\eta_{\alpha \beta} = 0$，但有所不同：$\eta_{00} = -1, \eta_{11} = \eta_{22} = \eta_{33} = +1$. 后面会看到$\eta_{\alpha \beta}$的地位极其重要：它是度规张量。不过现在把它当作Kronecker\ $\delta$的推广就好了。
+
+\subsection*{例2}
+$\MObar$系的基向量也满足
+\begin{equation*}
+    \vec{e}_{\bar{\alpha}} \cdot \vec{e}_{\bar{\beta}} = \eta_{\bar{\alpha} \bar{\beta}},
+\end{equation*}
+因此$\vec{e}_{\bar{0}} \cdot \vec{e}_{\bar{1}} = 0$. 考虑图\ref{fig2.4}中的时空图：图中的$\vec{e}_{\bar{0}}, \vec{e}_{\bar{1}}$看起来不垂直。然而它们的标量积等于零。如果两个向量与$45^\circ$倾斜的直线（光的世界线）的夹角相等，那么这两个向量垂直。因此，与光的世界线相切的向量与自身垂直。这是SR中不能用欧几里得空间类比的又一个概念。
+
+{
+    \centering
+    \includegraphics[width=0.5\textwidth]{fig2.4.png}
+    \figcaption{\textit{在$\MO$系之下，$\MObar$系的基向量（用欧几里得空间的眼光）看起来并不“垂直”，但是它们在Minkowski时空的向量积定义下却是正交的。}}
+    \label{fig2.4}
+}
+
+\subsection*{例3}
+粒子的四维速度$\vec{U}$就是粒子MCRF的基向量，因此根据\eqref{equ2.27}式可得
+\begin{equation}
+    \vec{U} \cdot \vec{U} = -1.
+\label{equ2.28}
+\end{equation}
+
 \section{应用}
 \label{sec2.6}
+
+\subsection*{四速与四加速的导数形式}
+设粒子进行了无穷小位移$\rd \vec{x}$，$\rd \vec{x}$在$\MO$系的分量是$(\rd t, \rd x, \rd y, \rd z)$。根据\eqref{equ2.24}式，无穷小位移的模等于$-\rd t^2 + \rd x^2 + \rd y^2 + \rd z^2$. 与\eqref{equ1.1}式进行比较，可以发现这就是间隔$\rd s^2$：
+\begin{equation}
+    \rd s^2 = \rd \vec{x} \cdot \rd \vec{x}.
+\label{equ2.29}
+\end{equation}
+因为粒子世界线是类时的，因此上式各项为负数。这启示我们（方程\eqref{equ1.9}）定义\textbf{固有时 (proper time)} $\rd \tau$为
+\begin{equation}
+    (\rd \tau)^2 = -\rd \vec{x} \cdot \rd \vec{x}.
+\label{equ2.30}
+\end{equation}
+
+{
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig2.5.png}
+    \figcaption{\textit{与粒子世界线相切的无穷小位移向量$\rd \vec{x}$.}}
+    \label{fig2.5}
+}
+
+下面来考虑向量$\rd \vec{x} / \rd \tau$，其中$\rd \tau$等于方程\eqref{equ2.30}的平方根（如图\ref{fig2.5}）。这个向量与世界线相切，因为它是$\rd \vec{x}$的倍数。它的模等于
+\begin{equation*}
+    \frac{\rd \vec{x}}{\rd \tau} \cdot \frac{\rd \vec{x}}{\rd \tau} = \frac{\rd \vec{x} \cdot \rd \vec{x}}{(\rd \tau)^2} = -1.
+\end{equation*}
+因此它是与世界线相切的、单位模长的类时向量。在MCRF中：
+\[
+    \rd \vec{x} \xrightarrow[\text{MCRF}, \rd \tau = \rd t]{ } (\rd t, 0, 0, 0).
+\]
+因此
+\[
+    \frac{\rd \vec{x}}{\rd \tau} \xrightarrow[\text{MCRF}]{ } (1, 0, 0, 0),
+\]
+从而有
+\[
+    \frac{\rd \vec{x}}{\rd \tau} = (\vec{e}_0)_{\text{MCRF}}.
+\]
+上式右侧就是四维速度的\textit{定义}。由此可得如下的常用表达式：
+\begin{shaded}
+\begin{equation}
+    \vec{U} = \frac{\rd \vec{x}}{\rd \tau}.
+\label{equ2.31}
+\end{equation}
+\end{shaded}
+
+进一步再考虑
+\[
+    \frac{\rd \vec{U}}{\rd \tau} = \frac{\rd^2 \vec{x}}{\rd \tau^2},
+\]
+这有一种四维加速度的感觉。我们对方程\eqref{equ2.28}式进行微分，并利用\eqref{equ2.26}式可得
+\[
+    \frac{\rd}{\rd \tau} (\vec{U} \cdot \vec{U}) = 2 \vec{U} \cdot \frac{\rd \vec{U}}{\rd \tau}.
+\]
+因为$\vec{U} \cdot \vec{U} = -1$，是个常数，因此
+\[
+    \vec{U} \cdot \frac{\rd \vec{U}}{\rd \tau} = 0.
+\]
+由于在MCRF中，$\vec{U}$只有0分量，因此上式的正交性意味着
+\[
+    \frac{\rd \vec{U}}{\rd \tau} \xrightarrow[\text{MCRF}]{ } (0, a^1, a^2, a^3).
+\]
+这个向量定义为四维\textit{加速度}向量，记作$\vec{a}$：
+\begin{shaded}
+\begin{equation}
+    \vec{a} = \frac{\rd \vec{U}}{\rd \tau}, \quad \vec{U} \cdot \vec{a} = 0.
+\label{equ2.32}
+\end{equation}
+\end{shaded}
+本章习题19说明了为啥叫它“加速度”。
+
+\subsection*{能量与动量}
+考虑一个动量为$\vec{p}$的粒子，
+\begin{equation}
+    \vec{p} \cdot \vec{p} = m^2 \vec{U} \cdot \vec{U} = -m^2.
+\label{equ2.33}
+\end{equation}
+由于
+\[
+    \vec{p} \cdot \vec{p} = -E^2 + (p^1)^2 + (p^2)^2 + (p^3)^2.
+\]
+因此
+\begin{equation}
+    E^2 = m^2 + \sum_{i = 1}^3 (p^i)^2.
+\label{equ2.34}
+\end{equation}
+这是粒子总能量的常用表达式。
+
+某观测者以四速$\vec{U}_{\text{obs}}$运动，他在其中静止的坐标系记作$\MObar$，观者的四速可以不等于粒子四速。
+\[
+    \vec{p} \cdot \vec{U}_{\text{obs}} = \vec{p} \cdot \vec{e}_{\bar{0}},
+\]
+其中$\vec{e}_{\bar{0}}$是$\MObar$系的基向量，在该系中粒子四动量的分量为
+\[
+    \vec{p} \xrightarrow[\MObar]{ } (\bar{E}, p^{\bar{1}}, p^{\bar{2}}, p^{\bar{3}}).
+\]
+于是，根据\eqref{equ2.26}式可得：
+\begin{shaded}
+\begin{equation}
+    -\vec{p} \cdot \vec{U}_{\text{obs}} = \bar{E}.
+\label{equ2.35}
+\end{equation}
+\end{shaded}
+这个结果超级重要。它表明，粒子相对于观测者的能量$\bar{E}$可以在任意坐标系中通过计算标量积$\vec{p} \cdot \vec{U}_{\text{obs}}$得到，这称为相对于观测者的能量的“坐标系无关”的表达式。它在大多数情形下都很有用。
 
 \section{光子}
 \label{sec2.7}
