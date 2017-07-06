@@ -275,9 +275,55 @@ $\MObar$系的基向量也满足
 
 \section{光子}
 \label{sec2.7}
+\subsection*{光子无四速}
+光子在时空图的轨迹是null直线（即切向量都是null向量的直线），即，光子世界线轨迹满足
+\begin{equation}
+    \rd \vec{x} \cdot \rd \vec{x} = 0.
+\label{equ2.36}
+\end{equation}
+因此$\rd \tau$为零。方程\eqref{equ2.31}表明\textit{光子四速不能定义}。导出该结论的另一种方式是注意到不存在光子在其中静止的坐标系（根据SR的第二个假设），因此光子没有MCRF。所以没有哪个坐标系的$\vec{e}_0$会与光子世界线相切。
+
+注意，仍然可以找到与光子轨迹相切的向量（光子世界线轨迹为直线，它每一点的切向量相等）：$\rd \vec{x}$就是一个。问题是找不到\text{单位模长}的切向量，因为所有切向量的模等于零。
+
+\subsection*{四动量}
+粒子的四动量\textit{不是}单位向量。粒子四动量在某个坐标系的分量是粒子在那个系中的能量、动量。如果光子在某坐标系中的能量为$E$，则在该系中$p^0 = E$。如果光子在该系中沿$x$轴方向运动，则$p^y = p^z = 0$，由于四动量必须与光子世界线平行，因此光子四动量必须是null向量，从而有$p^x = E$，这保证了
+\begin{equation}
+    \vec{p} \cdot \vec{p} = -E^2 + E^2 = 0.
+\label{equ2.37}
+\end{equation}
+由此可得，光子\textit{四动量空间部分(spatial momentum)的大小}等于它的能量。
+
+量子力学表明，光子的能量为
+\begin{equation}
+    E = h\nu,
+\label{equ2.38}
+\end{equation}
+其中$\nu$是光子频率、$h$是Planck常量，$h = 6.6256 \times 10^{-34} \, \mathrm{J \, s}$。
+
+这个关系式结合四动量的Lorentz变换可以得到光子的Doppler频移公式。例如，某个光子在$\MO$系中的频率为$\nu$，沿$x$方向运动。则在$\MObar$系中（它相对于$\MO$系沿$x$轴以速度$v$运动）的光子能量为：
+\begin{align*}
+    \bar{E} &= \frac{E}{\sqrt{1 - v^2}} - \frac{p^x v}{\sqrt{1 - v^2}} \\
+    &= \frac{h \nu}{\sqrt{1 - v^2}} - \frac{h\nu v}{\sqrt{1 - v^2}}.
+\end{align*}
+结合$\bar{E} = h\bar{\nu}$可得到光子在$\MObar$系中的频率的关系：
+\begin{equation}
+    \frac{\bar{\nu}}{\nu} = \frac{1 - v}{\sqrt{1 - v^2}} = \sqrt{ \frac{1 - v}{1 + v} }.
+\label{equ2.39}
+\end{equation}
+一般情况的频移公式见本章习题25.
+
+\subsection*{静质量为零的粒子}
+光子的静质量为零，因为：
+\begin{equation}
+    m^2 = -\vec{p} \cdot \vec{p} = 0.
+\label{equ2.40}
+\end{equation}
+四动量为null向量的\textit{任意}粒子静质量必然为零，反之亦然。目前已知静质量为零的唯一粒子是光子。中微子很轻，但并非无质量。\textit{（有时无质量粒子也包括“引力子”，因为后面会看到，引力波以光速传播。但是“光子”与“引力子”都是来自量子力学的概念，而目前没有合适的引力量子化理论，因此“引力子”还不是一个有良好定义的概念。）} 将有限大小静质量的粒子加速到光速需要无穷大的能量，因此只有静质量为零的粒子才能以光速运动。另一种说明方法是，一个以光速运动的粒子（简明起见设它沿$x$方向运动）满足$p^1 / p^0 = 1$，而静质量为$m$、沿$x$轴运动的粒子，根据$\vec{p} \cdot \vec{p} = -m^2$，有$p^1 / p^0 = \big[ 1 - m^2 / (p^0)^2 \big]^{1/2}$，无论给该粒子多少能量，这个比值总是小于1。尽管可以让静质量非零的粒子无限接近光速，但存在着质的不同：$m \neq 0$的粒子总是有MCRF——即粒子在该系中静止的Lorentz系（惯性系），它相对于旧坐标系的速度$v = p^1 / p^0$. 而光子\textit{没有}静止坐标系。
+
 
 \section{扩展阅读}
 \label{sec2.8}
+本章简要阐述了相对论运动学及粒子动力学的内容。它们在粒子物理学中特别重要，这也为SR提供了最严格的检验。详见Hagedorn (1963) 或者 Wiedemann (2007)。
 
 \section{习题}
 \label{sec2.9}

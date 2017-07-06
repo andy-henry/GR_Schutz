@@ -270,6 +270,77 @@ $\partial \phi / \partial \eta$同理。用\textit{行向量}可以方便地用�
 距离原点越远，$\Ve_\theta$的模长越大。因为$\Ve_\theta$在$(r, \theta)$系的分量为$(0, 1)$，意味着它表示$\theta$分量的1单位的位移，即1弧度。在半径更大的地方，移动1弧度的长度更大。因此极坐标基并非\textit{单位}基。其它基的模长容易求出。可以发现，$| \trd \theta|$在$r = 0$附近更大（更紧密），因为一个给定的向量在原点附近覆盖的$\theta$范围更大。
 
 \subsection*{度规张量}
+上面的点乘结果都是根据直角坐标系$x, y$中已知的度规来计算的：
+\[
+    \vec{e}_x \cdot \vec{e}_x = \vec{e}_y \cdot \vec{e}_y = 1, \quad \vec{e}_x \cdot \vec{e}_y = 0;
+\]
+或者用张量记号写为
+\begin{equation}
+    \mathbf{g} (\vec{e}_\alpha, \vec{e}_\beta) = \delta_{\alpha \beta} \quad \text{在直角坐标系中。}
+\label{equ5.29}
+\end{equation}
+$\mathbf{g}$在极坐标系的分量是什么？根据分量的定义:
+\begin{equation}
+    g_{\alpha' \beta'} = \mathbf{g} (\vec{e}_{\alpha'}, \vec{e}_{\beta'}) = \vec{e}_{\alpha'} \cdot \vec{e}_{\beta'},
+\label{equ5.30}
+\end{equation}
+或者根据\eqref{equ5.28}、\eqref{equ5.22}和\eqref{equ5.23}式可得
+\begin{equation}
+    g_{rr} = 1, \quad g_{\theta \theta} = r^2, \quad  g_{r \theta} = 0. \label{equ5.31}
+\end{equation}
+由此可得$\mathbf{g}$在极坐标系的分量为
+\begin{equation}
+    (g_{\alpha \beta})_{\text{polar}} = 
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & r^2
+        \end{pmatrix},
+\label{equ5.32}
+\end{equation}
+线元(line element)可以方便地同时表示$\mathbf{g}$的分量以及坐标，线元即为任意“无穷小”位移$\rd \vec{\ell}$的模：
+\begin{shaded}
+\begin{align}
+    \rd \vec{\ell} \cdot \rd \vec{\ell} &= \rd s^2 = |\rd r \vec{e}_r + \rd \theta \vec{e}_\theta |^2 \notag \\
+    &= \rd r^2 + r^2 \rd \theta^2. \label{equ5.33}
+\end{align}
+\end{shaded}
+\textit{不要}将这里的$\rd r, \rd \theta$与1形式基$\trd r, \trd \theta$混淆，前者是$\rd \vec{\ell}$在极坐标系的分量，“$\rd$”就是“无穷小$\Delta$”的意思。 
+
+另外有一种导出\eqref{equ5.33}式的方法值得一提。回顾\eqref{equ3.26}式，它表明任何$\binom{0}{2}$张量可以表示为$\binom{0}{2}$张量基$\trd x^\alpha \otimes \trd x^\beta$的线性组合：
+\[
+    \mathbf{g} = g_{\alpha \beta} \trd x^\alpha \otimes \trd x^\beta = \trd r \otimes \trd r + r^2 \trd \theta \otimes \trd \theta.
+\]
+尽管上式看起来像\eqref{equ5.33}式，但它们不一样：上式各项是算符，作用于向量$\rd \vec{\ell}$（其分量为$\rd r, \rd \theta$）之后得到\eqref{equ5.33}式。由于相应学科的符号混乱，导致上面两个式子非常不幸地十分相像。大多数教材与论文仍采用“旧式的”表达式——方程\eqref{equ5.33}来表示度规分量，本书遵从这一习惯。
+
+度规分量矩阵存在逆矩阵：
+\begin{equation}
+    {\begin{pmatrix}
+        1 & 0 \\
+        0 & r^2
+    \end{pmatrix} }^{-1} = 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & r^{-2}
+    \end{pmatrix}.
+\label{equ5.34}
+\end{equation}
+由此可得$g^{rr} = 1, g^{r\theta} = 0, g^{\theta \theta} = 1/r^2$。这可以建立1形式与向量之间的映射。例如，向量场$\phi$的梯度场为$\trd \phi$，则这个1形式相应的向量$\rd \phi$具有分量
+\begin{equation}
+    (\vec{\rd} \phi)^\alpha = g^{\alpha \beta} \phi_{, \beta}
+\label{equ5.35}
+\end{equation}
+或者写为
+\begin{subequations}
+\begin{alignat}{2}
+    (\vec{\rd} \phi)^r &= g^{r \beta} \phi_{, \beta} = g^{rr} \phi_{, r} + g^{r \theta} \phi_{, \theta} \notag &&   \\
+    &= \frac{\partial \phi}{\partial r}. &&\label{equ5.36a} \\
+    (\vec{\rd} \phi)^\theta &= g^{\theta r} \phi_{, r} + g^{\theta \theta} \phi_{, \theta} && \notag \\
+    &= \frac{1}{r^2} \frac{\partial \phi}{\partial \theta}. && \label{equ5.36b}
+\end{alignat}
+\end{subequations}
+可见，1形式的分量是$(\phi_{, r}, \phi_{, \theta})$，而相应向量的分量是$(\phi_{, r}, \phi_{, \theta} / r^2)$。就算是在欧几里得空间，向量与相应的1形式的分量一般也不相同。直角坐标系是它们在其中唯一相等的坐标系。
+
+
 
 \section{极坐标系的张量微积分}
 \label{sec5.3}
