@@ -344,3 +344,106 @@ $\mathbf{g}$在极坐标系的分量是什么？根据分量的定义:
 
 \section{极坐标系的张量微积分}
 \label{sec5.3}
+极坐标系的基向量并非处处相等，这对向量求导产生了麻烦。例如，简单的直角坐标基$\vec{e}_x$，它在各点都相等，$\vec{e}_x$在极坐标系中的分量为$\vec{e}_x \to (\Lambda\indices{^r_x}, \Lambda\indices{^\theta_x}) = (\cos \theta, -r^{-1} \sin \theta)$。尽管$\vec{e}_x$处处相同，但显然它的分量不是常数，这是由于分量对应的基向量在各点不同。如果只把分量对坐标，例如对$\theta$求导，结果显然\textit{并非}$\partial \vec{e}_x / \partial \theta$，因为后者必须等于零。
+
+从这个例子可见，对向量分量的求导结果一般情况下不是向量的导数，必须要考虑到基向量的变化。这是理解曲线坐标系与弯曲空间的关键。下面来系统讨论这些内容。
+
+\subsection*{基向量的导数}
+由于$\vec{e}_x$和$\vec{e}_y$是常向量场（在各点的值相同）：
+\begin{subequations}
+\begin{alignat}{2}
+    \frac{\partial}{\partial r} \vec{e}_r &= \frac{\partial}{\partial r} (\cos \theta \vec{e}_x + \sin \theta \vec{e}_y ) = 0,  &&\label{equ5.37a} \\
+    \frac{\partial}{\partial \theta} \vec{e}_r &= \frac{\partial}{\partial \theta} (\cos \theta \vec{e}_x + \sin \theta \vec{e}_y) && \notag \\
+    &= -\sin \theta \vec{e}_x + \cos \theta \vec{e}_y = \frac{1}{r} \vec{e}_\theta. && \label{equ5.37b}
+\end{alignat}
+\label{equ5.37}
+\end{subequations}
+这个结果有着简单的图像，如图\ref{fig5.6}。在相近的两点$A, B$，它们的$\vec{e}_r$的指向是从原点向外的径向，而有微小的差别。$\vec{e}_r$对$\theta$的导数就是$A, B$点的$\vec{e}_r$之差除以$\Delta \theta$。从图中可见，这个差平行于$\vec{e}_\theta$，这与方程\eqref{equ5.37b}相符。
+
+{
+    \centering
+    \includegraphics[width=0.65\textwidth]{fig5.6.png}
+    \figcaption{\textit{$\theta$变化$\Delta \theta$造成的$\vec{e}_r$的变化。}}
+    \label{fig5.6}
+}
+
+同理可得
+\begin{subequations}
+\begin{alignat}{2}
+    \frac{\partial}{\partial r} \vec{e}_\theta &= \frac{\partial}{\partial r} (-r \sin \theta \vec{e}_x + r \cos \theta \vec{e}_y ) = 0, && \notag \\ 
+    &= -\sin \theta \vec{e}_x + \cos \theta \vec{e}_y = \frac{1}{r} \vec{e}_\theta,  && \label{equ5.38a} \\
+    \frac{\partial}{\partial \theta} \vec{e}_\theta &= -r \cos \theta \vec{e}_x - r \sin \theta \vec{e}_y = -r \vec{e}_r. && \label{equ5.38b}
+\end{alignat}
+\label{equ5.38}
+\end{subequations}
+米娜桑可以画类似\ref{fig5.6}那样的图来解释这些求导结果。
+
+\subsection*{一般向量的导数}
+回到$\vec{e}_x$的导数，既然
+\begin{equation}
+    \vec{e}_x = \cos \theta \vec{e}_r - \frac{1}{r} \sin \theta \vec{e}_\theta, 
+\label{equ5.39}
+\end{equation}
+则有
+\begin{align}
+    \frac{\partial}{\partial \theta} \vec{e}_x =& \frac{\partial}{\partial \theta} (\cos \theta) \vec{e}_r + \cos \theta \frac{\partial}{\partial \theta} (\vec{e}_r) \notag \\
+    & -\frac{\partial}{\partial \theta} \left( \frac{1}{r} \sin \theta \right) \vec{e}_\theta - \frac{1}{r} \sin \theta \frac{\partial}{\partial \theta} (\vec{e}_\theta) \label{equ5.40} \\
+    =& -\sin \theta \vec{e}_r + \cos \theta \left( \frac{1}{r} \vec{e}_\theta \right) \notag \\
+    & - \frac{1}{r} \cos \theta \vec{e}_\theta - \frac{1}{r} \sin \theta (-r \vec{e}_r). \label{equ5.41}
+\end{align}
+其中利用了\eqref{equ5.37}, \eqref{equ5.38}式。化简上式可得
+\begin{equation}
+    \frac{\partial}{\partial \theta} \vec{e}_x = 0,
+\label{equ5.42}
+\end{equation}
+正如所料。\eqref{equ5.40}式中的第一、三项是$\vec{e}_x$的极坐标系分量的求导结果，另外两项是对极坐标系基向量的求导结果，它们彼此相消结果为零。
+
+一般的向量$\vec{V}$在极坐标系的分量$(V^r, V^\theta)$，向量的导数，类比\eqref{equ5.40}式，等于：
+\begin{align*}
+    \frac{\partial \vec{V}}{\partial r} &= \frac{\partial}{\partial r} (V^r \vec{e}_r + V^\theta \vec{e}_\theta) \\
+    &= \frac{\partial V^r}{\partial r} \vec{e}_r + V^r \frac{\partial \vec{e}_r}{\partial r} + \frac{\partial V^\theta}{\partial r} \vec{e}_\theta + V^\theta \frac{\partial \vec{e}_\theta}{\partial r},
+\end{align*}
+$\partial \vec{V} / \partial \theta$类似。上式用指标记号写为
+\[
+    \frac{\partial \vec{V}}{\partial r} = \frac{\partial}{\partial r} (V^\alpha \vec{e}_\alpha) = \frac{\partial V^\alpha}{\partial r} \vec{e}_\alpha + V^\alpha \frac{\partial \vec{e}_\alpha}{\partial r}.
+\]
+其中指标$\alpha$跑遍$r, \theta$。
+
+由此可见，$\vec{V}$的导数不仅包括其分量$V^\alpha$的导数。$r$是坐标之一，上式对$r$的导数可以推广为对一般坐标的导数：
+\begin{equation}
+    \frac{\partial \vec{V}}{\partial x^\beta} = \frac{\partial V^\alpha}{\partial x^\beta} \vec{e}_\alpha + V^\alpha \frac{\partial \vec{e}_\alpha}{\partial x^\beta},
+\label{equ5.43}
+\end{equation}
+其中$x^\beta, \beta = 1, 2$分别对应$r, \theta$。
+
+\subsection*{Christoffel符号}
+方程\eqref{equ5.43}的最后一项显然十分重要。由于$\partial \vec{e}_\alpha / \partial x^\beta$本身是个向量，它也可以表示为基向量的线性组合；线性组合的系数记作$\Gamma\indices{^\mu_{\alpha \beta}}$：
+\begin{equation}
+    \frac{\partial \vec{e}_\alpha}{\partial x^\beta} = \Gamma\indices{^\mu_{\alpha \beta}} \vec{e}_\mu.
+\label{equ5.44}
+\end{equation}
+$\Gamma\indices{^\mu_{\alpha \beta}}$的含义是向量$\partial \vec{e}_\alpha / \partial x^\beta$的$\mu$分量。它有三个分量：一个分量（$\alpha$）表明对哪个基向量求导；第二个（$\beta$）表明基向量对哪个坐标求导；第三个（$\mu$）表示求导结果向量的分量。$\Gamma\indices{^\mu_{\alpha \beta}}$十分有用，值得给它进行命名：称之为\textbf{Christoffel 符号}。Christoffel符号是不是张量的分量？这个问题之后讨论。
+
+前面实际上已经算出了极坐标系的Christoffel，从方程\eqref{equ5.37}和\eqref{equ5.38}可得
+\begin{equation}
+\left.
+\begin{split}
+    (1)\ \ \dfrac{\partial \vec{e}_r}{\partial r} &= 0  \Rightarrow \Gamma\indices{^\mu_{rr}} = 0, \quad \forall\, \mu, \\
+    (2)\ \  \dfrac{\partial \vec{e}_r}{\partial \theta} &= \dfrac{1}{r} \vec{e}_\theta \Rightarrow  \Gamma\indices{^r_{r\theta}} = 0, \quad \Gamma\indices{^\theta_{r \theta}} = \dfrac{1}{r}, \\
+    (3)\ \  \dfrac{\partial \vec{e}_\theta}{\partial r} &= \dfrac{1}{r} \vec{e}_\theta \Rightarrow \Gamma\indices{^r_{\theta r}} = 0, \quad \Gamma\indices{^\theta_{\theta r}} = \dfrac{1}{r}, \\
+    (4)\ \  \dfrac{\partial \vec{e}_\theta}{\partial \theta} &= -r \vec{e}_r \Rightarrow \Gamma\indices{^r_{\theta \theta}} = -r, \quad \Gamma\indices{^\theta_{\theta \theta}} = 0.
+\end{split}
+\right\}
+\label{equ5.45}
+\end{equation}
+定义式\eqref{equ5.44}当中的所有指标都必须在同一个坐标系中。因此，尽管我们利用了$\vec{e}_x, \vec{e}_y$是常向量场的性质导出了$\vec{e}_r, \vec{e}_\theta$的导数，但是\eqref{equ5.45}中的各方程并不依赖直角坐标系。Christoffel符号的重要性在于，它可以将极坐标系基向量的导数只用极坐标系的量表示，而与其它坐标系无关。
+
+\subsection*{协变导数}
+
+
+\subsection*{散度，Laplacian}
+
+\subsection*{1形式与高阶张量的导数}
+
+\section{Christoffel符号与度规}
+\label{sec5.4}
