@@ -439,6 +439,58 @@ $\Gamma\indices{^\mu_{\alpha \beta}}$的含义是向量$\partial \vec{e}_\alpha 
 定义式\eqref{equ5.44}当中的所有指标都必须在同一个坐标系中。因此，尽管我们利用了$\vec{e}_x, \vec{e}_y$是常向量场的性质导出了$\vec{e}_r, \vec{e}_\theta$的导数，但是\eqref{equ5.45}中的各方程并不依赖直角坐标系。Christoffel符号的重要性在于，它可以将极坐标系基向量的导数只用极坐标系的量表示，而与其它坐标系无关。
 
 \subsection*{协变导数}
+利用Christoffel符号的定义\eqref{equ5.44}式，可以将\eqref{equ5.43}式的导数表示为
+\begin{equation}
+    \frac{\partial \vec{V}}{\partial x^\beta} = \frac{\partial V^\alpha}{\partial x^\beta} \vec{e}_\alpha + V^\alpha \Gamma\indices{^\mu_{\alpha \beta}} \vec{e}_\mu.
+\label{equ5.46}
+\end{equation}
+最后一项表示了对傀儡指标$\alpha, \mu$的两个求和，对这两个傀儡指标重新命名：$\mu$换成$\alpha$，$\alpha$换成$\mu$得到
+\begin{equation}
+    \frac{\partial \vec{V}}{\partial x^\beta} = \frac{\partial V^\alpha}{\partial x^\beta} \vec{e}_\alpha + V^\mu \Gamma\indices{^\alpha_{\mu \beta}} \vec{e}_\alpha.
+\label{equ5.47}
+\end{equation}
+这样重命名了傀标之后上式就可提出等号右侧的$\vec{e}_\alpha$项：
+\begin{equation}
+    \frac{\partial \vec{V}}{\partial x^\beta} = \left( \frac{\partial V^\alpha}{\partial x^\beta} + V^\mu \Gamma\indices{^\alpha_{\mu \beta}} \right) \vec{e}_\alpha.
+\label{equ5.48}
+\end{equation}
+因此，向量场$\partial \vec{V} / \partial x^\beta$的分量为
+\begin{equation}
+    \frac{\partial V^\alpha}{\partial x^\beta} + V^\mu \Gamma\indices{^\alpha_{\mu \beta}}.
+\label{equ5.49}
+\end{equation}
+回顾一下偏导数的简写记号：$\partial V^\alpha / \partial x^\beta = V\indices{^\alpha_{, \beta}}$，利用这个记号并定义一个\textit{新}记号：
+\begin{shaded}
+\begin{equation}
+    V\indices{^\alpha_{; \beta}} := V\indices{^\alpha_{, \beta}} + V^\mu \Gamma\indices{^\alpha_{\mu \beta}}.
+\label{equ5.50}
+\end{equation}
+\end{shaded}
+在这个分号简写记号下：
+\begin{shaded}
+\begin{equation}
+    \frac{\partial \vec{V}}{\partial x^\beta} = V\indices{^\alpha_{; \beta}} \vec{e}_\alpha
+\label{equ5.51}
+\end{equation}
+\end{shaded}
+它将\eqref{equ5.48}式表示成了非常紧凑的形式。
+
+若将$\beta$视为固定不动的，则$\partial \vec{V} / \partial x^\beta$是个向量场。但是实际上$\beta$\textit{可以}有两种取值，所以$\partial \vec{V} / \partial x^\beta$可以视为将向量$\vec{e}_\beta$映为向量$\partial \vec{V} / \partial x^\beta$的$\binom{1}{1}$张量场，就像第\ref{chap3}章习题17那样。这个张量场称为$\vec{V}$的\textit{协变导数 (covariant derivative)}，（很自然地）记作$\nabla \vec{V}$，它的分量为
+\begin{equation}
+    (\nabla \vec{V})\indices{^\alpha_\beta} = (\nabla_\beta \vec{V})\indices{^\alpha} = V\indices{^\alpha_{; \beta}} 
+\label{equ5.52}
+\end{equation}
+在直角坐标系中，这些分量就等于$V\indices{^\alpha_{, \beta}}$。然而在曲线坐标系中，必须考虑基向量的导数，我们得到了$V\indices{^\alpha_{; \beta}}$是$\nabla \vec{V}$的分量，不论在哪个曲线坐标系，只要把那个系的Christoffel符号带入\eqref{equ5.50}式就能算出。上述内容的重要性不可低估，它是之后所有内容的基础。存在一个叫做$\nabla \vec{V}$的$\binom{1}{1}$张量，它在直角坐标系中的分量是$\partial V^\alpha / \partial x^\beta$，在一般的坐标系$\{ x^{\mu'} \}$中的分量是$V\indices{^{\alpha'}_{; \beta'}}$，这个分量可以通过两种方式计算：
+\begin{itemize}
+\item 直接在$\{ x^{\mu'} \}$坐标系中利用\eqref{equ5.50}式和那个系的Christoffel符号$\Gamma\indices{^{\alpha'}_{\mu' \beta'}}$计算；
+\item 利用从直角坐标系到一般坐标系$\{ x^{\mu'} \}$的张量分量变换律计算。
+\end{itemize}
+
+标量的协变导数是啥？协变导数与普通偏导数的不同是由于基向量随着坐标变化。因为标量不依赖于基向量，因此标量的协变导数等于普通的偏导数，也就是梯度：
+\begin{equation}
+    \nabla_\alpha f = \frac{\partial f}{\partial x^\alpha}; \quad \nabla f = \trd f.
+\label{equ5.53}
+\end{equation}
 
 
 \subsection*{散度，Laplacian}
@@ -447,3 +499,15 @@ $\Gamma\indices{^\mu_{\alpha \beta}}$的含义是向量$\partial \vec{e}_\alpha 
 
 \section{Christoffel符号与度规}
 \label{sec5.4}
+
+\section{非坐标基}
+\label{sec5.5}
+
+\section{展望下一步}
+\label{sec5.6}
+
+\section{扩展阅读}
+\label{sec5.7}
+
+\section{习题}
+\label{sec5.8}

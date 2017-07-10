@@ -1,2 +1,205 @@
 \chapter{弯曲流形}
 \label{chap6}
+
+\section{微分流形，张量}
+\label{sec6.1}
+
+\subsection*{流形}
+
+\subsection*{微分结构}
+我们只考虑“微分流形”(differentiable manifolds)，它们是连续且可微的空间。粗略地说，微分流形的每一点的邻域都可定义从该邻域到欧几里得空间的光滑映射，该映射保证标量函数的导数在那一点不变。球面是处处可微的，而锥面除了顶点以外处处可微。物理学用到的流形基本上都是几乎处处可微的，GR的弯曲流形就是如此。
+
+可微性的条件直接意味着可以定义1形式与向量。也就是说，在流形上的某个坐标系中，集合$\{ \phi_{, \alpha} \}$的元素是1形式$\trd \phi$的分量；而集合$\{ a \phi_{, \alpha} + b \psi_{, \alpha} \}$（其中$a, b$是函数）也是1形式场。类似的，任何曲线（带有参数，例如$\lambda$）具有切向量$\vec{V}$，它定义为将1形式$\trd \phi$变成“标量场沿该曲线的导数$\rd \phi / \rd \lambda$”的线性函数：
+\begin{equation}
+    \langle \trd \phi, \vec{V} \rangle = \vec{V} (\trd \phi) = \nabla_{\vec{V}} \phi = \frac{\rd \phi}{\rd \lambda}.
+\label{equ6.1}
+\end{equation}
+向量的线性组合也是向量。利用上面定义的向量和1形式，可以定义各种$\binom{M}{N}$型张量，就像SR里定义的那样。由于目前尚未钦点任何$\binom{0}{2}$张量为度规，因此向量与1形式之间还没有对应关系。不过其它内容与之前讨论的SR情形、极坐标系相同。这些内容都来自于微分，因此所有张量的集合称为流形的“微分结构 (differential structure)”的一部分。我们不会经常使用这个术语。
+
+
+\subsection*{回顾}
+
+\section{Riemannian流形}
+\label{sec6.2}
+目前为止尚未在流形中引入度规。在一些问题的流形中，度规是不必要或不常用的。但是对GR而言，度规绝对是最基本的，因为就像SR那样，度规描述了钟的走时与两点的距离。一个微分流形配上一个被选召为度规的、对称的$\binom{0}{2}$张量场$\bm{g}$，称为Riemannian流形（黎曼流形）。\textit{严格来说，只有当度规是正定的——即$\forall\, \vec{V} \neq 0, \bm{g} (\vec{V}, \vec{V}) > 0$——才叫做Riemannian流形；SR与GR那样的不定度规情况叫做pseudo-Riemannian（伪黎曼流形）。不过作为一本物理书我们并不区分统统称为Riemannian流形。} 选出一个度规意味着在流形上“添加”某种结构，理解这一点很关键，之后会看到这个度规完全定义了流形的曲率。因此，选定一个度规$\bm{g}$之后，流形具有了一种曲率（例如，球面），而选择另一个度规$\bm{g}'$流形具有另一种曲率（例如，旋转椭球面）。“原始的”微分流形自身是一团无定形的点的集合，并且局域地相似于欧几里得空间中的点的排布，其中的距离与形状并未指定。给定了度规$\bm{g}$就赋予了流形以特定形状，后面就会看到。从现在开始，我们讨论的对象是Riemannian流形，其上的每一点都定义了度规$\bm{g}$。
+
+\textit{为了内容完整，我们指出，可以不利用度规来定义流形曲率的概念（称为“仿射 (affine)”流形）。有些文献用采用这种方法，但是度规在GR中的地位是基本的，因此我们利用度规定义流形曲率。}
+
+
+\subsection*{度规，局域平直性}
+自然，度规提供了每一点的向量与1形式之间的映射。因此，给定向量场$\vec{V} (\mathcal{P})$（这个符号意味着$\vec{V}$取决于位置$\mathcal{P}$，$\mathcal{P}$是流形中的任一点），它唯一对应于1形式场$\tilde{V} (\mathcal{P}) = \bm{g} (\vec{V} (\mathcal{P}), \ )$。这个映射必须是可逆的\sout{画外音：看不出来……}，因此$\tilde{V} (\mathcal{P})$也对应唯一的$\vec{V} (\mathcal{P})$。$\bm{g}$的分量记作$g_{\alpha \beta}$；分量矩阵的逆矩阵记作$g^{\alpha \beta}$。度规可以升降指标，就像SR中的那样：
+\[
+    V_\alpha = g_{\alpha \beta} V^\beta.
+\]
+一般的$\{ g_{\alpha \beta} \}$是坐标的复杂函数，因此在一般的坐标系中，向量与1形式分量，例如$V^0$与$V_0$，一般没有简单的关系。
+
+要研究一般的弯曲流形就要在一般的坐标系中考虑问题。SR只在Lorentz系（惯性系）中讨论（因为简单），但是引力使得全局惯性系不存在，因此我们得考虑所有的（一般性的）坐标系，以及所有的（一般性的）非奇异坐标变换。\textit{非奇异性在\ref{sec5.2}节介绍过，它意味着变换矩阵$\Lambda\indices{^{\alpha'}_\beta} \equiv \partial x^{\alpha'} / \partial x^\beta$可逆。} 根据定义，度规分量矩阵$(g_{\alpha \beta})$是对称的，线性代数的一条重要定理（见第\ref{chap6}章习题3）告诉我们，对于任意对称矩阵$(g_{\alpha' \beta'})$，总可以找到变换矩阵将$(g_{\alpha' \beta'})$化为对角元是$+1, -1$或0的对角矩阵，且$+1$的数量等于矩阵$(g_{\alpha' \beta'})$的正特征值的个数、$-1$的数量等于负特征值个数。故而，如果一开始选择$\bm{g}$的分量矩阵具有3个正特征值、1个负特征值，则总可以找到变换矩阵$\Lambda\indices{^{\alpha'}_\beta}$使得度规分量变换为：
+\begin{equation}
+    (g_{\alpha' \beta'}) = 
+    \begin{pmatrix}
+        -1 & 0 & 0 & 0 \\
+        0 & 1 & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
+    \equiv (\eta_{\alpha \beta}).
+\label{equ6.2}
+\end{equation}
+今后，$\eta_{\alpha \beta}$ \textit{专指}上式中的矩阵，也就是SR的度规。
+
+有两点重要内容必须指出。第一，只有$(g_{\alpha \beta})$选为3个正特征值、1个负特征值的时候，\eqref{equ6.2}式才可能。\eqref{equ6.2}式矩阵的对角元素之和称为度规的\textit{号差 (signature)}，SR与GR的度规号差都是$+2$。因此，之前我们论述过，在任意事件处总可以构造一个\textit{局域}惯性系，方程\eqref{equ6.2}是这个物理命题的数学表述，亦即，该点的度规总可以变换为$\eta_{\alpha \beta}$。反过来，这意味着一个描述有引力时空的度规的号差必须是$+2$。
+
+第二，\eqref{equ6.2}式对应的变换矩阵$\Lambda\indices{^{\alpha'}_\beta}$也许\textit{并非}坐标变换。也就是说，集合$\{ \tilde{\omega}^{\alpha'} = \Lambda\indices{^{\alpha'}_\beta} \trd x^\beta \}$也许不是坐标基。根据前面对非坐标基的讨论，$\Lambda\indices{^{\alpha'}_\beta}$只有当\eqref{equ5.95}式成立时才是坐标变换：
+\[
+    \frac{\partial \Lambda\indices{^{\alpha'}_\beta}}{\partial x^\gamma} = \frac{\partial \Lambda\indices{^{\alpha'}_\gamma}}{\partial x^\beta}.
+\]
+
+这在一般的引力场中不能成立，否则就意味着存在\eqref{equ6.2}式处处成立的坐标系——全局惯性系了。不过，既然可以使\eqref{equ6.2}式在$\mathcal{P}$点成立，那么也可以找到坐标系使得\eqref{equ6.2}式在$\mathcal{P}$点的邻域“近似”成立。这体现在如下的定理中，该定理的证明（相当长）见本节最后。对于流形上的任一点$\mathcal{P}$，可以找到原点为$\mathcal{P}$点的坐标系$\{ x^\alpha \}$，在该坐标系中：
+\begin{equation}
+    g_{\alpha \beta} (x^\mu ) = \eta_{\alpha \beta} + 0 [(x^\mu)^2].
+\label{equ6.3}
+\end{equation}
+这意味着，$\mathcal{P}$点附近的度规近似是SR的度规，相差坐标的二阶量。今后称这种坐标系为“\textbf{局域Lorentz系}”或“\textbf{局域惯性系} (local inertial frames, \textbf{LIF})”。方程\eqref{equ6.3}可以表示为更精确的形式：
+\begin{shaded}
+\begin{align}
+    g_{\alpha \beta} (\mathcal{P}) &= \eta_{\alpha \beta} \quad \forall\, \alpha, \beta; \label{equ6.4} \\
+    \frac{\partial}{\partial x^\gamma} g_{\alpha \beta} (\mathcal{P}) &= 0 \quad \forall\, \alpha, \beta, \gamma; \label{equ6.5}
+\end{align}
+\end{shaded}
+但是在一般情况下
+\begin{shaded}
+\begin{equation*}
+    \frac{\partial^2}{\partial x^\gamma \partial x^\mu} g_{\alpha \beta} (\mathcal{P}) \neq 0
+\end{equation*}
+\end{shaded}
+在弯曲流形中，上式至少对某些$\alpha, \beta, \gamma, \mu$成立。
+
+局域惯性系的存在性等价于弯曲空间中的任一点存在“相切”的平坦空间。平直时空中，自由粒子的世界线是直线；方程\eqref{equ6.5}中弯曲时空度规的一阶导数项为零意味着，弯曲时空中的自由粒子沿着在局域惯性系中的“局域直”的线运动。由于物理学方程在平直时空中最简单，而按照\ref{sec6.1}节总结的规律，只要在局域惯性系写出张量等式的方程，则该方程在任意坐标系都有效，因此局域惯性系十分有用。别忘了定理的证明在本节最后，尽管比较长，但是它值得研究。
+
+\subsection*{长度与体积}
+度规定义了曲线的长度。将曲线上的无穷小位移向量记作$\rd \vec{x}$，则$\rd \vec{x}$长度的平方$\rd s^2 = g_{\alpha \beta} \rd x^\alpha \rd x^\beta$（回顾一下，前面称之为度规的\textit{线元}）。对它的绝对值开平方就是长度：$\rd \ell \equiv |  g_{\alpha \beta} \rd x^\alpha \rd x^\beta |^{1/2}$，再进行积分：
+\begin{align}
+    \ell &= \int_{\text{沿曲线}} | g_{\alpha \beta} \rd x^\alpha \rd x^\beta | ^{1/2} \label{equ6.6} \\
+    &= \int_{\lambda_0}^{\lambda_1} \left| g_{\alpha \beta} \frac{\rd x^\alpha}{\rd \lambda} \frac{\rd x^\beta}{\rd \lambda} \right|^{1/2} \, \rd \lambda, \label{equ6.7}
+\end{align}
+其中$\lambda$是曲线的参数（端点处的参数值为$\lambda_0, \lambda_1$）。由于曲线的切向量$\vec{V}$的分量为$V^\alpha = \rd x^\alpha / \rd \lambda$，上式可写为：
+\begin{shaded}
+\begin{equation}
+    \ell = \int_{\lambda_0}^{\lambda_1} | \vec{V} \cdot \vec{V} |^{1/2} \, \rd \lambda,
+\label{equ6.8}
+\end{equation}
+\end{shaded}
+这就是任意曲线的长度。
+
+在对时空区域进行积分时，计算体积十分重要。这里的“体积”是指四维体积元，它出现于\ref{sec4.4}节Gauss定律的积分中。局域惯性系的无穷小四维体元的四维体积为$\rd x^0\, \rd x^1\, \rd x^2\, \rd x^3$，其中$\{ x^\alpha \}$是原点在指定点的局域惯性系，满足方程\eqref{equ6.3}。在\textit{任意}坐标系$\{ x^{\alpha'}\}$中，根据多变量微积分的知识可得：
+\begin{equation}
+    \rd x^0\, \rd x^1\, \rd x^2\, \rd x^3 = \frac{\partial (x^0, x^1, x^2, x^3)}{\partial (x^{0'}, x^{1'}, x^{2'}, x^{3'}) } \rd x^{0'}\, \rd x^{1'}\, \rd x^{2'}\, \rd x^{3'},
+\label{equ6.9}
+\end{equation}
+其中$\partial (\ ) / \partial (\ )$是从$\{ x^{\alpha'} \}$到$\{ x^\alpha \}$的变换的Jacobian（雅可比行列式），在\ref{sec5.2}节定义过：
+\begin{align}
+    \frac{\partial (x^0, x^1, x^2, x^3)}{\partial (x^{0'}, x^{1'}, x^{2'}, x^{3'}) } &= \det \begin{pmatrix}
+        \partial x^0 / \partial x^{0'} & \partial x^0 / \partial x^{1'} & \dots \\
+        \partial x^1 / \partial x^{0'} & \ & \  \\
+        \vdots &&
+    \end{pmatrix} \notag \\
+    &= \det (\Lambda\indices{^\alpha_{\beta'}}). \label{equ6.10}
+\end{align}
+计算Jacobian的过程相当繁琐，不过利用度规可以简化计算过程。度规分量变换的矩阵形式为
+\begin{equation}
+    (g) = (\Lambda) (\eta) (\Lambda)^T,
+\label{equ6.11}
+\end{equation}
+其中$(g)$表示矩阵$g_{\alpha \beta}$，$(\eta)$表示$\eta_{\alpha \beta}$，等等。符号$T$表示矩阵转置。上式取行列式：
+\begin{equation}
+    \det (g) = \det (\Lambda) \, \det (\eta) \, \det (\Lambda^T).
+\label{equ6.12}
+\end{equation}
+转置矩阵的行列式与原矩阵相等：
+\begin{equation}
+    \det (\Lambda) = \det (\Lambda^T),
+\label{equ6.13}
+\end{equation}
+而根据\eqref{equ6.2}可得
+\begin{equation}
+    \det (\eta) = -1.
+\label{equ6.14}
+\end{equation}
+综上，
+\begin{equation}
+    \det (g) = - [\det (\Lambda)]^2.
+\label{equ6.15}
+\end{equation}
+引入记号
+\begin{equation}
+    g := \det( g_{\alpha' \beta'}),
+\label{equ6.16}
+\end{equation}
+这样方程\eqref{equ6.15}可以写为
+\begin{equation}
+    \det (\Lambda\indices{^\alpha_{\beta'}}) = (-g)^{1/2}.
+\label{equ6.17}
+\end{equation}
+从而，根据\eqref{equ6.9}式可得：
+\begin{shaded}
+\begin{align}
+    \rd x^0\, \rd x^1\, \rd x^2\, \rd x^3 &= \big[ -\det (g_{\alpha' \beta'}) \big]^{1/2} \, \rd x^{0'}\, \rd x^{1'}\, \rd x^{2'}\, \rd x^{3'} \notag \\
+    &= (-g)^{1/2} \, \rd x^{0'}\, \rd x^{1'}\, \rd x^{2'}\, \rd x^{3'}. \label{equ6.18}
+\end{align}
+\end{shaded}
+这个结果非常有用。这个式子的推导思路也很重要，因为这是第一个利用局域惯性系将平直时空的结果推广到弯曲时空的例子，之后会经常利用这种思路。本例从局域惯性系的体元$\rd x^0\, \rd x^1\, \rd x^2\, \rd x^3 = \rd^4 x$出发，由于给定点附近的时空邻域和Minkowski空间相同，因此这个体元就是可以由时钟与尺子测量的物理量。接着我们导出了在任意坐标系$\{ x^{\mu'} \}$的体元表达式\eqref{equ6.18}，$(-g)^{1/2} \rd^4 x'$，这就是弯曲时空中任意坐标系的任一点的物理体积元，我们称之为\textit{固有体元 (proper volume element)}。
+
+度规出现在固有体元里，这是在意料之中的，因为度规测量长度。任意坐标系的$\rd^4 x$乘以$(-g)^{1/2}$就得到的真实的，或者说\textit{固有的(proper)}体元。
+
+这里应该举个三次元欧几里得空间的例子，由于该空间的度规是正定的（\eqref{equ6.14}的对应结果是$+1$），因此固有体元应该乘以$(g)^{1/2}$。球坐标系的线元$\rd \ell^2 = \rd r^2 + r^2 \rd \theta^2 + r^2 \sin^2 \theta \rd \phi^2$，因此度规是
+\begin{equation}
+    (g_{ij}) = 
+    \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & r^2 & 0 \\
+        0 & 0 & r^2 \sin^2 \theta
+    \end{pmatrix}.
+\label{equ6.19}
+\end{equation}
+度规行列式等于$r^4 \sin^2 \theta$，所以固有体元$(g)^{1/2} \, \rd^3 x'$等于
+\begin{equation}
+    r^2 \sin \theta \rd r \rd \theta \rd \phi,
+\label{equ6.20}
+\end{equation}
+这就是人们熟悉的极坐标系的体积元。
+
+\subsection*{局域平直性定理的证明}
+记$\{ x^\alpha \}$是任意坐标系，$\{ x^{\alpha'}\}$是局域惯性系：它在所考虑的$\mathcal{P}$点附近简化为惯性系（四维时空流形中的点就是一个事件）。这两个坐标系之间的坐标变换为：
+\begin{align}
+    x^\alpha &= x^\alpha (x^{\mu'}), \label{equ6.21} \\
+    \Lambda\indices{^\alpha_{\mu'}} &= \partial x^\alpha / \partial x^{\mu'}. \label{equ6.22}
+\end{align}
+将$\Lambda\indices{^\alpha_{\mu'}}$在$\mathcal{P}$点（该点的坐标是$x_0^{\mu'}$）附近作Taylor展开，其中$\vec{x}$是$\mathcal{P}$点附近的一点：
+\begin{align}
+    \Lambda\indices{^\alpha_{\mu'}} (\vec{x}) =& \Lambda\indices{^\alpha_{\mu'}} (\mathcal{P}) + (x^{\gamma'} - x_0^{\gamma'}) \frac{\partial \Lambda\indices{^\alpha_{\mu'}}}{\partial x^{\gamma'}} (\mathcal{P}) \notag \\
+    &+ \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'}) (x^{\lambda'} - x_0^{\lambda'}) \frac{ \partial^2 \Lambda\indices{^\alpha_{\mu'}} }{ \partial x^{\lambda'} \partial x^{\gamma'} } (\mathcal{P}) + \dots , \notag \\
+    =& \Lambda\indices{^\alpha_{\mu'}}\Bigg|_{\mathcal{P}} + (x^{\gamma'} - x_0^{\gamma'} ) \frac{ \partial^2 x^\alpha }{ \partial x^{\gamma'} \partial x^{\mu'} } \Bigg|_{\mathcal{P}} \notag \\
+    &+ \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'})(x^{\lambda'} - x_0^{\lambda'}) \frac{ \partial^3 x^\alpha }{ \partial x^{\lambda'} \partial x^{\gamma'} \partial x^{\mu'} } \Bigg|_{\mathcal{P}} + \dots. \label{equ6.23}
+\end{align}
+
+
+\section{协变微分}
+\label{sec6.3}
+
+\section{平行移动，测地线，曲率}
+\label{sec6.4}
+
+\section{曲率张量}
+\label{sec6.5}
+
+\section{Bianchi恒等式：Ricci张量与Einstein张量}
+\label{sec6.6}
+
+\section{Curvature in perspective}
+\label{sec6.7}
+
+\section{扩展阅读}
+\label{sec6.8}
+
+\section{习题}
+\label{sec6.9}
