@@ -178,9 +178,59 @@
 \begin{align}
     \Lambda\indices{^\alpha_{\mu'}} (\vec{x}) =& \Lambda\indices{^\alpha_{\mu'}} (\mathcal{P}) + (x^{\gamma'} - x_0^{\gamma'}) \frac{\partial \Lambda\indices{^\alpha_{\mu'}}}{\partial x^{\gamma'}} (\mathcal{P}) \notag \\
     &+ \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'}) (x^{\lambda'} - x_0^{\lambda'}) \frac{ \partial^2 \Lambda\indices{^\alpha_{\mu'}} }{ \partial x^{\lambda'} \partial x^{\gamma'} } (\mathcal{P}) + \dots , \notag \\
-    =& \Lambda\indices{^\alpha_{\mu'}}\Bigg|_{\mathcal{P}} + (x^{\gamma'} - x_0^{\gamma'} ) \frac{ \partial^2 x^\alpha }{ \partial x^{\gamma'} \partial x^{\mu'} } \Bigg|_{\mathcal{P}} \notag \\
-    &+ \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'})(x^{\lambda'} - x_0^{\lambda'}) \frac{ \partial^3 x^\alpha }{ \partial x^{\lambda'} \partial x^{\gamma'} \partial x^{\mu'} } \Bigg|_{\mathcal{P}} + \dots. \label{equ6.23}
+    =& \Lambda\indices{^\alpha_{\mu'}}\bigg|_{\mathcal{P}} + (x^{\gamma'} - x_0^{\gamma'} ) \frac{ \partial^2 x^\alpha }{ \partial x^{\gamma'} \partial x^{\mu'} } \bigg|_{\mathcal{P}} \notag \\
+    &+ \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'})(x^{\lambda'} - x_0^{\lambda'}) \frac{ \partial^3 x^\alpha }{ \partial x^{\lambda'} \partial x^{\gamma'} \partial x^{\mu'} } \bigg|_{\mathcal{P}} + \dots. \label{equ6.23}
 \end{align}
+将度规进行同样的展开：
+\begin{align}
+    g_{\alpha \beta} (\vec{x}) =& g_{\alpha \beta} \bigg|_{\mathcal{P}} + (x^{\gamma'} - x_0^{\gamma'}) \frac{ \partial g_{\alpha \beta} }{ \partial x^{\gamma'} } \bigg|_{\mathcal{P}} \notag \\
+    & + \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'}) (x^{\lambda'} - x_0^{\lambda'}) \frac{\partial^2 g_{\alpha \beta}}{\partial x^{\lambda'} \partial x^{\gamma'}} \bigg|_{\mathcal{P}} + \dots. \label{equ6.24}
+\end{align}
+将以上两个\sout{两坨}方程带入度规的变换式当中：
+\begin{equation}
+    g_{\mu' \nu'} = \Lambda\indices{^\alpha_{\mu'}} \Lambda\indices{^\beta_{\nu'}} g_{\alpha \beta},
+\label{equ6.25}
+\end{equation}
+可得：
+\begin{align}
+    g_{\mu' \nu'} (\vec{x}) =& \Lambda\indices{^\alpha_{\mu'}} \bigg|_{\mathcal{P}} \, \Lambda\indices{^\beta_{\nu'}} \bigg|_{\mathcal{P}} \, g_{\alpha \beta} \bigg|_{\mathcal{P}} \notag \\
+    & + (x^{\gamma'} - x_0^{\gamma'}) \Bigg[ \Lambda\indices{^\alpha_{\mu'}} \bigg|_{\mathcal{P}}\, \Lambda\indices{^\beta_{\nu'}} \bigg|_{\mathcal{P}} \, g_{\alpha \beta, \gamma'} \bigg|_{\mathcal{P}} \notag \\
+    & + \Lambda\indices{^\alpha_{\mu'}} \bigg|_{\mathcal{P}}\, g_{\alpha \beta} \bigg|_{\mathcal{P}} \, \frac{ \partial^2 x^\beta }{ \partial x^{\gamma'} \partial x^{\nu'} } \bigg|_{\mathcal{P}}  \notag \\
+    & + \Lambda\indices{^\beta_{\nu'}} \bigg|_{\mathcal{P}} \, g_{\alpha \beta} \bigg|_{\mathcal{P}} \, \frac{ \partial^2 x^\alpha }{ \partial x^{\gamma'} \partial x^{\mu'} } \bigg|_{\mathcal{P}} \Bigg] \notag \\
+    & + \frac{1}{2} (x^{\gamma'} - x_0^{\gamma'}) (x^{\lambda'} - x_0^{\lambda'}) \big[ \dots \big], \label{equ6.26} 
+\end{align}
+我们不知道坐标变换\eqref{equ6.21}式的具体形式，但是可以通过Taylor展开来定义它，为此首先来计算自由变量的个数。
+
+\begin{itemize}
+\item 变换矩阵$\Lambda\indices{^\alpha_{\mu'}}$有16个指标，它们都对应自由变量。
+\item 数组$\{ \partial^2 x^\alpha / ( \partial x^{\gamma'} \partial x^{\mu'} ) \big|_{\mathcal{P}} \}$有$4 \times 10 = 40$个自由指标（并非$4 \times 4 \times 4$个，因为指标$\gamma'$与$\mu'$\textit{对称}）。
+\item 数组$\{ \partial^3 x^\alpha / ( \partial x^{\lambda'} \partial x^{\gamma'} \partial x^{\mu'} ) \big|_{\mathcal{P}} \}$有$4 \times 20 = 80$个自由变量，因为可以\textit{任意更换}指标$\lambda', \gamma', \mu'$的顺序，这种对称性导致一个固定的$\alpha$只对应20个独立变量。\textit{这种三个指标的对称性的独立变量数的一般结论是$n ( n+1) (n+2) / 3!$，其中$n$是每个指标可能取值的个数，对于我们的情况是$n = 4$.}
+\item 另一方面，$g_{\alpha \beta} \big|_{\mathcal{P}}, g_{\alpha \beta, \gamma'} \big|_{\mathcal{P}}, g_{\alpha \beta, \gamma' \mu'} \big|_{\mathcal{P}}$都是最初给定的，它们分别具有$10, 10\times4 = 40, 10 \times 10 = 100$个独立分量。
+\end{itemize}
+第一个问题是，是否可以满足方程\eqref{equ6.4}：
+\begin{equation}
+    g_{\mu' \nu'} \bigg|_{\mathcal{P}} = \eta_{\mu' \nu'} \ \text{？}
+\label{equ6.27}
+\end{equation}
+上式可以写为
+\begin{equation}
+    \eta_{\mu' \nu'} = \Lambda\indices{^\alpha_{\mu'}}\bigg|_{\mathcal{P}} \, \Lambda\indices{^\beta_{\nu'}} \bigg|_{\mathcal{P}} \, g_{\alpha \beta} \bigg|_{\mathcal{P}}.
+\label{equ6.28}
+\end{equation}
+根据对称性，上式对应10个独立方程。我们有16个自由的$\Lambda\indices{^\alpha_{\mu'}}\big|_{\mathcal{P}}$来满足这些方程，因此这些方程是可以解出的，并且留下了6个$\Lambda\indices{^\alpha_{\mu'}}\big|_{\mathcal{P}}$尚未确定，这余下的6个变量对应于保证度规$\eta_{\mu' \nu'}$不变的Lorentz变换的自由度。也就是说，可以对坐标系进行绕某个方向（确定该方向需要2个参数）的转轴旋转角度$\theta$（1个参数）的速度为$\bm{v}$（含有3个自由参数）的推动(boost)变换，这就给出了$\Lambda\indices{^\alpha_{\mu'}} \big|_{\mathcal{P}}$的6个自由度，局域惯性系经过这种变换还是惯性系。
+
+下一个问题是，是否可以安排\eqref{equ6.26}式中$\partial \Lambda\indices{^\alpha_{\mu'}} / \partial x^{\gamma'} \big|_{\mathcal{P}}$（它具有40个自由变量），使得方程\eqref{equ6.5}：
+\begin{equation}
+    g_{\alpha' \beta' , \mu'} \bigg|_{\mathcal{P}} = 0.
+\label{equ6.29}
+\end{equation} 
+的40个独立方程成立？
+
+既然是40个方程、40个未知数，那么答案是“可以”，不多不少刚刚好。给定矩阵$\Lambda\indices{^\alpha_{\mu'}} \big|_{\mathcal{P}}$，有且仅有一种安排$\mathcal{P}$点附近坐标的方式，使得$\Lambda\indices{^\alpha_{\mu' , \gamma'}} \big|_{\mathcal{P}}$的取值使得$g_{\alpha' \beta', \mu'} \big|_{\mathcal{P}} = 0.$ 因此不再有额外的、进行局域Lorentz变换的自由度。
+
+最后的问题是，是否可以使更高阶的项成立？可以安排$\Lambda\indices{^\alpha_{\mu', \gamma' \lambda'}} \big|_{\mathcal{P}}$的80个自由变量，使得$g_{\alpha' \beta', \mu' \lambda'} \big|_{\mathcal{P}} = 0$代表的100个独立方程成立吗？既然变量个数80小于方程数100，问题的答案是“不行”。对于一般的度规，二阶导数$g_{\alpha' \beta', \mu' \lambda'} \big|_{\mathcal{P}}$有着20个“自由度”，由于$100 - 80 = 20$，一般而言有20个分量不能为零。
+
+由此可见，一般的度规在任一点$\mathcal{P}$的主要特征既不是由度规在$\mathcal{P}$点的值表示（因为它可以变换为$\eta_{\alpha \beta}$），也不是由它的1阶导数表示（因为1阶导数可以变换为零），而是由不可变换为零的20个二阶导数所表征的。后面会看到，这20个量是表征曲率的张量的独立分量。当然，在\textit{平直}空间中，这20个量都等于零，不过在一般的弯曲空间中不是这样。
 
 
 \section{协变微分}
