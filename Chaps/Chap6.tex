@@ -235,9 +235,175 @@
 
 \section{协变微分}
 \label{sec6.3}
+现在来讨论微分。根据定义，向量场的导数要计算两个不同点（取极限之后这两个点重合）的向量的差。弯曲空间中不同点的向量之差必须小心处理，因为两点之间的空间是弯曲的，两点的向量方向“相同”这一概念是模糊的。然而，Riemannian流形的局域平直性可以帮助解决这个问题。计算导数只需要比较两个无限接近的点的向量，而我们知道在任一点$\mathcal{P}$的邻域可以建立与平直空间接近的坐标系。因此在这个小邻域中，流形可以视为平直的，如果一个向量的分量在这个坐标系中是常数，那么很自然地认为该向量分量的导数在$\mathcal{P}$点为零。例如，按这种说法，局域惯性系基向量的导数在$\mathcal{P}$点为零。
+
+强调一下，上述内容就是协变导数 (covariant derivative) 的\textbf{定义}。它从物理上看起来很合理：局域惯性系的时空的局部看起来像SR的情况，在SR中基向量的导数等于零。从这个定义可以直接导出，在局域惯性系的$\mathcal{P}$点，向量分量的协变导数等于分量的偏导数（即，Christoffel符号为零）：
+\begin{equation}
+    V\indices{^\alpha_{; \beta}} = V\indices{^\alpha_{, \beta}} \quad \text{在局域惯性系，$\mathcal{P}$点。}
+\label{equ6.30}
+\end{equation}
+上述论证对其它张量，例如度规张量，也成立：
+\[
+    g_{\alpha \beta; \gamma} = g_{\alpha \beta, \gamma} = 0 \quad \text{在$\mathcal{P}$点。}
+\]
+（其中第二个等号来自方程\eqref{equ6.5}。既然张量方程$g_{\alpha \beta; \gamma} = 0$在一个坐标系（局域惯性系）成立，则它在\textbf{任意}坐标系都成立：
+\begin{shaded}
+\begin{equation}
+    g_{\alpha \beta; \gamma} = 0 \quad \text{在任意坐标系都成立。}
+\label{equ6.31}
+\end{equation}
+\end{shaded}
+这个超级重要的结论直接来自于协变导数的定义，回顾\ref{sec5.4}节，\textbf{如果}有$\Gamma\indices{^\mu_{\alpha \beta}} = \Gamma\indices{^\mu_{\beta \alpha}}$，则方程\eqref{equ6.31}可以导出方程\eqref{equ5.75}（对\textbf{任意}度规都成立）：
+\begin{shaded}
+\begin{equation}
+    \Gamma\indices{^\alpha_{\mu \nu}} = \frac{1}{2} g^{\alpha \beta} (g_{\beta \mu, \nu} + g_{\beta \nu, \mu} - g_{\mu \nu, \beta}).
+\label{equ6.32}
+\end{equation}
+\end{shaded}
+推导过程作为本章习题5，提示一下，仿照前面在平直空间的论证思路，现在在局域惯性系讨论，$\Gamma\indices{^\mu_{\beta \alpha}}$在任意坐标系中都是对称的。（未完成） 我们的出发点是假设在局域惯性系的$\MP$点有$\Gamma\indices{^\alpha_{\mu \nu}} = 0$。但是要指出$\Gamma\indices{^\alpha_{\mu \nu}}$的导数在该系$\MP$点一般不等于零，因为它涉及了度规的二阶导数$g_{\alpha \beta, \gamma \mu}$。Christoffel符号的导数在$\MP$点非零意味着，即使可以找到坐标系使得$\Gamma\indices{^\alpha_{\mu \nu}}$在$\MP$点的值为零，$\Gamma\indices{^\alpha_{\mu \nu}}$在该系中其它点的值也不为零。由此可见，在任意给定点，一般的弯曲流形与平坦流形的差别在于Christoffel符号的导数。
+
+方程\eqref{equ6.32}意味着，给定$g_{\alpha \beta}$就可以计算所有$\Gamma\indices{^\alpha_{\mu \nu}}$。由此可以导出所有其它协变导数（在给定度规$\bm{g}$之后），例如：
+\begin{shaded}
+\begin{align}
+    V\indices{^\alpha_{; \beta}} =& V\indices{^\alpha_{, \beta}} + \Gamma\indices{^\alpha_{\mu \beta}} V^\mu, \label{equ6.33} \\
+    \mathcal{P}_{\alpha; \beta} =& \mathcal{P}_{\alpha, \beta} - \Gamma\indices{^\mu_{\alpha \beta}} \mathcal{P}_\mu, \label{equ6.34} \\
+    T\indices{^{\alpha \beta}_{; \gamma}} =& T\indices{^{\alpha \beta}_{, \gamma}} + \Gamma\indices{^\alpha_{\mu \gamma}} T^{\mu \beta} + \Gamma\indices{^\beta_{\mu \gamma}} T^{\alpha \mu}. \label{equ6.35}
+\end{align}
+\end{shaded}
+
+\subsection*{散度公式}
+向量的散度十分常用。给定任意向量场$V^\alpha$，它的散度由\eqref{equ5.53}式定义：
+\begin{equation}
+    V\indices{^\alpha_{; \alpha}} = V\indices{^\alpha_{, \alpha}} + \Gamma\indices{^\alpha_{\mu \alpha}} V^\mu.
+\label{equ6.36}
+\end{equation}
+上式含有Christoffel符号的求和，根据方程\eqref{equ6.32}可得
+\begin{align}
+    \Gamma\indices{^\alpha_{\mu \alpha}} =& \frac{1}{2} g^{\alpha \beta} (g_{\beta \mu, \alpha} + g_{\beta \alpha, \mu} - g_{\mu \alpha, \beta}) \notag \\
+    =& \frac{1}{2} g^{\alpha \beta} (g_{\beta \mu, \alpha} - g_{\mu \alpha, \beta}) + \frac{1}{2} g^{\alpha \beta} g_{\alpha \beta, \mu} \label{equ6.37}
+\end{align}
+上式拆项是为了进行简化：注意括号中的项关于$\alpha, \beta$反对称，而与之缩并的$g^{\alpha \beta}$是对称的，因此根据第三章习题26(a)，第一项为零，由此可得
+\begin{equation}
+    \Gamma\indices{^\alpha_{\mu \alpha}} = \frac{1}{2} g^{\alpha \beta} g_{\alpha \beta, \mu}
+\label{equ6.38}
+\end{equation}
+由于$(g^{\alpha \beta})$是$(g_{\alpha \beta})$的逆矩阵，可以证明矩阵$(g_{\alpha \beta})$的行列式$g$的导数为（证明过程作为本章习题7）：
+\begin{shaded}
+\begin{equation}
+    g_{, \mu} = g g^{\alpha \beta} g_{\beta \alpha, \mu}
+\label{equ6.39}
+\end{equation}
+\end{shaded}
+结合方程\eqref{equ6.38}可得
+\begin{shaded}
+\begin{equation}
+    \Gamma\indices{^\alpha_{\mu \alpha}} = \frac{ (\sqrt{-g})_{, \mu} }{ \sqrt{-g} }.
+\label{equ6.40}
+\end{equation}
+\end{shaded}
+这样，向量的散度\eqref{equ6.36}式化为
+\begin{equation}
+    V\indices{^\alpha_{; \alpha}} = V\indices{^\alpha_{, \alpha}} + \frac{1}{\sqrt{-g}} V^\alpha (\sqrt{-g})_{, \alpha},
+\label{equ6.41}
+\end{equation}
+进一步整理为
+\begin{shaded}
+\begin{equation}
+    V\indices{^\alpha_{; \alpha}} = \frac{1}{\sqrt{-g}} (\sqrt{-g} V^\alpha)_{, \alpha}
+\label{equ6.42}
+\end{equation}
+\end{shaded}
+上式比方程\eqref{equ6.36}更好用。除了散度，高斯定律也很重要，对向量散度在某一区域进行体积分（当然，体积元是固有体元）：
+\begin{equation}
+    \int V\indices{^\alpha_{; \alpha}}  \sqrt{-g} \, \rd^4 x = \int (\sqrt{-g} V^\alpha)_{, \alpha} \, \rd^4 x.
+\label{equ6.43}
+\end{equation}
+上式等号右侧的项就是普通的偏导数，因此可以利用高斯定律，就像SR中那样（见\ref{sec4.8}节）：
+\begin{equation}
+    \int (\sqrt{-g} V^\alpha)_{, \alpha} \, \rd^4 x = \oint V^\alpha n_\alpha \sqrt{-g} \, \rd^3 S.
+\label{equ6.44}
+\end{equation}
+由此可得
+\begin{shaded}
+\begin{equation}
+    \int V\indices{^\alpha_{; \alpha}}  \sqrt{-g} \, \rd^4 x = \oint V^\alpha n_\alpha \sqrt{-g} \,\rd^3 S.
+\label{equ6.45}
+\end{equation}
+\end{shaded}
+因此弯曲流形的高斯定律形式为\eqref{equ6.45}式。向量散度对固有体元的体积分，可以转化为在积分区域表面上的对\textbf{固有面积元 (proper surface element)}$n_\alpha \sqrt{-g} \, \rd^3 S$的面积分。
 
 \section{平行移动，测地线，曲率}
 \label{sec6.4}
+迄今为止，我们利用局域平直性定理导出了弯曲流形的尽可能多的数学内容，而避免直接考虑曲率。现在就要对曲率进行精确的数学定义。必须要区分两种曲率：固有(intrinsic)曲率和外(extrinsic)曲率。例如，考虑一个圆柱面，人们认为它是弯曲的，它的曲率是\textbf{外曲率}：这种弯曲面是三维平直空间的一部分。换句话说，将一张纸卷起来（而不需要撕裂、挤压等等）就得到了圆柱面，因此圆柱面的\textbf{内禀}几何与原始的纸张相同——是平直的。这意味着圆柱面上的任意两点之间的距离与纸张上相同的两点距离相等，平行线永远保持平行，等等，总之\textbf{所有}欧几里得公理在圆柱面上也有效。只能在圆柱面上运动的二维“蚂蚁”会认为它生活的空间是平直的；只不过整体拓扑很滑稽，沿着直线一直向前运动会回到出发点。$n$维流形的\textbf{内禀}几何只考虑联系各点的、位于流形内部的路径（对于圆柱面而言，就是其上的二维路径），柱面的\textbf{外曲率}涉及到了从它的表面到高维空间的路径，并且比较了柱面内部曲线与离开柱面的“直线”。因此\textbf{外曲率}依赖于高维空间。本书只考虑时空的\textbf{内禀曲率}，因为所有世界线都在时空当中。是否存在四维时空之外的高维空间仍然是开放的问题，这个问题在弦理论的框架下被越来越多的讨论。GR只考虑时空的内禀几何。
+
+（未完成）
+
+
+
+\subsection*{平行移动}
+上面在球面上进行的构造称为“平行移动 (parallel-transport)”。设$\vec{V}$是定义在球面上的向量场，我们想要研究它沿一条曲线如何变化，如图\ref{fig6.4}。
+
+{
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig6.4.png}
+    \figcaption{\textit{向量$\vec{V}$沿曲线（切向量$\vec{U}$）平行移动。}}
+    \label{fig6.4}
+}
+
+
+如果在曲线上相距无穷小两点的向量$\vec{V}$相互平行且长度相等，则称$\vec{V}$沿着该曲线平行移动\footnote{这里“平行移动”是形容词，而前面出现的“平行移动”有时是动词。}（简称平移），这可以很容易地用方程描述。设曲线的参数$\lambda$，切向量$\vec{U} = \rd \vec{x} / \rd \lambda$（$\vec{U}$不一定是归一化的），则在曲线任一点$\MP$的局域惯性系中，$\vec{V}$的分量必须沿着$\MP$附近的曲线不变：
+\begin{equation}    
+    \frac{\rd V^\alpha}{\rd \lambda} = 0 \quad \text{在$\MP$点。}
+\label{equ6.46}
+\end{equation}
+这可以表示为：
+\begin{equation}
+    \frac{\rd V^\alpha}{\rd \lambda} = U^\beta V\indices{^\alpha_{, \beta}} = U^\beta V\indices{^\alpha_{; \beta}} = 0 \quad \text{在$\MP$点。}
+\label{equ6.47}
+\end{equation}
+其中，第一个等号来自$V^\alpha$沿曲线导数的定义；第二个等号来自局域惯性系中的$\MP$点有$\Gamma\indices{^\alpha_{\mu \nu}} = 0$；第三个等号$U^\beta V\indices{^\alpha_{; \beta}} = 0$是个张量方程，在任意坐标系都成立，因此，\textbf{$\vec{V}$沿着$\vec{U}$平行移动的定义}不依赖于坐标系的形式为：
+\begin{shaded}
+\begin{equation}
+    U^\beta V\indices{^\alpha_{; \beta}} = 0 \quad \Leftrightarrow \quad \frac{\rd}{\rd \lambda} \vec{V} = \nabla_{\vec{U}} \vec{V} = 0.
+\label{equ6.48}
+\end{equation}
+\end{shaded}
+其中用到了沿着$\vec{U}$的导数的记号，见\eqref{equ3.67}式。
+
+\subsection*{测地线}
+平直空间最重要的曲线是直线。欧几里得公设的其中一条是，两条最初平行的直线延伸下去总保持平行。“延伸”的意思是啥？\textbf{当然不是}意味着“保持两条线之间的距离不变”，否则两条同时掰弯的直线也算作平行了。“延伸”意味着保持最初的方向一直进行下去，更精确地说，曲线下一点的切向量与上一点的切向量平行。实际上，直线是欧几里得空间中\textbf{唯一的}切向量沿自身平行移动的曲线！弯曲空间也可以通过要求\textbf{曲线的切向量沿曲线自身平行移动}以得到“尽量直”的线，这种线称为\textbf{测地线 (geodesics)}：
+\begin{shaded}
+\begin{equation}
+    \{ \vec{U}\ \text{是测地线的切向量} \} \quad \Leftrightarrow \quad \nabla_{\vec{U}} \vec{U} = 0.
+\label{equ6.49}
+\end{equation}
+\end{shaded}
+（注意，在局域惯性系中，测地线\textit{是}直的）上式用分量记号写为：
+\begin{equation}
+    U^\beta U\indices{^\alpha_{; \beta}} = U^\beta U\indices{^\alpha_{, \beta}} + \Gamma\indices{^\alpha_{\mu \beta}} U^\mu U^\beta = 0.
+\label{equ6.50}
+\end{equation}
+设曲线的参数为$\lambda$，则$U^\alpha = \rd x^\alpha / \rd \lambda$以及$U^\beta \partial / \partial x^\beta = \rd / \rd \lambda$：
+\begin{shaded}
+\begin{equation}
+    \frac{\rd}{\rd \lambda} \left( \frac{\rd x^\alpha}{\rd \lambda} \right) + \Gamma\indices{^\alpha_{\mu \beta}} \frac{\rd x^\mu}{\rd \lambda} \frac{\rd x^\beta}{\rd \lambda} = 0.
+\label{equ6.51}
+\end{equation}
+\end{shaded}
+Christoffel符号$\Gamma\indices{^\alpha_{\mu \beta}}$是坐标$\{ x^\alpha \}$的已知函数，因此上式是关于$x^\alpha (\lambda)$的非线性（准线性）、二阶微分方程组。在$\lambda = \lambda_0$的初始条件$x_0^\alpha = x^\alpha (\lambda_0)$与$U_0^\alpha = (\rd x^\alpha / \rd \lambda)_{\lambda_0}$给定之后，方程组有唯一解。因此，给定初始位置($x^\alpha_0$)与初始方向($U^\alpha_0$)就确定了唯一的测地线。
+
+回顾一下，如果对参数进行变换，那么从数学上说就得到了不同的曲线（尽管曲线经过的点不变）。设$\lambda$是某测地线的参数（即方程\eqref{equ6.51}成立），如果定义新参数
+\begin{equation}
+    \phi = a\lambda + b,
+\label{equ6.52}
+\end{equation}
+其中$a, b$是\textbf{常数}（不依赖于曲线上的位置），则$\phi$也是测地线参数，方程\eqref{equ6.51}对$\phi$也成立：
+\[
+    \frac{\rd^2 x^\alpha}{\rd \phi^2} + \Gamma\indices{^\alpha_{\mu \beta}} \frac{\rd x^\mu}{\rd \phi} \frac{\rd x^\beta}{\rd \phi} = 0.
+\]
+一般而言，测地线参数$\lambda$\textbf{只有}经过\eqref{equ6.52}式那样的变换之后得到的新参数才仍然是测地线参数，上面的$\lambda, \phi$称为\textbf{仿射 (affine)}参数。如果一条曲线的路径与测地线相同，而它的参数并非仿射参数，则严格说来它不是测地线。
+
+测地线也是任意两点之间的\textbf{极值长度 (extremal length)}曲线：其长度在曲线的一阶微小变化之下的变化量为零。读者一定要尝试证明这个命题，从曲线长度的定义\eqref{equ6.7}式出发，找到固定$\lambda_0, \lambda_1$的极值长度曲线所满足的Euler-Lagrange方程，然后结合\eqref{equ6.32}式证明所导出的极值曲线满足测地线方程\eqref{equ6.51}式，这是个十分有益的练习。此外，读者还可以证明测地线的固有长度是一种仿射参量（见本章习题13-15）。
 
 \section{曲率张量}
 \label{sec6.5}
