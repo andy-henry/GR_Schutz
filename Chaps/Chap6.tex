@@ -407,6 +407,222 @@ Christoffel符号$\Gamma\indices{^\alpha_{\mu \beta}}$是坐标$\{ x^\alpha \}$�
 
 \section{曲率张量}
 \label{sec6.5}
+终于到了对流形的内禀曲率进行精确的数学描述的时候了。回到之前的向量沿着闭合路径平行移动的例子，从这个例子可以导出曲率的\textbf{定义}。考虑流形上的一个很小的闭合路径（如图\ref{fig6.5}）。
+
+{
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig6.5.png}
+    \figcaption{\textit{一小块坐标网格。}}
+    \label{fig6.5}
+}
+
+封闭路径由四条坐标线$x^1 = a, x^1 = a + \delta a, x^2 = b, x^2 = b + \delta b$组成。定义在$A$点的向量$\vec{V}$沿路径$AB$平移到$B$点。平移条件$\nabla_{\vec{e}_1} \vec{V} = 0$的分量为：
+\begin{equation}
+    \frac{\partial V^\alpha}{\partial x^1} = -\Gamma\indices{^\alpha_{\mu 1}} V^\mu.
+\label{equ6.53}
+\end{equation}
+将上式从$A$到$B$积分：
+\begin{equation}
+\begin{split}
+    V^\alpha (B) =& V^\alpha (A) + \int_A^B \frac{\partial V^\alpha}{\partial x^1} \, \rd x^1 \\
+    =& V^\alpha (A) - \int_{x^2 = b} \Gamma\indices{^\alpha_{\mu 1}} V^\mu \, \rd x^1,
+\end{split}
+\label{equ6.54}
+\end{equation}
+其中“$x^2 = b$”表示积分是沿着路径$AB$进行的。从$B$到$C$到$D$的过程同理：
+\begin{align}
+    V^\alpha (C) =& V^\alpha (B) - \int_{x^1 = a + \delta a} \Gamma\indices{^\alpha_{\mu 2}} V^\mu \,\rd x^2, \label{equ6.55} \\
+    V^\alpha (D) =& V^\alpha (C) + \int_{x^2 = b + \delta b} \Gamma\indices{^\alpha_{\mu 1}} V^\mu \,\rd x^1. \label{equ6.56}
+\end{align}
+最后一个方程的符号不同，因为从$C$到$D$的积分是沿$x^1$坐标轴的负方向进行的。封闭路径的最后一步是：
+\begin{equation}
+    V^\alpha (A_{\text{final}}) = V^\alpha (D) + \int_{x^1 = a} \Gamma\indices{^\alpha_{\mu 2}} V^\mu \, \rd x^2.
+\label{equ6.57}
+\end{equation}
+经过平移之后$V^\alpha (A)$的变化记作$\delta V^\alpha$，可以根据\eqref{equ6.54}-\eqref{equ6.57}式计算：
+\begin{align}
+    \delta V^\alpha =& V^\alpha (A_{\text{final}}) - V^\alpha (A_{\text{initial}}) \notag \\
+    =& \int_{x^1 = a} \Gamma\indices{^\alpha_{\mu 2}} V^\mu \,\rd x^2 - \int_{x^1 = a + \delta a} \Gamma\indices{^\alpha_{\mu 2}} V^\mu \,\rd x^2 \notag \\
+    &+ \int_{x^2 = b + \delta b} \Gamma\indices{^\alpha_{\mu 1}} V^\mu \, \rd x^1 - \int_{x^2 = b} \Gamma\indices{^\alpha_{\mu 1}} V^\mu \,\rd x^1. \label{equ6.58}
+\end{align}
+注意，如果$\Gamma\indices{^\alpha_{\mu \nu}}$与$V^\mu$在路径各点的值相同（平直空间里就是那样），则上面各项就会相消为零。但是在弯曲空间中并非如此，我们把被积函数相同的项合并，并且沿积分路径展开到一阶项：
+\begin{align}
+    \delta V^\alpha \approx & -\int_b^{b + \delta b} \delta a \frac{\partial}{\partial x^1} (\Gamma\indices{^\alpha_{\mu 2}} V^\mu) \, \rd x^2 \notag \\
+    & + \int_a^{a + \delta a} \delta b \frac{\partial}{\partial x^2} (\Gamma\indices{^\alpha_{\mu 1}} V^\mu) \, \rd x^1 \label{equ6.59} \\
+    \approx & \delta a \delta b \left[ -\frac{\partial}{\partial x^1} (\Gamma\indices{^\alpha_{\mu 2}} V^\mu) + \frac{\partial}{\partial x^2} (\Gamma\indices{^\alpha_{\mu 1}} V^\mu) \right]. \label{equ6.60}
+\end{align}
+上式含有Christoffel符号的导数以及$V^\alpha$的导数。$V^\alpha$的导数可以利用\eqref{equ6.53}式替换，这样方程\eqref{equ6.60}化为：
+\begin{equation}
+    \delta V^\alpha = \delta a \delta b \big[ \Gamma\indices{^\alpha_{\mu 1, 2}} - \Gamma\indices{^\alpha_{\mu 2, 1}} + \Gamma\indices{^\alpha_{\nu 2}} \Gamma\indices{^\nu_{\mu 1}} - \Gamma\indices{^\alpha_{\nu 1}} \Gamma\indices{^\nu_{\mu 2}} \big] V^\mu.
+\label{equ6.61}
+\end{equation}
+（上式的推导过程中对$\Gamma$的二次项重命名了傀儡指标） 由上式可得，向量分量平移后的变化量等于某个数乘以$V^\mu$并对$\mu$求和。指标$1, 2$出现是由于平移路径是$x^1, x^2$坐标网格。而指标$1, 2$的反对称性是因为，如果沿相反方向绕着闭合路径积分（即，交换$1, 2$的地位），则变化量$\delta V^\alpha$变号。沿着一般的坐标线$x^\sigma, x^\lambda$平移的结果为：
+\begin{align}
+    \delta V^\alpha =& \text{将$V^\alpha$首先沿$\delta a \vec{e}_\sigma$平移，然后是$\delta b \vec{e}_\lambda$，接着是$-\delta a \vec{e}_\sigma$，} \notag \\
+    & \text{最后是$-\delta b \vec{e}_\lambda$，沿该闭合路径平移一周后的变化量} \notag \\
+    = & \delta a \delta b \big[ \Gamma\indices{^\alpha_{\mu \sigma, \lambda}} - \Gamma\indices{^\alpha_{\mu \lambda, \sigma}} + \Gamma\indices{^\alpha_{\nu \lambda}} \Gamma\indices{^\nu_{\mu \sigma}} - \Gamma\indices{^\alpha_{\nu \sigma}} \Gamma\indices{^\nu_{\mu \lambda}} \big] V^\mu. \label{equ6.62}
+\end{align}
+可见，$\delta$与封闭路径所围的坐标“面积”$\delta a \delta b$有关。如果把闭合路径一个方向上的长度加倍，则$\delta V^\alpha$显然也加倍，这意味着$\delta$\textbf{线性}依赖于$\delta a \vec{e}_\sigma$和$\delta b \vec{e}_\lambda$。此外，$\delta V^\alpha$还线性依赖于$V^\alpha$自身以及$\tilde{\omega}^\alpha$， 后者将向量$\delta \vec{V}$映射为$\delta V^\alpha$。因此可以得到如下结论：定义
+\begin{shaded}
+\begin{equation}
+    R\indices{^\alpha_{\beta \mu \nu}} := \Gamma\indices{^\alpha_{\beta \nu, \mu}} - \Gamma\indices{^\alpha_{\beta \mu, \nu}} + \Gamma\indices{^\alpha_{\sigma \mu}} \Gamma\indices{^\sigma_{\beta \nu}} - \Gamma\indices{^\alpha_{\sigma \nu}} \Gamma\indices{^\sigma_{\beta \mu}},
+\label{equ6.63}
+\end{equation}
+\end{shaded}
+$R\indices{^\alpha_{\beta \mu \nu}}$是$\binom{1}{3}$张量的分量，这个张量把$\tilde{\omega}^\alpha, \vec{V}, \delta a \vec{e}_\mu, \delta b \vec{e}_\nu$映射为$\delta V^\alpha$——也就是向量$\vec{V}$绕着闭合路径$\delta a \vec{e}_\mu, \delta b \vec{e}_\nu$平行移动一周的$\alpha$分量变化量。这个张量称为\textbf{Riemann 曲率张量}，记作$\bm{R}$。\footnote{如同前面的某些量那样，Riemann张量的没有统一的定义，甚至有些定义的指标位置都不同。在阅读文献之前要先搞清楚文献所用的Riemann张量定义。}
+
+$\bm{R}$在一点$\MP$的局域惯性系的分量十分有用，在$\MP$点有$\Gamma\indices{^\alpha_{\mu \nu}} = 0$，根据方程\eqref{equ6.32}，Christoffel符号的导数为：
+\begin{equation}
+    \Gamma\indices{^\alpha_{\mu \nu, \sigma}} = \frac{1}{2} g^{\alpha \beta} (g_{\beta \mu, \nu \sigma} + g_{\beta \nu, \mu \sigma} - g_{\mu \nu, \beta \sigma}).
+\label{equ6.64}
+\end{equation}
+$g_{\alpha \beta}$的二阶导数不全为零，因此在$\MP$点有
+\begin{align}
+    R\indices{^\alpha_{\beta \mu \nu}} =& \frac{1}{2} g^{\alpha \sigma} ( g_{\sigma \beta, \nu \mu} + g_{\sigma \nu, \beta \mu} - g_{\beta \nu, \sigma \mu} - g_{\sigma \beta, \mu \nu} \notag \\
+    &- g_{\sigma \mu, \beta \nu} + g_{\beta \mu, \sigma \nu} ). \label{equ6.65}
+\end{align}
+$g_{\alpha \beta}$是对称的，并且偏导数的求导次序也是对称的：
+\begin{equation}
+    g_{\alpha \beta, \mu \nu} = g_{\alpha \beta, \nu \mu}
+\label{equ6.66}
+\end{equation}
+综上可得，Riemann张量的分量在$\MP$点的值为
+\begin{equation}
+    R\indices{^\alpha_{\beta \mu \nu}} = \frac{1}{2} g^{\alpha \sigma} (g_{\sigma \nu, \beta \mu} - g_{\sigma \mu, \beta \nu} + g_{\beta \mu, \sigma \nu} - g_{\beta \nu, \sigma \mu}).
+\label{equ6.67}
+\end{equation}
+将上标$\alpha$降为下指标可得（下式只在局域惯性系的原点$\MP$成立）：
+\begin{shaded}
+\begin{equation}
+    R_{\alpha \beta \mu \nu} := g_{\alpha \lambda} R\indices{^\lambda_{\beta \mu \nu}} = \frac{1}{2} ( g_{\alpha \nu, \beta \mu} - g_{\alpha \mu, \beta \nu} + g_{\beta \mu, \alpha \nu} - g_{\beta \nu, \alpha \mu}).
+\label{equ6.68}
+\end{equation}
+\end{shaded}
+根据上式可以证明如下恒等式：
+\begin{shaded}
+\begin{align}
+    R_{\alpha \beta \mu \nu} = -R_{\beta \alpha \mu \nu} = -R_{\alpha \beta \nu \mu} = R_{\mu \nu \alpha \beta}, \label{equ6.69} \\
+    R_{\alpha \beta \mu \nu} + R_{\alpha \nu \beta \mu} + R_{\alpha \mu \nu \beta} = 0. \label{equ6.70}
+\end{align}
+\end{shaded}
+也就是说，$R_{\alpha \beta \mu \nu}$的前两个指标反对称，后两个指标也反对称，并且前一对与后一对指标对称。方程\eqref{equ6.69}和\eqref{equ6.70}是张量等式，在所有坐标系都成立。\textit{注意，\eqref{equ6.67}式不是张量等式，因为它含有偏导数而不是协变导数。\eqref{equ6.67}式只在它被导出的坐标系——局域惯性系成立。}
+
+可以证明（作为习题本章习题18），方程\eqref{equ6.69}和\eqref{equ6.70}蕴含的指标对称性使得$R_{\alpha \beta \mu \nu}$（因此$R\indices{^\alpha_{\beta \mu \nu}}$也一样）的独立分量的个数为20个（在每个指标有4个取值$0, 1, 2, 3$的条件下）。这\textbf{并非巧合}，\ref{sec6.2}推导过，$g_{\alpha \beta, \mu \nu}$不能被坐标变换消去的独立变量个数也是20个，因此$R\indices{^\alpha_{\beta \mu \nu}}$是表征曲率的张量。
+
+\textbf{平直}流形可以定义全局平行：向量沿任意闭合路径平移回到原来位置之后不变。这意味着
+\begin{shaded}
+\begin{equation}
+    R\indices{^\alpha_{\beta \mu \nu}} = 0 \quad \Leftrightarrow \quad \text{平直流形。}
+\label{equ6.71}
+\end{equation}
+\end{shaded}
+（读者可以试试在欧几里得空间的极坐标系验证上式）
+
+曲率张量的一个重要应用是对向量场$\vec{V}$求两次协变导数的时候。\ref{sec6.3}节证明了1阶导数与平直空间的情况相似，因为可以找到度规在一阶上是平直的坐标系。但是第二次求导就不同了：
+\begin{align}
+    \nabla_\alpha \nabla_\beta V^\mu =& \nabla_\alpha (V\indices{^\mu_{; \beta}}) \notag \\
+    =& (V\indices{^\mu_{; \beta}})_{, \alpha} + \Gamma\indices{^\mu_{\sigma \alpha}} V\indices{^\sigma_{; \beta}} - \Gamma\indices{^\sigma_{\beta \alpha}} V\indices{^\mu_{; \sigma}}
+\label{equ6.72}
+\end{align}
+在局域惯性系中的$\MP$点，所有的$\Gamma$等于零，但是它的一阶导数非零。因此在$\MP$点：
+\begin{equation}
+    \nabla_\alpha \nabla_\beta V^\mu = V\indices{^\mu_{, \beta \alpha}} + \Gamma\indices{^\mu_{\nu \beta, \alpha}} V^\nu.
+\label{equ6.73}
+\end{equation}
+切记，上式只在这个被选召的局域惯性系当中才成立，下面的\eqref{equ6.74}-\eqref{equ6.76}式也是如此。在局域惯性系可以简化计算，交换\eqref{equ6.73}式的指标$\alpha, \beta$可得：
+\begin{equation}
+    \nabla_\beta \nabla_\alpha V^\mu = V\indices{^\mu_{, \alpha \beta}} + \Gamma\indices{^\mu_{\nu \alpha, \beta}} V^\nu.
+\label{equ6.74}
+\end{equation}
+以上两式相减的结果定义为协变导数算符$\nabla_a$和$\nabla_\beta$的\textbf{对易子 (commutator)}，与量子力学中的记号相同：
+\begin{align}
+    [\nabla_\alpha, \nabla_\beta] V^\mu :=& \nabla_\alpha \nabla_\beta V^\mu - \nabla_\beta \nabla_\alpha V^\mu \notag \\
+    = & (\Gamma\indices{^\mu_{\nu \beta, \alpha}} - \Gamma\indices{^\mu_{\nu \alpha, \beta}}) V^\nu.
+\label{equ6.75}
+\end{align}
+其中消去了关于$V^\mu$偏导数的两项，因为偏导数的求导顺序可以改变：
+\begin{equation}
+    V\indices{^\mu_{, \alpha \beta}} = V\indices{^\mu_{, \beta \alpha}}.
+\label{equ6.76}
+\end{equation}
+\textit{有必要在这里多说几句。注意$V\indices{^\mu_{, \alpha}}$是向量分量$V^\mu$的偏导数，根据微积分可知偏导数对易。另一方面，$\nabla_\alpha V^\mu$是张量$\nabla \vec{V}$的分量，而$\nabla_\alpha \nabla_\beta V^\mu$是$\nabla \nabla \vec{V}$的分量：没有理由认为$\alpha, \beta$是对称的。上面已经证明了\eqref{equ6.75}式非零，两次协变导数的指标一般是}\textbf{不对称的}。
+
+在局域惯性系中（$\MP$点的$\Gamma\indices{^\mu_{\alpha \beta}} = 0$），根据方程\eqref{equ6.75}和\eqref{equ6.63}可得：
+\begin{shaded}
+\begin{equation}
+    [\nabla_\alpha, \nabla_\beta] V^\mu = R\indices{^\mu_{\nu \alpha \beta}} V^\nu \quad \text{在$\MP$点。}
+\label{equ6.77}
+\end{equation}
+\end{shaded}
+这是个张量方程，在任意坐标系都成立，它意味着Riemann张量给出了协变导数算符的对易子。由于上式是方便的张量等式，因此它的结论并不局限于局域惯性系。因此在弯曲时空中，协变导数的顺序必须小心处理，因为协变导数之间是不对易的。上式可以拓展到高阶张量，例如$\binom{1}{1}$张量：
+\begin{equation}
+    [\nabla_\alpha, \nabla_\beta]  F\indices{^\mu_\nu} = R\indices{^\mu_{\sigma \alpha \beta}} F\indices{^\sigma_\nu} + R\indices{_\nu^\sigma_{\alpha \beta}} F\indices{^\nu_\sigma}.
+\label{equ6.78}
+\end{equation}
+上式中\textbf{每个}指标都分配了一个Riemann张量，每一项都是正号。（它们的符号\textbf{必须相同}，因为根据$\nabla \bm{g} = 0$可以得出结论：用$\bm{g}$升降指标不受$\nabla_\alpha$的影响。）
+
+方程\eqref{equ6.77}与导出Riemann张量的方式——绕闭合路径平行移动——联系密切，因为它可以看作先计算$\vec{V}$沿一个方向的变化，再计算另一方向，然后减去相反变化顺序的计算结果：这就是协变导数的对易式。
+
+\subsection*{测地偏移}
+前面常说，弯曲空间中最初平行的线延伸下去不会保持平行，这可以用Riemann张量定量表述。考虑两条切向量分别为$\vec{V}, \vec{V}'$的测地线，设它们在某一初始点平行且接近，如图\ref{fig6.6}所示，起始点为图中的$A, A'$点。测地线的仿射参数记作$\lambda$，定义“connecting向量”$\vec{\xi}$为从一条测地线到另一条线的向量，其始末两点对应于两条测地线参数$\lambda$相等的两点（例如图中的$A, A'$两点或者$B, B'$两点）。
+
+{
+    \centering
+    \includegraphics[width=0.6\textwidth]{fig6.6.png}
+    \figcaption{\textit{connecting向量$\vec{\xi}$是两条测地线上相等的曲线参数对应的两点之间的向量。}}
+    \label{fig6.6}
+}
+
+简明起见，我们在$A$点的局域惯性系讨论问题，并且令该局域惯性系的$x^0$坐标线沿着测地线，并且与$\lambda$的变化率相同（也就是用$\lambda$进行坐标标度）。由于$V^\alpha = \rd x^\alpha / \rd \lambda$，则在$A$点有$V^\alpha = \delta\indices{^\alpha_0}$。过$A$点的测地线方程为：
+\begin{equation}
+    \frac{\rd^2 x^\alpha}{\rd \lambda^2} \bigg|_{A} = 0,
+\label{equ6.79}
+\end{equation}
+其中利用了$A$点的Christoffel符号为零。$A'$点的Christoffel符号不为零，过$A'$点的测地线为：
+\begin{equation}
+    \frac{\rd^2 x^\alpha}{\rd \lambda^2} \bigg|_{A'} + \Gamma\indices{^\alpha_{00}} (A') = 0,
+\label{equ6.80}
+\end{equation} 
+其中对坐标系进行安排使得$A'$点的坐标满足$V^\alpha = \delta\indices{^\alpha_0}$。因为$A$与$A'$点之间的向量为$\vec{\xi}$，从而有
+\begin{equation}
+    \Gamma\indices{^\alpha_{00}} (A') \approx \Gamma\indices{^\alpha_{00, \beta}} \xi^\beta,
+\label{equ6.81}
+\end{equation}
+其中等号右侧的项在$A$点取值。结合\eqref{equ6.80}式可得
+\begin{equation}
+    \frac{\rd^2 x^\alpha}{\rd \lambda^2} \bigg|_{A'} = -\Gamma\indices{^\alpha_{00, \beta}} \xi^\beta.
+\label{equ6.82}
+\end{equation}
+注意，差值$x^\alpha (\lambda, \text{测地线$\vec{V}'$}) - x^\alpha (\lambda, \text{测地线$\vec{V}$ } )$就是向量$\vec{\xi}$的分量$\xi^\alpha$，因此在$A$点有
+\begin{equation}
+    \frac{\rd^2 \xi^\alpha}{\rd \lambda^2} = \frac{\rd^2 x^\alpha}{\rd \lambda^2} \bigg|_{A'} - \frac{\rd^2 x^\alpha}{\rd \lambda^2} \bigg|_{A} = -\Gamma\indices{^\alpha_{00, \beta}} \xi^\beta.
+\label{equ6.83}
+\end{equation}
+上式描述了$\vec{\xi}$的分量是如何变化的。由于坐标系还有一定程度的任意性，因此不仅是二阶导数，我们希望计算二阶协变导数$\nabla_{\vec{V}} \nabla_{\vec{V}} \vec{\xi}$，利用方程\eqref{equ6.48}可得
+\begin{align}
+    \nabla_{\vec{V}} \nabla_{\vec{V}}  \xi^\alpha =& \nabla_{\vec{V}} ( \nabla_{\vec{V}} \xi^\alpha ) \notag \\
+    =& \frac{\rd}{\rd \lambda} (\nabla_{\vec{V}} \xi^\alpha) = \Gamma\indices{^\alpha_{\beta 0}} (\nabla_{\vec{V}} \xi^\beta). \label{equ6.84}
+\end{align}
+利用$\Gamma\indices{^\alpha_{\beta \gamma}} \big|_{A} = 0$可得
+\begin{align}
+    \nabla_{\vec{V}} \nabla_{\vec{V}} \xi^\alpha =& \frac{\rd}{\rd \lambda} \left( \frac{\rd}{\rd \lambda} \xi^\alpha + \Gamma\indices{^\alpha_{\beta 0}} \xi^\beta \right) + 0 \notag \\
+    =& \frac{\rd^2}{\rd \lambda^2} \xi^\alpha + \Gamma\indices{^\alpha_{\beta 0, 0}} \xi^\beta \quad \text{在$A$点。} \label{equ6.85}
+\end{align}
+（上式还用到了测地线平行条件$\xi\indices{^\beta_{, 0}} \big|_{A} = 0$。）我们得到
+\begin{align}
+    \nabla_{\vec{V}} \nabla_{\vec{V}}  \xi^\alpha =& (\Gamma\indices{^\alpha_{\beta 0, 0}} - \Gamma\indices{^\alpha_{00, \beta}}) \xi^\beta \notag \\
+    =& R\indices{^\alpha_{00 \beta}} \xi^\beta = R\indices{^\alpha_{\mu \nu \beta}} V^\mu V^\nu \xi^\beta, \label{equ6.86}
+\end{align}
+其中第二个等号来自\eqref{equ6.63}式。最后一个等号是不依赖于坐标系的，而$A$点是任意点，因此在\textbf{任意}坐标系中；
+\begin{shaded}
+\begin{equation}
+    \nabla_{\vec{V}} \nabla_{\vec{V}} \xi^\alpha = R\indices{^\alpha_{\mu \nu \beta}} V^\mu V^\nu \xi^\beta.
+\label{equ6.87}
+\end{equation}
+\end{shaded}
+平直空间中的两条测地线保持它们的间距不变，而在弯曲空间并非如此。上式称为“测地线偏移方程(the equation of geodesic deviation)”，它是引力场潮汐力(tidal forces)（它使得相近的粒子最终分散）的数学描述，意味着潮汐力可以由时空曲率表示，自由粒子沿时空的测地线运动。
+
+
 
 \section{Bianchi恒等式：Ricci张量与Einstein张量}
 \label{sec6.6}
