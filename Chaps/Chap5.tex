@@ -1,9 +1,15 @@
 \chapter{曲率的序言}
 \label{chap5}
 
+\begin{align}
+    1\\2
+\end{align}
+
 \section{引力与曲率的关系}
 \label{sec5.1}
 目前我们都是在狭义相对论(SR)中讨论问题。力在SR当中的地位很重要，但是前面从来没有直接研究引力。SR的一个重要基础是存在覆盖整个时空的惯性系：全体时空可以由一个坐标系描述，这个系的所有坐标点都相对于原点静止，所有的坐标钟与原点的钟走时率相同。从这个基本假设可以导出时间间隔$\Delta s^2$的概念，它给物理事件赋予了具有不变性的几何意义。例如，两事件之间的类时间隔是经过这两个时件的钟所走过的时间；类空间隔是在这两个事件同时的坐标系当中的空间距离。
+
+（未完成）
 
 \section{极坐标系的张量代数}
 \label{sec5.2}
@@ -494,14 +500,376 @@ $\Gamma\indices{^\mu_{\alpha \beta}}$的含义是向量$\partial \vec{e}_\alpha 
 
 
 \subsection*{散度，Laplacian}
+在深入讨论之前，我们来研究一下与之前的内容有联系的部分。在直角坐标系中，向量$V^\alpha$的散度是$V\indices{^\alpha_{, \alpha}}$，它是由$V\indices{^\alpha_{, \beta}}$对上下指标缩并产生的标量。缩并是不依赖于坐标系的运算，因此$\vec{V}$的散度也可以在坐标系$\{ x^{\mu'} \}$中对$\nabla \vec{V}$的两个指标进行缩并得到，其结果为标量$V\indices{^{\alpha'}_{; \alpha'}}$，注意，它与直角坐标系中的$V\indices{^\alpha_{, \alpha}}$是\textbf{同一个量}：
+\begin{equation}
+    V\indices{^\alpha_{, \alpha}} \equiv V\indices{^{\beta'}_{; \beta'}}
+\label{equ5.54}
+\end{equation}
+其中不带撇的指标表示直角坐标系，带撇的表示任意坐标系。
+
+极坐标系（简明起见，用不带撇的指标表示）中：
+\begin{equation*}
+    V\indices{^\alpha_{; \alpha}} = \frac{\partial V^\alpha}{\partial x^\alpha} + \Gamma\indices{^\alpha_{\mu \alpha}} V_{\mu}.
+\end{equation*}
+根据\eqref{equ5.45}式可以算出：
+\begin{equation}
+\left.
+\begin{split}
+    \Gamma\indices{^\alpha_{r \alpha}} =& \Gamma\indices{^r_{rr}} + \Gamma\indices{^\theta_{r \theta}} = \frac{1}{r}, \\
+    \Gamma\indices{^\alpha_{\theta \alpha}} =& \Gamma\indices{^r_{\theta r}} + \Gamma\indices{^\theta_{\theta \theta}} = 0.
+\end{split}
+\right\}
+\label{equ5.55}
+\end{equation}
+从而
+\begin{align}
+    V\indices{^\alpha_{; \alpha}} =& \frac{\partial V^r}{\partial r} + \frac{\partial V^\theta}{\partial \theta} + \frac{1}{r} V^r, \notag \\
+    =& \frac{1}{r} \frac{\partial}{\partial r} (r V^r) + \frac{\partial}{\partial \theta} V^\theta. \label{equ5.56}
+\end{align}
+上式看起来很面熟。更面熟的是梯度的散度，也就是Laplacian。但是散度是对向量定义的，而梯度是个1形式，因此必须先把1形式转换为向量。给定一个标量场$\phi$，根据\ref{sec5.2}节最后的\eqref{equ5.53}式可得，相应的梯度向量的分量为$(\phi_{, r},\ \phi_{, \theta} / r^2$。将它带入向量的散度公式\eqref{equ5.56}可得
+\begin{equation}
+    \nabla \cdot \nabla \phi := \nabla^2 \phi = \frac{1}{r} \frac{\partial}{\partial r} \left( r \frac{\partial \phi}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 \phi}{\partial \theta^2}.
+\label{equ5.57}
+\end{equation}
+这就是平面极坐标系中的Laplacian的表达式，它等同于
+\begin{equation}
+    \nabla^2 \phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2}.
+\label{equ5.58}
+\end{equation}
+
+
 
 \subsection*{1形式与高阶张量的导数}
+标量场$\phi$不依赖于基向量，它的导数$\trd \phi$与协变导数$\nabla \phi$相同，今后都采用符号$\trd \phi$。为了计算1形式的导数（和向量的导数一样并非仅仅是对分量求偏导数），我们利用1形式作用于向量得到标量的性质。设$\tilde{p}$是1形式，$\vec{V}$是向量，对于固定的指标$\beta$，$\nabla_\beta \tilde{p}$也是一个1形式，$\nabla_\beta \vec{V}$是向量，而$\langle \tilde{p}, \vec{V} \rangle \equiv \phi$是标量场，在任意坐标系中：
+\begin{equation}
+    \phi = p_\alpha V^\alpha.
+\label{equ5.59}
+\end{equation}
+根据求导的乘积法则可以算出$\nabla_\beta \phi$：
+\begin{equation}
+    \nabla_\beta \phi = \phi_{, \beta} = \frac{\partial p_{\alpha}}{\partial x^\beta} V^\alpha + p_\alpha \frac{\partial V^\alpha}{\partial x^\beta}.
+\label{equ5.60}
+\end{equation}
+利用方程\eqref{equ5.50}可以将$\partial V^\alpha / \partial x^\beta$用$V\indices{^\alpha_{; \beta}}$（即$\nabla_\beta \vec{V}$的分量）替换：
+\begin{equation}
+    \nabla_\beta \phi = \frac{\partial p_\alpha}{\partial x^\beta} V^\alpha + p_{\alpha} V\indices{^\alpha_{; \beta}} - p_\alpha V^\mu \Gamma\indices{^\alpha_{\mu \beta}}.
+\label{equ5.61}
+\end{equation}
+重新安排各项，并且对Christoffel符号项的傀儡指标重命名可得：
+\begin{equation}
+    \nabla_\beta \phi = \left( \frac{\partial p_\alpha}{\partial x^\beta} - p_\mu \Gamma\indices{^\mu_{\alpha \beta}} \right) V^\alpha + p_\alpha V\indices{^\alpha_{; \beta}}
+\label{equ5.62}
+\end{equation}
+对于任意向量$\vec{V}$，上式中括号之外的两项\textbf{都已知是}张量的分量，因此，由于张量分量的乘法加法得到的结果都是新张量，因此括号中的项也是张量分量，这就是1形式$\tilde{p}$的协变导数：
+\begin{shaded}
+\begin{equation}
+    (\nabla_\beta \tilde{p})_\alpha := (\nabla \tilde{p})_{\alpha \beta} := p_{\alpha; \beta} = p_{\alpha, \beta} - p_\mu \Gamma\indices{^\mu_{\alpha \beta}}.
+\label{equ5.63}
+\end{equation}
+\end{shaded}
+这样，\eqref{equ5.62}式写为
+\begin{shaded}
+\begin{equation*}
+    \nabla_\beta (p_\alpha V^\alpha) = p_{\alpha; \beta} V^\alpha + p_\alpha V\indices{^\alpha_{; \beta}}
+\end{equation*}
+\end{shaded}
+可见协变导数也服从乘积法则，和\eqref{equ5.60}式一样。实际上\textbf{必须如此}，因为在直角坐标系中$\nabla$就是偏导数算符，上式在直角坐标系中退化为\eqref{equ5.60}式。
+
+比较向量与1形式的协变导数\eqref{equ5.50}和\eqref{equ5.63}式：
+\begin{align*}
+    V\indices{^\alpha_{; \beta}} =& V\indices{^\alpha_{, \beta}} + V^\mu \Gamma\indices{^\alpha_{\mu \beta}}, \\
+    p_{\alpha; \beta} =& p_{\alpha, \beta} - p_\mu \Gamma\indices{^\mu_{\alpha \beta}}.
+\end{align*}
+它们有相似也有不同。只要记住求导的分量$\beta$总是$\Gamma$的\textbf{最后一个}指标，则其它指标的上下位置不难确定。还需要记住符号的不同，一个辅助的办法是记住$\Gamma\indices{^\alpha_{\mu \beta}}$与基向量的导数有关（因此是正号），而1形式基的导数就对应$-\Gamma\indices{^\alpha_{\mu \beta}}$，符号的不同意味着1形式基的变换规律与基向量“相反”，从而使得缩并$\langle \tilde{\omega}^\alpha, \vec{e}_\beta \rangle = \delta\indices{^\alpha_\beta}$在坐标变换下\textbf{不变}，其导数为零。
+
+高阶张量的协变导数与方程\eqref{equ5.63}的推导过程同理，这里只给出结果：
+\begin{shaded}
+\begin{align}
+    \nabla_\beta T_{\mu \nu} =& T_{\mu \nu, \beta} - T_{\alpha \nu} \Gamma\indices{^\alpha_{\mu \beta}} - T_{\mu \alpha} \Gamma\indices{^\alpha_{\nu \beta}} ; \label{equ5.64} \\
+    \nabla_\beta A^{\mu \nu} =& A\indices{^{\mu \nu}_{, \beta}} + A^{\alpha \nu} \Gamma\indices{^\mu_{\alpha \beta}} + A^{\mu \alpha} \Gamma\indices{^\nu_{\alpha \beta}}; \label{equ5.65} \\
+    \nabla_\beta B\indices{^\mu_\nu} =& B\indices{^\mu_{\nu, \beta}} + B\indices{^\alpha_\nu} \Gamma\indices{^\mu_{\alpha \beta}} - B\indices{^\mu_\alpha} \Gamma\indices{^\alpha_{\nu \beta}}. \label{equ5.66}
+\end{align}
+\end{shaded}
+仔细观察会发现它们是\textbf{很有规律的}。在普通导数之外的每一项都分配一个$\Gamma$，上指标就像向量、下指标就像1形式那样进行处理。\eqref{equ5.64}式的几何意义是，$\nabla_\beta T_{\mu \nu}$是$\binom{0}{3}$张量$\nabla \bm{T}$的分量，其中$\bm{T}$是$\binom{0}{2}$张量。类似地，\eqref{equ5.65}式中，$\bm{A}$是$\binom{2}{0}$张量而$\nabla \bm{A}$是$\binom{2}{1}$张量，其分量为$\nabla_\beta A^{\mu \nu}$。
 
 \section{Christoffel符号与度规}
 \label{sec5.4}
+上面的关于协变导数的推导没有涉及度规张量的任何内容，但是由于度规将向量与1形式联系起来，因此这两者的协变导数之间必然有一些关系。在直角坐标系中，1形式与相应的向量分量\textbf{相等}，而$\nabla$在该系中就是普通求导算符，因此1形式与向量分量的协变导数在直角坐标系中必然相等。这意味着任一向量$\vec{V}$及其相应的1形式$\tilde{V} = \bm{g} (\vec{V}, \ )$在直角坐标系中有：
+\begin{equation}
+    \nabla_\beta \tilde{V} = \bm{g} (\nabla_\beta \vec{V}, \ ).
+\label{equ5.67}
+\end{equation}
+上式是张量方程，在\textbf{所有}坐标系都成立，由此导出
+\begin{equation}
+    V_{\alpha; \beta} = g_{\alpha \mu} V\indices{^\mu_{; \beta}}
+\label{equ5.68}
+\end{equation}
+上式就是\eqref{equ5.67}式的分量形式。
+
+上面的论述也许不让你满意，下面一步一步重新推导一遍。用不带撇的指标$\alpha, \beta, \gamma, \dots$表示直角坐标系，带撇指标$\alpha', \beta', \gamma', \dots$表示\textbf{任意}坐标系。
+
+我们的出发点是，在任意坐标系中，1形式与向量分量的对应关系为：
+\begin{equation}
+    V_{\alpha'} = g_{\alpha' \mu'} V^{\mu'}.
+\label{equ5.69}
+\end{equation}
+而在直角坐标系中：
+\begin{equation*}
+    g_{\alpha \mu} = \delta_{\alpha \mu}, \quad V_{\alpha} = V^\alpha.
+\end{equation*}
+在直角坐标系中，Christoffel符号为零，因此在其中
+\begin{equation*}
+    V_{\alpha; \beta} = V_{\alpha, \beta}\quad V\indices{^\alpha_{; \beta}} = V\indices{^\alpha_{, \beta}}
+\end{equation*}
+由此可得
+\[
+    V_{\alpha; \beta} = V\indices{^\alpha_{; \beta}}
+\]
+这只在直角坐标系成立。为了将上式写成在任意坐标系都成立的形式，我们注意到在直角坐标系中
+\begin{equation*}
+    V\indices{^\alpha_{; \beta}} = g_{\alpha \mu} V\indices{^\mu_{; \beta}}
+\end{equation*}
+由上两式可得
+\[
+    V_{\alpha; \beta} = g_{\alpha \mu} V\indices{^\mu_{; \beta}}
+\]
+这就写成了张量方程，在所有坐标系成立，于是再次得到了\eqref{equ5.68}式：
+\begin{equation}
+    V_{\alpha'; \beta'} = g_{\alpha' \mu'} V\indices{^{\mu'}_{; \beta'}}
+\label{equ5.70}
+\end{equation}
+上式有个重要推论。方程\eqref{equ5.69}对$\beta'$坐标求协变导数可得
+\[
+    V_{\alpha'; \beta'} = g_{\alpha' \mu'; \beta'} V^{\mu'} + g_{\alpha' \mu'} V\indices{^{\mu'}_{; \beta'}}    
+\]
+上式与\eqref{equ5.70}式比较（注意$\vec{V}$是任意向量）可得
+\begin{shaded}
+\begin{equation}
+    g_{\alpha' \mu'; \beta'} \equiv 0,
+\label{equ5.71}
+\end{equation}
+\end{shaded}
+上式在任意坐标系都成立，它是方程\eqref{equ5.67}的推论，在直角坐标系中
+\[
+    g_{\alpha \mu; \beta} \equiv g_{\alpha \mu, \beta} = \delta_{\alpha \mu, \beta} = 0,
+\]
+它是个平凡的恒等式。而在一般坐标系中，度规的协变导数为零是不显然的，下面以极坐标系为例计算一下以验证结论是否正确。
+
+利用\eqref{equ5.64}式可得（以下不带撇指标表示一般坐标系）
+\begin{equation}
+    g_{\alpha \beta; \mu} = g_{\alpha \beta, \mu} - \Gamma\indices{^\nu_{\alpha \mu}} g_{\nu \beta} - \Gamma\indices{^\nu_{\beta \mu}} g_{\alpha \nu}.
+\label{equ5.72}
+\end{equation}
+在极坐标系中，考虑分量$\alpha = r, \beta = r, \mu = r$：
+\[
+    g_{rr; r} = g_{rr, r} - \Gamma\indices{^\nu_{rr}} g_{\nu r} - \Gamma\indices{^\nu_{rr}} g_{r \nu}.
+\]
+由于$g_{rr, r} = 0, \Gamma\indices{^\nu_{rr}} = 0, \forall\, \nu$，因此上式平淡地等于零。对于分量$\alpha = \theta, \beta = \theta, \mu = r$就不那么平淡了：
+\[
+    g_{\theta \theta; r} = g_{\theta \theta, r} - \Gamma\indices{^\nu_{\theta r}} g_{\nu \theta} - \Gamma\indices{^\nu_{\theta r}} g_{\theta \nu}.
+\]
+带入$g_{\theta \theta} = r^2, \Gamma\indices{^\theta_{\theta r}} = 1/r, \Gamma\indices{^r_{\theta r}} = 0$可得
+\[
+    g_{\theta \theta; r} = (r^2)_{, r} - \frac{1}{r} (r^2) - \frac{1}{r} (r^2) = 0.
+\]
+就像某种魔法让它等于零一样，但是这不是魔法，只是因为在直角坐标系中$g_{\alpha \beta, \mu} = 0$，而在任意坐标系中的$g_{\alpha \beta; \mu}$与$g_{\alpha \beta, \mu}$是\textbf{同一}张量$\nabla \bm{g}$在不同坐标系的分量。
+
+现在应该总结一下我们干了些什么。利用欧几里得空间中平行的概念，我们引入了协变微分，然后证明了欧几里得空间的度规是协变不变的（\eqref{equ5.71}式）。之后讨论弯曲空间（Riemannian空间）的时候需要更仔细地研究平行，但是在那里\eqref{equ5.71}式\textbf{仍然有效}，因此以该方程为基础的所有讨论内容也依然有效。
+
+\subsection*{从度规计算Christoffel符号}
+\eqref{equ5.72}式等于零有一个极其重要的推论，下面会看到，利用\eqref{equ5.72}式可以用$\Gamma\indices{^\mu_{\alpha \beta}}$表示$g_{\alpha \beta, \mu}$，而反过来也可以，即用$g_{\alpha \beta, \mu}$表示$\Gamma\indices{^\mu_{\alpha \beta}}$，这是计算Christoffel符号的简单方式。
+
+为此，先得证明一个重要命题：\textbf{在任意坐标系中}$\Gamma\indices{^\mu_{\alpha \beta}} \equiv \Gamma\indices{^\mu_{\beta \alpha}}$。为了证明这一对称性，考虑任意张量场$\phi$，它的一阶导数$\nabla \phi$是分量为$\phi_{, \beta}$的1形式，它的二阶导数——$\binom{0}{2}$张量$\nabla \nabla \phi$的分量为$\phi_{, \beta; \alpha}$，在直角坐标系中，这些分量等于
+\[
+    \phi_{, \beta, \alpha} := \frac{\partial}{\partial x^\alpha} \frac{\partial}{\partial x^\beta} \phi,
+\]
+它的$\alpha, \beta$指标是对称的，因为偏导数互相对易。如果张量在一个坐标系中的指标对称，则在任意坐标系中的指标都对称。因此
+\begin{equation}
+    \phi_{, \beta; \alpha} = \phi_{, \alpha; \beta}
+\label{equ5.73}
+\end{equation}
+在\textbf{任意}坐标系成立，根据定义式\eqref{equ5.63}将上式展开：
+\[
+    \phi_{, \beta, \alpha} - \phi_{, \mu} \Gamma\indices{^\mu_{\beta \alpha}} = \phi_{, \alpha, \beta} - \phi_{, \mu} \Gamma\indices{^\mu_{\alpha \beta}} \quad \text{在任意坐标系中。}
+\]
+而在\textbf{任意}坐标系中都有
+\[
+    \phi_{, \alpha, \beta} = \phi_{,\beta ,\alpha}
+\]
+由此可得
+\[
+    \Gamma\indices{^\mu_{\alpha \beta}} \phi_{, \mu} = \Gamma\indices{^\mu_{\beta \alpha}} \phi_{, \mu}
+\]
+对任意标量场$\phi$成立，这就证明了在任意坐标系中Christoffel符号的对称性：
+\begin{shaded}
+\begin{equation}
+    \Gamma\indices{^\mu_{\alpha \beta}} = \Gamma\indices{^\mu_{\beta \alpha}}.
+\label{equ5.74}
+\end{equation}
+\end{shaded}
+利用上式与\eqref{equ5.72}式，进行一些指标上的旋转跳跃就能得到\eqref{equ5.72}式的逆形式，将方程\eqref{equ5.72}进行指标轮换：
+\begin{align*}
+    g_{\alpha \beta, \mu} =& \Gamma\indices{^\nu_{\alpha \mu}} g_{\nu \beta} + \Gamma\indices{^\nu_{\beta \mu}} g_{\alpha \nu}, \\
+    g_{\alpha \mu, \beta} =& \Gamma\indices{^\nu_{\alpha \beta}} g_{\nu \mu} + \Gamma\indices{^\nu_{\mu \beta}} g_{\alpha \nu}, \\
+    -g_{\beta \nu, \alpha} =& -\Gamma\indices{^\nu_{\beta \alpha}} g_{\nu \mu} - \Gamma\indices{^\nu_{\mu \alpha}} g_{\beta \nu}.
+\end{align*}
+以上三式相加，并利用$\bm{g}$的对称性$g_{\beta \nu} = g_{\nu \beta}$合并同类项：
+\begin{align*}
+    g_{\alpha \beta, \mu} +& g_{\alpha \mu, \beta} - g_{\beta \mu, \alpha} \\
+    =& (\Gamma\indices{^\nu_{\alpha \mu}} - \Gamma\indices{^\nu_{\mu \alpha}}) g_{\nu \beta} + ( \Gamma\indices{^\nu_{\alpha \beta}} - \Gamma\indices{^\nu_{\beta \alpha}} ) g_{\nu \mu} + ( \Gamma\indices{^\nu_{\beta \mu}} + \Gamma\indices{^\nu_{\mu \beta}} ) g_{\alpha \nu}.
+\end{align*}
+根据$\Gamma$的对称性$\eqref{equ5.74}$式，上式右侧前两项为零，于是
+\[
+    g_{\alpha \beta, \mu} + g_{\alpha \mu, \beta} - g_{\beta \mu, \alpha} = 2 g_{\alpha \nu} \Gamma\indices{^\nu_{\beta \mu}}.
+\]
+就快要完成了。上式左右两边除以2，乘以$g^{\alpha \gamma}$（重复指标$\alpha$表示求和），并且利用
+\[
+    g^{\alpha \gamma} g_{\alpha \nu} \equiv \delta\indices{^\gamma_\nu}
+\]
+可得
+\begin{shaded}
+\begin{equation}
+    \frac{1}{2} g^{\alpha \gamma} (g_{\alpha \beta, \mu} + g_{\alpha \mu, \beta} - g_{\beta \mu, \alpha}  ) = \Gamma\indices{^\gamma_{\beta \mu}}.
+\label{equ5.75}
+\end{equation}
+\end{shaded}
+这就是利用度规$\bm{g}$的分量及其导数表示Christoffel符号的表达式。例如，在极坐标系中：
+\[
+    \Gamma\indices{^\theta_{r \theta}} = \frac{1}{2} g^{\alpha \theta} (g_{\alpha r, \theta} + g_{\alpha \theta, r} - g_{r \theta, \alpha}).
+\]
+由于$g^{r \theta} = 0$以及$g^{\theta \theta} = r^{-2}$，可以导出
+\begin{align*}
+    \Gamma\indices{^\theta_{r \theta}} =& \frac{1}{2r^2} (g_{\theta r, \theta} + g_{\theta \theta, r} - g_{r \theta, \theta}) \\
+    =& \frac{1}{2r^2} g_{\theta \theta, r} = \frac{1}{2r^2} (r^2)_{, r} = \frac{1}{r}.
+\end{align*}
+这与前面推导的结果相同。这种计算Christoffel符号的方法是坠吼的，方程\eqref{equ5.75}值得记住。尽管是在欧几里得空间推导的，但之后会看到它在弯曲空间中同样有效。
+
+
+\subsection*{$\Gamma\indices{^\alpha_{\beta \mu}}$的张量性}
+$\vec{e}_\alpha$是个向量，$\nabla \vec{e}_\alpha$是个$\binom{1}{1}$张量，它的分量是$\Gamma\indices{^\mu_{\alpha \beta}}$，这里的$\alpha$固定而$\mu, \beta$是分量指标：$\alpha$变化对应不同的张量$\nabla \vec{e}_\alpha$，而改变$\mu$或$\beta$只是对应同一张量的不同分量。
+
+因此，可以把$\mu, \beta$视为分量指标，而把$\alpha$视为指明不同张量的标签，每个基向量$\vec{e}_\alpha$对应这样一个张量。然而这不太有用，因为在坐标变换之下，新旧坐标系的基向量不同，在新坐标系中重要的张量是\textbf{新的}$\nabla \vec{e}_{\beta'}$，它与旧的$\nabla \vec{e}_\alpha$的关系很复杂：它们是\textbf{不同的}张量，而非同一张量在不同坐标系的分量。因此一个坐标系中的$\Gamma\indices{^\mu_{\alpha \beta}}$不能由另一坐标系的$\Gamma\indices{^{\mu'}_{\alpha'
+ \beta'}}$经过简单的变换得到。最简单的例子是在直角坐标系中所有的$\Gamma$都为零，而在一般的坐标系中非零。因此很多教材都说$\Gamma\indices{^\mu_{\alpha \beta}}$不是张量分量。从我们的观点来看，这话并不严格正确：$\Gamma\indices{^\mu_{\alpha \beta}}$是\textbf{一组}$\binom{1}{1}$\textbf{张量}$\nabla \vec{e}_\alpha$的$(\mu, \beta)$分量，只是不存在一个$\binom{1}{2}$张量的分量是$\Gamma\indices{^\mu_{\alpha \beta}}$，因此形如$\Gamma\indices{^\mu_{\alpha \beta}} V^\alpha $的表达式也不是单个张量的分量，而组合
+ \[
+    V\indices{^\beta_{, \alpha}} + V^\mu \Gamma\indices{^\beta_{\mu \alpha}}
+\]
+\textbf{是}张量$\nabla \vec{V}$的分量。
+
+
 
 \section{非坐标基}
 \label{sec5.5}
+之前所有的讨论都默认了非直角坐标系的基向量是由直角坐标$(x, y)$变换为某个$(\xi, \eta)$产生的。然而，下面会看到，并非所有基向量场都可以通过这种方式得到，并且我们要研究需要什么条件（不多）才可以。本书几乎不适用非坐标基，但是在平坦空间曲线坐标系的标准教材中却经常使用它们，因此有必要对它们进行介绍。
+
+\subsection*{极坐标基}
+极坐标系的基向量的定义是
+\[
+    \vec{e}_{\alpha'} = \Lambda\indices{^\beta_{\alpha'}} \vec{e}_{\beta},
+\]
+其中带撇指标表示极坐标，不带撇的表示直角坐标。此外，
+\[
+    \Lambda\indices{^\beta_{\alpha'}} = \frac{\partial x^\beta}{\partial x^{\alpha'}},
+\]
+这里将直角坐标$\{ x^\beta \}$视为极坐标$\{  x^{\alpha'} \}$的函数。可以导出
+\[
+    \vec{e}_{\alpha'} \cdot \vec{e}_{\beta'} \equiv g_{\alpha' \beta'} \neq \delta_{\alpha' \beta'},
+\]
+这意味着极坐标系\textbf{并非}单位向量。
+
+\subsection*{极坐标单位基}
+便利起见，经常定义\textbf{单位}基向量。容易导出极坐标系的单位基向量为：
+\begin{equation}
+    \vec{e}_{\hat{r}} = \vec{e}_{r}, \quad \vec{e}_{\hat{\theta}} = \frac{1}{r} \vec{e}_\theta,
+\label{equ5.76}
+\end{equation}
+相应的1形式基为
+\begin{equation}
+    \tilde{\omega}^{\hat{r}} = \trd r, \quad \tilde{\omega}^{\hat{\theta}} = r \trd \theta.
+\label{equ5.77}
+\end{equation}
+米娜桑应该自行证明
+\begin{equation}
+\left.
+\begin{split}
+    \vec{e}_{\hat{\alpha}} \cdot \vec{e}_{\hat{\beta}} \equiv g_{\hat{\alpha} \hat{\beta}} = \delta_{\hat{\alpha} \hat{\beta}}, \\
+    \tilde{\omega}^{\hat{\alpha}} \cdot \tilde{\omega}^{\hat{\beta}} \equiv g^{\hat{\alpha} \hat{\beta}} = \delta^{\hat{\alpha} \hat{\beta}}.
+\end{split}
+\right\}
+\label{equ5.78}
+\end{equation}
+这样就定义了正交归一的向量与1形式基，用带帽号$\hat{\ }$的指标表示。现在问题来了，是否存在坐标系$(\xi, \eta)$使得
+\begin{subequations}
+\begin{alignat}{2}
+    \vec{e}_{\hat{\alpha}} =& \vec{e}_\xi = \frac{\partial x}{\partial \xi} \vec{e}_x + \frac{\partial y}{\partial \xi} \vec{e}_y  && \label{equ5.79a} \\
+    \vec{e}_{\hat{\theta}} =& \vec{e}_\eta = \frac{\partial x}{\partial \eta} \vec{e}_x + \frac{\partial y}{\partial \eta} \vec{e}_y &&\label{equ5.79b}
+\end{alignat}
+\end{subequations}
+成立？
+
+如果成立，则$\{ \vec{e}_{\hat{\alpha}}, \vec{e}_{\hat{\theta}} \}$就是坐标系$(\xi, \eta)$的基向量，可以称之为坐标基；如果证明满足条件的$(\xi, \eta)$不存在，则这些向量是非坐标基。用相应的1形式基证明会更加容易，因此，下面要尝试找到坐标系$(\xi, \eta)$使得
+\begin{equation}
+\left.
+\begin{split}
+    \tilde{\omega}^{\hat{r}} =& \trd \xi = \frac{\partial \xi}{\partial x} \trd x + \frac{\partial \xi}{\partial y} \trd y, \\
+    \tilde{\omega}^{\hat{\theta}} =& \trd \eta = \frac{\partial \eta}{\partial x} \trd x + \frac{\partial \eta}{\partial y} \trd y.
+\end{split}
+\right\}
+\label{equ5.80}
+\end{equation}
+$\tilde{\omega}^{\hat{r}}, \tilde{\omega}^{\hat{\theta}}$关于$\trd r, \trd \theta$的关系已知，因此根据\eqref{equ5.26}和\eqref{equ5.27}式可得
+\begin{equation}
+\left.
+\begin{split}
+    \tilde{\omega}^{\hat{r}} =& \trd r = \cos \theta \trd x + \sin \theta \trd y, \\
+    \tilde{\omega}^{\hat{\theta}} =& r \trd \theta = -\sin \theta \trd x + \cos \theta \trd y.
+\end{split}
+\right\}
+\label{equ5.81}
+\end{equation}
+（不难验证$\tilde{\omega}^{\hat{r}}, \tilde{\omega}^{\hat{\theta}}$是正交的）
+
+如果$(\xi, \theta)$存在，则
+\begin{equation}
+    \frac{\partial \eta}{\partial x} = -\sin \theta, \quad \frac{\partial \eta}{\partial y} = \cos \theta.
+\label{equ5.82}
+\end{equation}
+如果上式成立，则混合导数相等：
+\begin{equation}
+    \frac{\partial}{\partial y} \frac{\partial \eta}{\partial x} = \frac{\partial}{\partial x} \frac{\partial \eta}{\partial y}.
+\label{equ5.83}
+\end{equation}
+这意味着
+\begin{equation}
+    \frac{\partial}{\partial y} (-\sin \theta) = \frac{\partial}{\partial x} (\cos \theta)
+\label{equ5.84}
+\end{equation}
+也就是
+\begin{equation*}
+    \frac{\partial}{\partial y} \left( \frac{y}{\sqrt{x^2 + y^2}} \right) + \frac{\partial}{\partial x} \left( \frac{x}{\sqrt{x^2 + y^2}} \right)  = 0.
+\end{equation*}
+上式当然\textbf{不可能成立}。因此$\xi, \eta$\textbf{不存在}：无法找到符合条件的坐标系。(If this manner of proof is surprising, try it on $\trd r$ and $\trd \theta$ themselves.)
+
+关于曲线坐标系中向量微积分的教材几乎都采用正交归一基，而非坐标基。例如，某个向量在极坐标系\textbf{坐标基}(coordinate basis, PC)下的分量为
+\begin{equation}
+    \vec{V} \xrightarrow[\text{PC}]{ } (a, b) = \{ V^{\alpha'} \},
+\label{equ5.85}
+\end{equation}
+则它在\textbf{正交基} (orthonormal basis, PO)下的分量为：
+\begin{equation}
+    \Vec{V} \xrightarrow[\text{PO}]{ } (a, rb) = \{ V^{\hat{\alpha}} \}.
+\label{equ5.86}
+\end{equation}
+例如，相关教材计算向量散度的公式为：（与我们导出的\eqref{equ5.56}式有所不同）
+\begin{equation}
+    \nabla \cdot \bm{V} = \frac{1}{r} \frac{\partial}{\partial r} (r V^{\hat{r}}) + \frac{1}{r} \frac{\partial}{\partial \theta} V^{\hat{\theta}}.
+\label{equ5.87}
+\end{equation}
+\eqref{equ5.56}和\eqref{equ5.87}式的不同只是因为$\Vec{V}$的基向量不同。
+
+\subsection*{非坐标基总论}
+
+\subsection*{本书的非坐标基}
+
 
 \section{展望下一步}
 \label{sec5.6}
