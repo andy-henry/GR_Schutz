@@ -50,19 +50,19 @@
 
 \section{Riemannian流形}
 \label{sec6.2}
-目前为止尚未在流形中引入度规。在一些问题的流形中，度规是不必要或不常用的。但是对GR而言，度规绝对是最基本的，因为就像SR那样，度规描述了钟的走时与两点的距离。一个微分流形配上一个被选召为度规的、对称的$\binom{0}{2}$张量场$\bm{g}$，称为Riemannian流形（黎曼流形）。\textit{严格来说，只有当度规是正定的——即$\forall\, \vec{V} \neq 0, \bm{g} (\vec{V}, \vec{V}) > 0$——才叫做Riemannian流形；SR与GR那样的不定度规情况叫做pseudo-Riemannian（伪黎曼流形）。不过作为一本物理书我们并不区分统统称为Riemannian流形。} 选出一个度规意味着在流形上“添加”某种结构，理解这一点很关键，之后会看到这个度规完全定义了流形的曲率。因此，选定一个度规$\bm{g}$之后，流形具有了一种曲率（例如，球面），而选择另一个度规$\bm{g}'$流形具有另一种曲率（例如，旋转椭球面）。“原始的”微分流形自身是一团无定形的点的集合，并且局域的相似于欧几里得空间中的点的排布，其中的距离与形状并未指定。给定了度规$\bm{g}$就赋予了流形以特定形状，后面就会看到。从现在开始，我们讨论的对象是Riemannian流形，其上的每一点都定义了度规$\bm{g}$。
+目前为止尚未在流形中引入度规。在一些问题的流形中，度规是不必要或不常用的。但是对GR而言，度规绝对是最基本的，因为就像SR那样，度规描述了钟的走时与两点的距离。一个微分流形配上一个被选召为度规的、对称的$\binom{0}{2}$张量场$\mathbf{g}$，称为Riemannian流形（黎曼流形）。\textit{严格来说，只有当度规是正定的——即$\forall\, \vec{V} \neq 0, \mathbf{g} (\vec{V}, \vec{V}) > 0$——才叫做Riemannian流形；SR与GR那样的不定度规情况叫做pseudo-Riemannian（伪黎曼流形）。不过作为一本物理书我们并不区分统统称为Riemannian流形。} 选出一个度规意味着在流形上“添加”某种结构，理解这一点很关键，之后会看到这个度规完全定义了流形的曲率。因此，选定一个度规$\mathbf{g}$之后，流形具有了一种曲率（例如，球面），而选择另一个度规$\mathbf{g}'$流形具有另一种曲率（例如，旋转椭球面）。“原始的”微分流形自身是一团无定形的点的集合，并且局域的相似于欧几里得空间中的点的排布，其中的距离与形状并未指定。给定了度规$\mathbf{g}$就赋予了流形以特定形状，后面就会看到。从现在开始，我们讨论的对象是Riemannian流形，其上的每一点都定义了度规$\mathbf{g}$。
 
 \textit{为了内容完整，我们指出，可以不利用度规来定义流形曲率的概念（称为“仿射 (affine)”流形）。有些文献用采用这种方法，但是度规在GR中的地位是基本的，因此我们利用度规定义流形曲率。}
 
 
 \subsection*{度规，局域平直性}
-自然，度规提供了每一点的向量与1形式之间的映射。因此，给定向量场$\vec{V} (\mathcal{P})$（这个符号意味着$\vec{V}$取决于位置$\mathcal{P}$，$\mathcal{P}$是流形中的任一点），它唯一对应于1形式场$\tilde{V} (\mathcal{P}) = \bm{g} (\vec{V} (\mathcal{P}), \ )$。这个映射必须是可逆的\sout{画外音：看不出来……}，因此$\tilde{V} (\mathcal{P})$也对应唯一的$\vec{V} (\mathcal{P})$。$\bm{g}$的分量记作$g_{\alpha \beta}$；分量矩阵的逆矩阵记作$g^{\alpha \beta}$。度规可以升降指标，就像SR中的那样：
+自然，度规提供了每一点的向量与1形式之间的映射。因此，给定向量场$\vec{V} (\mathcal{P})$（这个符号意味着$\vec{V}$取决于位置$\mathcal{P}$，$\mathcal{P}$是流形中的任一点），它唯一对应于1形式场$\tilde{V} (\mathcal{P}) = \mathbf{g} (\vec{V} (\mathcal{P}), \ )$。这个映射必须是可逆的\sout{画外音：看不出来……}，因此$\tilde{V} (\mathcal{P})$也对应唯一的$\vec{V} (\mathcal{P})$。$\mathbf{g}$的分量记作$g_{\alpha \beta}$；分量矩阵的逆矩阵记作$g^{\alpha \beta}$。度规可以升降指标，就像SR中的那样：
 \[
     V_\alpha = g_{\alpha \beta} V^\beta.
 \]
 一般的$\{ g_{\alpha \beta} \}$是坐标的复杂函数，因此在一般的坐标系中，向量与1形式分量，例如$V^0$与$V_0$，一般没有简单的关系。
 
-要研究一般的弯曲流形就要在一般的坐标系中考虑问题。SR只在Lorentz系（惯性系）中讨论（因为简单），但是引力使得全局惯性系不存在，因此我们得考虑所有的（一般性的）坐标系，以及所有的（一般性的）非奇异坐标变换。\textit{非奇异性在\ref{sec5.2}节介绍过，它意味着变换矩阵$\Lambda\indices{^{\alpha'}_\beta} \equiv \partial x^{\alpha'} / \partial x^\beta$可逆。} 根据定义，度规分量矩阵$(g_{\alpha \beta})$是对称的，线性代数的一条重要定理（见第\ref{chap6}章习题3）告诉我们，对于任意对称矩阵$(g_{\alpha' \beta'})$，总可以找到变换矩阵将$(g_{\alpha' \beta'})$化为对角元是$+1, -1$或0的对角矩阵，且$+1$的数量等于矩阵$(g_{\alpha' \beta'})$的正特征值的个数、$-1$的数量等于负特征值个数。故而，如果一开始选择$\bm{g}$的分量矩阵具有3个正特征值、1个负特征值，则总可以找到变换矩阵$\Lambda\indices{^{\alpha'}_\beta}$使得度规分量变换为：
+要研究一般的弯曲流形就要在一般的坐标系中考虑问题。SR只在Lorentz系（惯性系）中讨论（因为简单），但是引力使得全局惯性系不存在，因此我们得考虑所有的（一般性的）坐标系，以及所有的（一般性的）非奇异坐标变换。\textit{非奇异性在\ref{sec5.2}节介绍过，它意味着变换矩阵$\Lambda\indices{^{\alpha'}_\beta} \equiv \partial x^{\alpha'} / \partial x^\beta$可逆。} 根据定义，度规分量矩阵$(g_{\alpha \beta})$是对称的，线性代数的一条重要定理（见第\ref{chap6}章习题3）告诉我们，对于任意对称矩阵$(g_{\alpha' \beta'})$，总可以找到变换矩阵将$(g_{\alpha' \beta'})$化为对角元是$+1, -1$或0的对角矩阵，且$+1$的数量等于矩阵$(g_{\alpha' \beta'})$的正特征值的个数、$-1$的数量等于负特征值个数。故而，如果一开始选择$\mathbf{g}$的分量矩阵具有3个正特征值、1个负特征值，则总可以找到变换矩阵$\Lambda\indices{^{\alpha'}_\beta}$使得度规分量变换为：
 \begin{equation}
     (g_{\alpha' \beta'}) = 
     \begin{pmatrix}
@@ -246,7 +246,7 @@
     \eta_{\mu' \nu'} = \Lambda\indices{^\alpha_{\mu'}}\bigg|_{\mathcal{P}} \, \Lambda\indices{^\beta_{\nu'}} \bigg|_{\mathcal{P}} \, g_{\alpha \beta} \bigg|_{\mathcal{P}}.
 \label{equ6.28}
 \end{equation}
-根据对称性，上式对应10个独立方程。我们有16个自由的$\Lambda\indices{^\alpha_{\mu'}}\big|_{\mathcal{P}}$来满足这些方程，因此这些方程是可以解出的，并且留下了6个$\Lambda\indices{^\alpha_{\mu'}}\big|_{\mathcal{P}}$尚未确定，这余下的6个变量对应于保证度规$\eta_{\mu' \nu'}$不变的Lorentz变换的自由度。也就是说，可以对坐标系进行绕某个方向（确定该方向需要2个参数）的转轴旋转角度$\theta$（1个参数）的速度为$\bm{v}$（含有3个自由参数）的推动(boost)变换，这就给出了$\Lambda\indices{^\alpha_{\mu'}} \big|_{\mathcal{P}}$的6个自由度，局域惯性系经过这种变换还是惯性系。
+根据对称性，上式对应10个独立方程。我们有16个自由的$\Lambda\indices{^\alpha_{\mu'}}\big|_{\mathcal{P}}$来满足这些方程，因此这些方程是可以解出的，并且留下了6个$\Lambda\indices{^\alpha_{\mu'}}\big|_{\mathcal{P}}$尚未确定，这余下的6个变量对应于保证度规$\eta_{\mu' \nu'}$不变的Lorentz变换的自由度。也就是说，可以对坐标系进行绕某个方向（确定该方向需要2个参数）的转轴旋转角度$\theta$（1个参数）的速度为$\mathbf{v}$（含有3个自由参数）的推动(boost)变换，这就给出了$\Lambda\indices{^\alpha_{\mu'}} \big|_{\mathcal{P}}$的6个自由度，局域惯性系经过这种变换还是惯性系。
 
 下一个问题是，是否可以安排\eqref{equ6.26}式中$\partial \Lambda\indices{^\alpha_{\mu'}} / \partial x^{\gamma'} \big|_{\mathcal{P}}$（它具有40个自由变量），使得方程\eqref{equ6.5}：
 \begin{equation}
@@ -291,7 +291,7 @@
 \end{shaded}
 推导过程作为本章习题5，提示一下，仿照前面在平直空间的论证思路，现在在局域惯性系讨论，$\Gamma\indices{^\mu_{\beta \alpha}}$在任意坐标系中都是对称的。（未完成） 我们的出发点是假设在局域惯性系的$\MP$点有$\Gamma\indices{^\alpha_{\mu \nu}} = 0$。但是要指出$\Gamma\indices{^\alpha_{\mu \nu}}$的导数在该系$\MP$点一般不等于零，因为它涉及了度规的二阶导数$g_{\alpha \beta, \gamma \mu}$。Christoffel符号的导数在$\MP$点非零意味着，即使可以找到坐标系使得$\Gamma\indices{^\alpha_{\mu \nu}}$在$\MP$点的值为零，$\Gamma\indices{^\alpha_{\mu \nu}}$在该系中其它点的值也不为零。由此可见，在任意给定点，一般的弯曲流形与平坦流形的差别在于Christoffel符号的导数。
 
-方程\eqref{equ6.32}意味着，给定$g_{\alpha \beta}$就可以计算所有$\Gamma\indices{^\alpha_{\mu \nu}}$。由此可以导出所有其它协变导数（在给定度规$\bm{g}$之后），例如：
+方程\eqref{equ6.32}意味着，给定$g_{\alpha \beta}$就可以计算所有$\Gamma\indices{^\alpha_{\mu \nu}}$。由此可以导出所有其它协变导数（在给定度规$\mathbf{g}$之后），例如：
 \begin{shaded}
 \begin{align}
     V\indices{^\alpha_{; \beta}} =& V\indices{^\alpha_{, \beta}} + \Gamma\indices{^\alpha_{\mu \beta}} V^\mu, \label{equ6.33} \\
@@ -498,9 +498,9 @@ Christoffel符号$\Gamma\indices{^\alpha_{\mu \beta}}$是坐标$\{ x^\alpha \}$�
 \label{equ6.63}
 \end{equation}
 \end{shaded}
-$R\indices{^\alpha_{\beta \mu \nu}}$是$\binom{1}{3}$张量的分量，这个张量把$\tilde{\omega}^\alpha, \vec{V}, \delta a \vec{e}_\mu, \delta b \vec{e}_\nu$映射为$\delta V^\alpha$——也就是向量$\vec{V}$绕着闭合路径$\delta a \vec{e}_\mu, \delta b \vec{e}_\nu$平行移动一周的$\alpha$分量变化量。这个张量称为\textbf{Riemann 曲率张量}，记作$\bm{R}$。\footnote{如同前面的某些量那样，Riemann张量的没有统一的定义，甚至有些定义的指标位置都不同。在阅读文献之前要先搞清楚文献所用的Riemann张量定义。}
+$R\indices{^\alpha_{\beta \mu \nu}}$是$\binom{1}{3}$张量的分量，这个张量把$\tilde{\omega}^\alpha, \vec{V}, \delta a \vec{e}_\mu, \delta b \vec{e}_\nu$映射为$\delta V^\alpha$——也就是向量$\vec{V}$绕着闭合路径$\delta a \vec{e}_\mu, \delta b \vec{e}_\nu$平行移动一周的$\alpha$分量变化量。这个张量称为\textbf{Riemann 曲率张量}，记作$\mathbf{R}$。\footnote{如同前面的某些量那样，Riemann张量的没有统一的定义，甚至有些定义的指标位置都不同。在阅读文献之前要先搞清楚文献所用的Riemann张量定义。}
 
-$\bm{R}$在一点$\MP$的局域惯性系的分量十分有用，在$\MP$点有$\Gamma\indices{^\alpha_{\mu \nu}} = 0$，根据方程\eqref{equ6.32}，Christoffel符号的导数为：
+$\mathbf{R}$在一点$\MP$的局域惯性系的分量十分有用，在$\MP$点有$\Gamma\indices{^\alpha_{\mu \nu}} = 0$，根据方程\eqref{equ6.32}，Christoffel符号的导数为：
 \begin{equation}
     \Gamma\indices{^\alpha_{\mu \nu, \sigma}} = \frac{1}{2} g^{\alpha \beta} (g_{\beta \mu, \nu \sigma} + g_{\beta \nu, \mu \sigma} - g_{\mu \nu, \beta \sigma}).
 \label{equ6.64}
@@ -588,7 +588,7 @@ $g_{\alpha \beta}$是对称的，并且偏导数的求导次序也是对称的�
     [\nabla_\alpha, \nabla_\beta]  F\indices{^\mu_\nu} = R\indices{^\mu_{\sigma \alpha \beta}} F\indices{^\sigma_\nu} + R\indices{_\nu^\sigma_{\alpha \beta}} F\indices{^\nu_\sigma}.
 \label{equ6.78}
 \end{equation}
-上式中\textbf{每个}指标都分配了一个Riemann张量，每一项都是正号。（它们的符号\textbf{必须相同}，因为根据$\nabla \bm{g} = 0$可以得出结论：用$\bm{g}$升降指标不受$\nabla_\alpha$的影响。）
+上式中\textbf{每个}指标都分配了一个Riemann张量，每一项都是正号。（它们的符号\textbf{必须相同}，因为根据$\nabla \mathbf{g} = 0$可以得出结论：用$\mathbf{g}$升降指标不受$\nabla_\alpha$的影响。）
 
 方程\eqref{equ6.77}与导出Riemann张量的方式——绕闭合路径平行移动——联系密切，因为它可以看作先计算$\vec{V}$沿一个方向的变化，再计算另一方向，然后减去相反变化顺序的计算结果：这就是协变导数的对易式。
 
@@ -727,7 +727,7 @@ $g_{\alpha \beta}$是对称的，并且偏导数的求导次序也是对称的�
     R_{; \lambda} - R\indices{^\mu_{\lambda; \mu}} + (-R\indices{^\mu_{\lambda; \mu}}) = 0.
 \label{equ6.96}
 \end{align}
-其中最后一项的负号也来自于Riemann张量$\bm{R}$的反对称性。注意$R$是个标量，在任意坐标系中$R_{; \lambda} = R_{, \lambda}$。\eqref{equ6.96}式可以化为
+其中最后一项的负号也来自于Riemann张量$\mathbf{R}$的反对称性。注意$R$是个标量，在任意坐标系中$R_{; \lambda} = R_{, \lambda}$。\eqref{equ6.96}式可以化为
 \begin{equation}
     (2 R\indices{^\mu_\lambda} - \delta\indices{^\mu_\lambda} R)_{; \mu} = 0.
 \label{equ6.97}

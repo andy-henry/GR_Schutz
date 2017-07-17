@@ -1,2 +1,122 @@
 \chapter{弯曲时空中的物理学}
 \label{chap7}
+
+\section{微分几何与引力理论的对应}
+\label{sec7.1}
+将物理理论用数学形式表达，本质上是将数学概念与可观测物理量联系起来。因此我们首先要把之前建立的几何概念与现实世界的引力进行对应，这之前已经多少讨论过了，例如我们假设时空是个微分流形，并且已经证明了在非均匀引力场下不存在全局惯性系，在这些论述之后是如下的两条对应：
+
+\begin{shaded}
+\begin{enumerate}
+    \item[(\uppercase\expandafter{\romannumeral1})] 时空（所有事件的集合）是带有度规的四维流形。
+    \item[(\uppercase\expandafter{\romannumeral2})] 度规可以由杆与钟测量。用杆测量的相邻两事件点（它们的时间相同）的空间间距是$|\rd \vec{x} \cdot \rd \vec{x}|^{1/2}$，用钟测量的时间相近的两事件点（它们的空间位置相同）的时间间隔是$|-\rd \vec{x} \cdot \rd \vec{x}|^{1/2}$。
+\end{enumerate}
+\end{shaded}
+一般不存在一个坐标系使得$\rd \vec{x} \cdot \rd \vec{x} = -(\rd x^0)^2 + (\rd x^1)^2 + (\rd x^2)^2 + (\rd x^3)^2$处处成立。另一方面，我们论证了这种坐标系在\textbf{局域上}是存在的。这显然对应着弯曲流形，在其中任一点附近都存在坐标系局域的与Minkowski时空相似（例如向量的点乘形式）。
+
+据此可以进行如下的对应条件：
+\begin{shaded}
+\begin{enumerate}
+    \item[(\uppercase\expandafter{\romannumeral3})] 在任一事件点附近，存在合适的坐标系使得时空的度规为Lorentz形式$\eta_{\alpha \beta}$。
+\end{enumerate}
+\end{shaded}
+在钦定了这种表示时空的方式之后，还需要完成两点才能得到完整的理论。第一，必须说明物理对象（粒子、电场、流体等等）在弯曲时空中如何表现；第二，必须说明时空中的物体是怎样产生或着决定曲率的。
+
+作为物理理论的例子，我们先来考虑牛顿引力理论。牛顿理论的时空是三维欧几里得空间加上一维时间轴（数学上的记号是$R^3 \times R$）。不存在整体时空流形上的度规，空间距离来自欧几里得空间自带的普通度规、时间由绝对的“宇宙钟”测量。速度不同的观测者地位相同：这是伽利略力学里的相对性。因此不存在绝对静止的参照物，并且不同观者对于两个不同时的事件是否发生于同一地点的结论可能不同。但是所有观者的同时性——即两个事件是否在同一时间（时间轴的同一切片）发生——是绝对的，所以两个事件的“时间间隔”意味着包含两个事件的欧几里得切面之间经过的时间。它与事件的空间位置无关，因此牛顿引力理论中的时间是绝对的：所有观者，无论位置或运动状态如何，观测到的两事件的时间间隔都相同。类似地，两事件的“空间间隔”的含义是两事件在欧几里得空间的距离。如果两个时间是同时的（发生于时间轴的同一欧几里得切片），则利用那个切片的空间度规即可计算空间间隔，所有观测者的结果相同。如果两个事件发生的时间不同，则每个观者取他所观测到的事件的切片并计算空间间隔，不同观者观测到的事件的坐标不同，但距离都相同。
+
+然而，在牛顿理论中无法将时间与距离观测结合起来： there was no invariant measure of the length of a general curve that changed position and time as it went along. 没有将时间与空间距离相互转换的不变量，也就无法进行结合。爱因斯坦为相对论引入了不变量——光速，它将空间与时间的观测量统一起来。爱因斯坦四维时空的结构实际上比牛顿的绝对时空更加简单！
+
+在绝对时空的模型下，牛顿给出了描述物体受引力影响的定律：$\bm{F} = -m \bm{a}$，其中$\bm{F} = -m \nabla \phi$是物体在给定引力场$\phi$当中所受的引力。牛顿也给出了物体是如何产生引力场$\phi$的：$\nabla^2 \phi = 4\pi G \rho$。时空的相对论描述必须给出这两个定律的对应版本，第二个式子的对应在下一章讨论，本章研究一个给定的度规是如何影响时空中的物体的。
+
+之前讨论过粒子运动的简单情况。我们知道粒子在引力场中的“加速度”与粒子质量无关，因此在附近的自由下落参考系中粒子加速度为零，这就对应于局域惯性系。因为自由下落粒子在该系的加速度为零，因此粒子（至少是局域地）沿直线运动。局域惯性系的直线正是弯曲流形的测地线的\textbf{定义}。这样我们得到了关于粒子受度规影响的第一条假设：
+
+\begin{shaded}
+\begin{enumerate}
+    \item[(\uppercase\expandafter{\romannumeral4})] \textbf{弱等效原理 (Weak Equivalence Principle, WEP)}：自由下落粒子沿时空的类时测地线运动。\footnote{WEP更普遍的定义没有涉及弯曲时空，而只是说粒子在引力场的下落速度相同（不依赖于粒子质量与位置）。但是爱因斯坦等效原理（假设$\uppercase\expandafter{\romannumeral4}'$意味着引力可以由时空曲率表示，因此我们以弯曲时空作为讨论的出发点。}
+\end{enumerate}
+\end{shaded}
+“自由下落”意味着粒子不受其它力影响，例如电场力等等。其它所有的力与引力的区别在于，\textbf{存在着}不受其它力作用的粒子。因此弱等效原理（假设\uppercase\expandafter{\romannumeral4}）是很强的陈述，它可以被实验检验。WEP饱经、并且一直在经受高精度的检验，其中典型的实验例如比较由不同材料组成的物体的下落速度；当前的对加速度差别的实验限制已经到了$10^{13}$量级(Will 2006)。因此WEP是被实验验证的精度最高的物理定律之一。人们计划利用卫星搭载的实验来将精度提高到$10^{-18}$量级。
+
+不过，WEP只针对粒子，其它对象（例如流体）是如何受非平直度规影响的？为此需要将\uppercase\expandafter{\romannumeral4}进行推广：
+
+\begin{shaded}
+\begin{enumerate}
+    \item[(\uppercase\expandafter{\romannumeral4})$'$] \textbf{爱因斯坦等效原理 (Einstein Equivalence Principle, EEP)}：任何不涉及引力的、局域的物理实验，在（弯曲时空中的）自由下落惯性系的结果与在平直时空（狭义相对论有效）中的结果相同。
+\end{enumerate}
+\end{shaded}
+其中，“局域”的含义是实验不涉及场，例如电场，场延伸到一大片时空区域，超出了局域惯性系的有效范围。所有的\textbf{局域}物理结果在自由下落惯性系的结果，与狭义相对论的结果相同。引力\textbf{局域上}没有引入任何新内容，所有引力的效应要在时空中延伸一定的区域才能感受到，这也被实验严格检验过了(Will 2006)。
+
+（未完成）
+
+This may seem strange to someone used to blaming gravity for making it hard to climb
+stairs or mountains, or even to get out of bed! But these local effects of gravity are, in
+Einstein’s point of view, really the effects of our being pushed around by the Earth and
+objects on it. Our ‘weight’ is caused by the solid Earth exerting forces on us that prevent us
+from falling freely on a geodesic (weightlessly, through the floor). This is a very reasonable
+point of view. Consider astronauts orbiting the Earth. At an altitude of some 300 km, they
+are hardly any further from the center of the Earth than we are, so the strength of the
+Newtonian gravitational force on them is almost the same as on us. But they are weightless,
+as long as their orbit prevents them encountering the solid Earth. Once we acknowledge
+that spacetime has natural curves, the geodesics, and that when we fall on them we are in
+freefallandfeelnogravity,thenwecandisposeoftheNewtonianconceptofagravitational
+force altogether. We are only following the natural spacetime curve.
+
+
+The true measure of gravity on the Earth are its tides. These are nonlocal effects, because
+they arise from the difference of the Moon’s Newtonian gravitational acceleration across
+the Earth, or in other words from the geodesic deviation near the Earth. If the Earth were
+permanently cloudy, an Earthling would not know about the Moon from its overall grav-
+itational acceleration, since the Earth falls freely: we don’t feel the Moon locally. But
+Earthlings could in principle discover the Moon even without seeing it, by observing and
+understanding the tides. Tidal forces are the only measurable aspect of gravity.
+
+爱因斯坦等效原理数学上的含义是（粗略地说），如果一条局域的物理定律在SR中写成了张量方程，则该定律在弯曲时空的局域惯性系中的数学形式也是如此。
+
+这一原理经常被称作“逗号变分号规则”，因为如果定律的SR形式含有导数（逗号），则它在局域惯性系中也是如此。为了让方程在\textbf{任意}坐标系都有效，只需要在局域惯性系中把普通导数换成协变导数（分号），\footnote{当然，这样做的理由是Christoffel符号在局域惯性系的原点处等于零，前面用过很多次了。——译者} 这是一种超级简单地推广物理定律的方式。特别地，这一原理禁止了“曲率耦合”：例如热力学在弯曲时空的真正形式可能含有Riemann张量，而在SR中Riemann张量的相关内容会消失不见。假设(\uppercase\expandafter{\romannumeral4})$'$不允许Riemann张量有关的项出现在方程中。
+
+下面举例说明怎样将((\uppercase\expandafter{\romannumeral4})$'$)转换为数学形式，以流体动力学（它是本课程的主要研究对象）为例。SR中的粒子数守恒定律表示为
+\begin{equation}
+    (n U^\alpha)_{, \alpha} = 0,
+\label{equ7.1}
+\end{equation}
+其中$n$是瞬时共动参考系(MCRF)的粒子数密度，而$U^\alpha$是流体元的四速。在弯曲时空中的任意事件处，可以可以找到与该事件处的流体元瞬时共动的局域惯性系，并且按类似的方式定义$n$，同样，可以像SR那样定义四速$\vec{U}$是那个坐标系的时间基向量。于是，根据爱因斯坦等效原理，粒子数守恒律在局域惯性系的形式\textbf{正是}\eqref{equ7.1}式。由于Christoffel符号在给定事件点（该点是局域惯性系的原点）处等于零，\eqref{equ7.1}式等价于
+\begin{equation}
+    (n U^\alpha)_{; \alpha} = 0.
+\label{equ7.2}
+\end{equation}
+这种张量方程的形式在\textbf{任何}坐标系都成立，从而利用上式就可以在任意坐标系中计算粒子数守恒，还要记住上式源于爱因斯坦等效原理。
+
+这样，我们将粒子数守恒律推广到了弯曲时空。在之后需要的场合，我们总是利用这种方法推广物理定律。
+
+上述内容仅仅是张量的游戏，还是蕴含着新的物理意义？弯曲时空中的粒子守恒律可能是\eqref{equ7.2}以外的形式吗？有可能。考虑如下形式：
+\begin{equation}
+    (n U^\alpha)_{; \alpha} = qR^2,
+\label{equ7.3}
+\end{equation}
+其中$R$是Ricci标量，定义在\eqref{equ6.92}式，它是Riemann张量的两次缩并；$q$是常数。由于平直时空的Riemann张量为零，因此上式也会退化到SR形式\eqref{equ7.1}式。但是在弯曲时空中，上式预言的内容完全不同：曲率可以产生或湮灭粒子（与$q$的符号有关）。上两式都和SR的形式相符。爱因斯坦等效原理断言，应该把\eqref{equ7.1}式推广为尽量简单的形式，也就是\eqref{equ7.2}。当然，决定\eqref{equ7.2}和\eqref{equ7.3}式哪个正确要靠实验或者天文观测。本书采用绝大多数的观点——爱因斯坦等效原理是正确的。没有什么观测性证据反对它。
+
+类似地，SR中的熵守恒定律是
+\begin{equation}
+    U^\alpha S_{, \alpha} = 0.
+\label{equ7.4}
+\end{equation}
+因为标量$S$的协变导数不含Christoffel符号，所以上式在弯曲时空的形式\textbf{不变}。
+
+最后，四动量守恒定律为
+\begin{equation}
+    T\indices{^{\mu \nu}_{, \nu}} = 0.
+\label{equ7.5}
+\end{equation}
+推广到弯曲时空的形式为
+\begin{equation}
+    T\indices{^{\mu \nu}_{; \nu}} = 0.
+\label{equ7.6}
+\end{equation}
+其中能动张量的定义与之前相似：
+\begin{equation}
+    T^{\mu \nu} = (\rho + p) U^\mu U^\nu + p g^{\mu \nu}.
+\label{equ7.7}
+\end{equation}
+（注意，$g^{\mu \nu}$在局域惯性系等于平直时空度规$\eta^{\mu \nu}$.）
+
+\section{轻微弯曲时空的物理学}
+\label{sec7.2}
