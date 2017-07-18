@@ -27,11 +27,11 @@
 
 在绝对时空的模型下，牛顿给出了描述物体受引力影响的定律：$\bm{F} = -m \bm{a}$，其中$\bm{F} = -m \nabla \phi$是物体在给定引力场$\phi$当中所受的引力。牛顿也给出了物体是如何产生引力场$\phi$的：$\nabla^2 \phi = 4\pi G \rho$。时空的相对论描述必须给出这两个定律的对应版本，第二个式子的对应在下一章讨论，本章研究一个给定的度规是如何影响时空中的物体的。
 
-之前讨论过粒子运动的简单情况。我们知道粒子在引力场中的“加速度”与粒子质量无关，因此在附近的自由下落参考系中粒子加速度为零，这就对应于局域惯性系。因为自由下落粒子在该系的加速度为零，因此粒子（至少是局域地）沿直线运动。局域惯性系的直线正是弯曲流形的测地线的\textbf{定义}。这样我们得到了关于粒子受度规影响的第一条假设：
+之前讨论过粒子运动的简单情况。我们知道粒子在引力场中的“加速度”与粒子质量无关，因此在附近的自由下落参考系中粒子加速度为零，这就对应于局域惯性系。因为自由下落粒子在该系的加速度为零，因此粒子（至少是局域地）沿直线运动。局域惯性系的直线正是弯曲流形的测地线的\textbf{定义}。这样我们得到了关于粒子受度规影响的第一条假设：\footnote{WEP更普遍的定义没有涉及弯曲时空，而只是说粒子在引力场的下落速度相同（不依赖于粒子质量与位置）。但是爱因斯坦等效原理（假设\uppercase\expandafter{\romannumeral4}$'$意味着引力可以由时空曲率表示，因此我们以弯曲时空作为讨论的出发点。}
 
 \begin{shaded}
 \begin{enumerate}
-    \item[(\uppercase\expandafter{\romannumeral4})] \textbf{弱等效原理 (Weak Equivalence Principle, WEP)}：自由下落粒子沿时空的类时测地线运动。\footnote{WEP更普遍的定义没有涉及弯曲时空，而只是说粒子在引力场的下落速度相同（不依赖于粒子质量与位置）。但是爱因斯坦等效原理（假设$\uppercase\expandafter{\romannumeral4}'$意味着引力可以由时空曲率表示，因此我们以弯曲时空作为讨论的出发点。}
+    \item[(\uppercase\expandafter{\romannumeral4})] \textbf{弱等效原理 (Weak Equivalence Principle, WEP)}：自由下落粒子沿时空的类时测地线运动。
 \end{enumerate}
 \end{shaded}
 “自由下落”意味着粒子不受其它力影响，例如电场力等等。其它所有的力与引力的区别在于，\textbf{存在着}不受其它力作用的粒子。因此弱等效原理（假设\uppercase\expandafter{\romannumeral4}）是很强的陈述，它可以被实验检验。WEP饱经、并且一直在经受高精度的检验，其中典型的实验例如比较由不同材料组成的物体的下落速度；当前的对加速度差别的实验限制已经到了$10^{13}$量级(Will 2006)。因此WEP是被实验验证的精度最高的物理定律之一。人们计划利用卫星搭载的实验来将精度提高到$10^{-18}$量级。
@@ -120,3 +120,208 @@ understanding the tides. Tidal forces are the only measurable aspect of gravity.
 
 \section{轻微弯曲时空的物理学}
 \label{sec7.2}
+为了研究爱因斯坦等效原理((\uppercase\expandafter{\romannumeral4})$'$)对粒子或流体运动的影响，我们必须知道时空流形的度规。由于还没讲度规是如何产生的，因此目前必须钦点一个在之后推导的度规作为出发点。之后会看到，\textbf{弱引力场}（用牛顿理论的话来说，就是粒子的引力势能远小于粒子的静质能）的度规完全由牛顿引力势$\phi$所确定，其形式为
+\begin{shaded}
+\begin{equation}
+    \rd s^2 = -(1 + 2\phi)^2 \rd t^2 + (1 - 2\phi) (\rd x^2 + \rd y^2 + \rd z^2).
+\label{equ7.8}
+\end{equation}
+\end{shaded}
+（$\phi$的值小于零，从而在距离质点$M$很远的地方有$\phi = -GM / r$.） 注意弱引力场的条件意味着$|m \phi| \ll m$，即$|\phi| \ll 1$。度规\eqref{equ7.8}式实际上只是精确到$\phi$的一阶量，因此之后的推导也只保留到$\phi$的一阶量，而略去二阶及以上小量。
+
+下面计算自由下落粒子的运动情况。粒子的四动量记作$\vec{p}$，它等于$m \vec{U}$（除了无质量粒子），其中$\vec{U} = \rd \vec{x} / \rd \tau$。根据弱等效原理((\uppercase\expandafter{\romannumeral4}))，自由粒子的轨迹是测地线，我们知道粒子的固有时是测地线的一种仿射参量。因此$\vec{U}$必须满足测地线方程：
+\begin{equation}
+    \nabla_{\vec{U}} \vec{U} = 0.
+\label{equ7.9}
+\end{equation}
+便利起见，注意到固有时的常数倍$\tau / m$也是测地线的仿射参量，于是$\rd \vec{x} / \rd (\tau/m)$也是满足测地线方程的向量，这个向量就是$m \rd \vec{x} / \rd \tau = \vec{p}$。因此自由粒子的运动方程可以写为
+\begin{equation}
+    \nabla_{\vec{p}} \vec{p} = 0.
+\label{equ7.10}
+\end{equation}
+这个方程也能用于光子，尽管光子的$\vec{p}$定义良好，但是由于$m = 0$所以$\vec{U}$没有定义。
+
+设粒子在\eqref{equ7.8}式的坐标系中的速度是非相对论性的，下面来计算\eqref{equ7.10}式的非相对论近似。首先考虑方程的0分量，注意沿$\vec{p}$的普通导数等于$m$乘以沿$\vec{U}$的普通导数，即$m \rd / \rd \tau$：
+\begin{equation}
+    m \frac{\rd}{\rd \tau} p^0 + \Gamma\indices{^0_{\alpha \beta}} p^\alpha p^\beta = 0.
+\label{equ7.11}
+\end{equation}
+粒子的速度是非相对论性的，即$p^0 \gg p^1$，于是\eqref{equ7.11}式近似为
+\begin{equation}
+    m \frac{\rd}{\rd \tau} p^0 + \Gamma\indices{^0_{00}} (p^0)^2 = 0.
+\label{equ7.12}
+\end{equation}
+下面计算$\Gamma\indices{^0_{00}}$：
+\begin{equation}
+    \Gamma\indices{^0_{00}} = \frac{1}{2} g^{0 \alpha} (g_{\alpha 0, 0} + g_{\alpha 0, 0} - g_{00, \alpha}).
+\label{equ7.13}
+\end{equation}
+由于矩阵$[g_{\alpha \beta}]$是对角的，因此它的逆矩阵$[g^{\alpha \beta}]$也是对角的，逆矩阵元等于相应对角元的倒数。因此$g^{0 \alpha}$的非零元只有$\alpha = 0$，于是\eqref{equ7.13}式化为
+\begin{align}
+    \Gamma\indices{^0_{00}} &= \frac{1}{2} g^{00} g_{00, 0} = \frac{1}{2} \frac{1}{-(1 + 2\phi)} (-2\phi)_{, 0} \notag \\
+    &= \phi_{, 0} + 0(\phi^2). \label{equ7.14}
+\end{align}
+可见$\Gamma\indices{^0_{00}}$为$\phi$的一阶量，因此\eqref{equ7.12}式中与$\Gamma\indices{^0_{00}}$相乘的$(p^0)^2$只需保留$\phi$的零阶量——$m^2$，这样\eqref{equ7.12}式化为
+\begin{equation}
+    \frac{\rd}{\rd \tau} p^0 = -m \frac{\partial \phi}{\partial \tau}.
+\label{equ7.15}
+\end{equation}
+由于$p^0$即为粒子在该坐标系的能量，因此上式意味着如果引力场不随时间变化，则自由粒子的能量守恒。这个结论在牛顿理论中也成立。然而，必须注意$p^0$只是粒子相对于该坐标系的能量。
+
+测地线的空间分量对应于牛顿理论的$\bm{F} = m \bm{a}$：
+\begin{equation}
+    p^\alpha p\indices{^i_{, \alpha}} + \Gamma\indices{^i_{\alpha \beta}} p^\alpha p^\beta = 0,
+\label{equ7.16}
+\end{equation}
+在$\Gamma$的求和中利用非相对论性近似$p^0 \gg p^1$将上式化为
+\begin{equation}
+    m \frac{\rd p^i}{\rd \tau} + \Gamma\indices{^i_{00}} (p^0)^2 = 0.
+\label{equ7.17}
+\end{equation}
+仍然利用近似$(p^0)^2 = m^2$带入得到\ \textit{画外音：其实应该先算Christoffle符号$\Gamma\indices{^i_{00}}$确定它是一阶小量，才敢把与它相乘的$(p^0)^2$只保留零阶项 }
+\begin{equation}
+    \frac{\rd p^i}{\rd \tau} = -m \Gamma\indices{^i_{00}}.
+\label{equ7.18}
+\end{equation}
+下面计算Christoffel符号：
+\begin{equation}
+    \Gamma\indices{^i_{00}} = \frac{1}{2} g^{i \alpha} (g_{\alpha 0, 0} + g_{\alpha 0, 0} - g_{00, \alpha}).
+\label{equ7.19}
+\end{equation}
+由于$[g^{\alpha \beta}]$是对角矩阵，因此它的逆矩阵为
+\begin{equation}
+    g^{i \alpha} = (1 - 2\phi)^{-1} \delta^{i \alpha},
+\label{equ7.20}
+\end{equation}
+由此可得
+\begin{equation}
+    \Gamma\indices{^i_{00}} = \frac{1}{2} (1 - 2\phi)^{-1} \delta^{ij} (2g_{j0, 0} - g_{00, j}),
+\label{equ7.21}
+\end{equation}
+其中已经把$\alpha$换成了$j$，因为$\delta^{i0}$等于零。注意到$g_{j0} \equiv 0$，由此可得
+\begin{align}
+    \Gamma\indices{^i_{00}} &= -\frac{1}{2} g_{00, j} \delta^{ij} + 0(\phi^2) \label{equ7.22} \\
+    &= -\frac{1}{2} (-2\phi)_{, j} \delta^{ij} \label{equ7.23}
+\end{align}
+这样，运动方程\eqref{equ7.17}化为
+\begin{shaded}
+\begin{equation}
+    \frac{\rd p^i}{\rd \tau} = -m \phi_{, j} \delta^{ij}.
+\label{equ7.24}
+\end{equation}
+\end{shaded}
+牛顿理论的引力为$-m \nabla \phi$，可见上式与牛顿理论一致。因此在高阶效应很小观测不到的情况下，广义相对论对行星轨道的预言仍然是开普勒观测的那样，后面会看到对大部分行星都是如此，除了水星，它的高阶效应可以观测到。
+
+上面的能量守恒方程与运动方程都源于两个近似：度规近似为Minkowski度规($|\phi| \ll 1$)，粒子的速度是非相对论性的($p^0 \gg p^i$)。这两个限制正是牛顿理论的适用范围，这就确保了我们重新导出牛顿方程。然而这不是有什么魔法，\textbf{必须回到}牛顿方程，因为我们知道自由粒子在自由下落参考系中沿直线运动。
+
+对于其它系统，可以进行类似的计算以证明在合适的近似下回到牛顿理论。例如，本章习题5是关于理想流体的例子，注意流体的非相对论性不仅意味着流体的运动速度很小，而且流体粒子的随机运动（热运动）速度也是非相对论的，这意味着$p \ll \rho$。
+
+相对论与旧的牛顿理论的这种在合适极限下的对应关系相当重要。\textbf{任何}新理论必须在旧理论适用的范围内与旧理论一致。等效原理加上\eqref{equ7.8}式的度规做到了这一点。
+
+\section{Curved intuition}
+\label{sec7.3}
+尽管在合适的极限下，弯曲时空与牛顿理论的预言结果相同，但是它们在概念上差别很大，必须逐渐理解新理论的观点。
+
+第一个差别在于是否有优越的坐标系。牛顿理论\textbf{以及}SR中，惯性系是优越的。由于“速度”不能被局域测量但是“加速度”可以，这两个理论选出了一组特殊的时空坐标系，粒子在其中既没有物理加速度（即$\rd \vec{U} / \rd \tau = 0$）也没有坐标加速度（$\rd^2 x^i / \rd t^2 = 0$）。在新理论中，全局惯性系（即任意$\rd \vec{U} / \rd \tau = 0$的粒子都满足$\rd^2 x^i / \rd t^2 = 0$的坐标系）不存在，因此所有坐标系平权。利用Christoffel符号可以从$\rd^2 x^i / \rd t^2$这样坐标依赖的量得到$\rd \vec{U} / \rd \tau$这样不依赖坐标系的量。因此我们不需要也\textbf{不应该}建立坐标依赖的思维方式。
+
+第二个差别在于能量和动量。在牛顿理论、SR与新的几何引力理论中，每个粒子都有确定的能量与动量，而它们的值依赖于在哪个坐标系计算。在后两个理论中，能量动量是同一个四维向量$\vec{p}$的分量。在SR中，系统总的四维动量是系统所有粒子的四动量之和$\sum_i \vec{p}_{(i)}$。但是在弯曲时空中，定义在不同点的向量\textbf{不能}简单地相加，因为不知道怎么加：两个向量只有在同一点进行比较才能判断是否平行，而向量从一点平移到另一点的值取决于沿哪条曲线平移，因此\textbf{不存在}将所有$\vec{p}$相加的不变的方式，即使一个系统有确定的四动量，事情也不会像SR那样容易。
+
+可以发现，在空间上有界的系统（即孤立系统）的总能量与总动量\textbf{可以}定义，其定义方式之后讨论。系统的\textbf{总}质能不等于每个粒子的能量之和，这可以通过牛顿理论的情况看出：各粒子之间存在着自引力势能（引力自能），它是负的量，等于将组成系统的粒子从彼此相距无穷远移动到组成系统的过程中所得到的功。要将这种能量考虑在内，就不能只计算单个粒子，还要考虑时空几何。然而，引力势能的概念本身没有在新理论的图样中良好定义：它某种意味上表示了粒子能量之和与系统总质能的差值，但是由于粒子的能量之和没有良好定义，引力势能也没有。一般来说，只有系统\textbf{总的}能量-动量和单个粒子的四动量是可定义的。
+
+
+\section{守恒量}
+\label{sec7.4}
+前面关于能量的讨论让人想要研究一个粒子或系统的守恒量。对于粒子，必须意识到引力在旧观点中是一个“力”，因此粒子在引力作用下动能、势能不守恒。相应的，在新观点下，不会有哪个坐标系使得$\vec{p}$在其中的分量沿着粒子轨迹不变。存在一种值得注意的例外，它十分重要，值得详细讨论。
+
+将测地线方程的$\vec{p}$的上指标“降低”：
+\begin{equation}
+    p^\alpha p_{\beta; \alpha} = 0,
+\label{equ7.25}
+\end{equation}
+将协变导数展开：
+\begin{equation*}
+    p^\alpha p_{\beta, \alpha} - \Gamma\indices{^\gamma_{\beta \alpha}} p^\alpha p_\gamma = 0,
+\end{equation*}
+移项得
+\begin{equation}
+    m \frac{\rd p_\beta}{\rd \tau} = \Gamma\indices{^\gamma_{\beta \alpha}} p^\alpha p_\gamma.
+\label{equ7.26}
+\end{equation}
+等号右侧的项可以简化：
+\begin{align}
+    \Gamma\indices{^\gamma_{\alpha \beta}} p^\alpha p_\gamma &= \frac{1}{2} g^{\gamma \nu} (g_{\nu \beta, \alpha} + g_{\nu \alpha, \beta} - g_{\alpha \beta, \nu}) p^\alpha p_\gamma \notag \\
+    &= \frac{1}{2} (g_{\nu \beta, \alpha} + g_{\nu \alpha, \beta} - g_{\alpha \beta, \nu}) g^{\gamma \nu} p_\gamma p^\alpha \notag \\
+    &= \frac{1}{2} (g_{\nu \beta, \alpha} + g_{\nu \alpha, \beta} - g_{\alpha \beta, \nu}) p^\nu p^\alpha. \label{equ7.27}
+\end{align}
+$p^\nu p^\alpha$的$\nu \alpha$指标对称，而上式括号中的第一、三项$(g_{\nu \beta, \alpha} - g_{\alpha \beta, \nu})$的$\nu \alpha$指标反称，对称张量与反称张量缩并结果为零，这样只余下中间一项：
+\begin{equation}
+    \Gamma\indices{^\gamma_{\beta \alpha}} p^\alpha p_\gamma = \frac{1}{2} g_{\nu \alpha, \beta} p^\nu p^\alpha.
+\label{equ7.28}
+\end{equation}
+因此，不失一般性，测地线方程化为
+\begin{shaded}
+\begin{equation}
+    m \frac{\rd p_\beta}{\rd \tau} = \frac{1}{2} g_{\nu \alpha, \beta} p^\nu p^\alpha.
+\label{equ7.29}
+\end{equation}
+\end{shaded}
+由此可得如下重要结论：\textbf{如果$g_{\alpha \nu}$的所有分量与坐标$x^\beta$（$\beta$是给定的值）无关，则$p_\beta$沿着任何自由粒子轨迹是常量。}
+
+例如，对于静态（不依赖于时间）引力场，可以找到坐标系使得其中的度规分量不依赖时间，因此系统的$p_0$守恒。于是$p_0$（实际上是$-p_0$）通常称为粒子的“能量”，\textbf{而不需要}指出是“在该坐标系中的”能量。注意，静态度规在某个坐标系的分量可以依赖时间，例如从“好的”坐标系进行与时间有关的坐标变换就行了。实际上，大部分自由下落局域惯性系都是这种系，因为自由下落粒子受到随位置变化的引力场的影响，因此该系中的度规随时间变化。度规分量为静态的坐标系是特别的，它通常是地球上的“实验室坐标系”。因此这个系中的$p_0$与通常在实验室观测到的粒子能量有关，它包含了粒子的引力势能，下面就来进行论证。考虑
+\begin{align}
+    \vec{p} \cdot \vec{p} &= -m^2 = g_{\alpha \beta} p^\alpha p^\beta \notag \\
+    &= -(1 + 2\phi) (p^0)^2 + (1 - 2\phi) \big[ (p^x)^2 + (p^y)^2 + (p^z)^2 \big], \label{equ7.30}
+\end{align}
+上式已经利用了度规$\eqref{equ7.8}$式，由上式可得
+\begin{equation}
+    (p^0)^2 = \big[ m^2 + (1 - 2\phi) (\bm{p}^2) \big] (1 + 2\phi)^{-1},
+\label{equ7.31}
+\end{equation}
+其中将$(p^x)^2 + (p^y)^2 + (p^z)^2$简记为$\bm{p}^2$。利用近似$|\phi| \ll 1, |\bm{p}| \ll m$，上式简化为
+\begin{align}
+    (p^0)^2 & \approx m^2 \left(1 - 2\phi + \frac{\bm{p}^2}{m^2} \right) \notag \\
+\intertext{亦即}
+    p^0 & \approx m \left( 1 - \phi + \frac{\bm{p}^2}{2m^2} \right). \label{equ7.32}
+\end{align}
+将指标降低：
+\begin{equation}
+    p_0 = g_{0 \alpha} p^\alpha = g_{00} p^0 = -(1 + 2\phi) p^0,
+\label{equ7.33}
+\end{equation}
+\begin{shaded}
+\begin{equation}
+    -p_0 \approx m \left( 1 + \phi + \frac{\bm{p}^2}{2m^2} \right) = m + m\phi + \frac{\bm{p}^2}{2m}.
+\label{equ7.34}
+\end{equation}
+\end{shaded}
+右侧第一项是粒子的静质能，第二、三项分别是牛顿形式的引力势能和动能。可见，$p_0$沿粒子轨迹守恒是牛顿理论中能量守恒的推广。
+
+注意，对于\textbf{一般的}引力场，不存在坐标系使得其中的度规分量是静态的，\footnote{这种坐标系的不存在性容易证明。$4 \times 4$对称度规分量矩阵有10个独立分量，而坐标变换（四个函数$x^{\bar{\alpha}} (x^\mu)$）只引入了改变度规分量的四个自由度。只有特殊的度规才能通过坐标变换将所有分量变为不依赖于时间。 }因此不能定义守恒的能量。
+
+类似地，如果度规具有轴对称性，即存在坐标系使得其中的度规分量$g_{\alpha \beta}$不依赖于旋转角$\psi$，则$p_\psi$是守恒的，它是粒子的角动量。在非相对论极限下
+\begin{equation}
+    p_\psi = g_{\psi \psi} p^\psi \approx g_{\psi \psi} m \frac{\rd \psi}{\rd t} \approx mg_{\psi \psi} \Omega,
+\label{equ7.35}
+\end{equation}
+其中$\Omega$是粒子的角速度。对于接近平直的度规，在柱坐标系$(r, \psi, z)$中：
+\begin{equation}
+    g_{\psi \psi} = \vec{e}_\psi \cdot \vec{e}_\psi \approx r^2,
+\label{equ7.36}
+\end{equation}
+因此相应的守恒量
+\begin{equation}
+    p_\psi \approx mr^2 \Omega.
+\label{equ7.37}
+\end{equation}
+这就是牛顿理论的角动量。
+
+关于粒子守恒律的讨论告一段落。流体的推导过程类似，因为流体就是大量粒子的集合。但是，自引力系统的总质量与总动量的情况仍然十分复杂。后面会看到，孤立系统的质量与动量\textbf{守恒}，但这必须在对这些量下定义之后才能继续讨论。
+
+
+\section{扩展阅读}
+\label{sec7.5}
+Geroch (1978) 详细讨论了曲率与物理学是怎样结合的。所有的广义相对论的高阶教材都深入探讨了守恒量。本章内容是不变的弯曲时空中量子场论的基础，参见Birrell and Davies (1984) and Wald (1994). 它是目前引力研究最活跃的前沿之一——广义相对论的量子化。本书并未涉及这些内容，希望从经典广义相对论出发研究引力量子化（另一种方法从弦论出发）的读者可以参考 Rovelli (2004) Bojowald (2005), and Thiemann (2007).
+
+
+\section{习题}
+\label{sec7.6}
