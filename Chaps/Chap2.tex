@@ -3,9 +3,319 @@
 
 \section{向量的定义}
 \label{sec2.1}
+我们暂时采用欧几里得几何的向量定义：向量的分量在坐标变换下与坐标的变换规律相同。后面会用更好的方式定义向量。
+
+\textbf{最典型的向量}是位移向量，它从一个事件指向另一事件，分量等于事件的坐标差：
+\begin{shaded}
+\begin{equation}
+    \Delta \vec{x} \xrightarrow[\MO]{ } (\Delta t, \Delta x, \Delta y, \Delta z).
+\label{equ2.1}
+\end{equation}
+\end{shaded}
+上式引入了一些新记号：向量用符号之上的箭头表示（例如$\vec{x}$表示一个向量，它与坐标$x$没有特殊关系），$\Delta \vec{x}$之后的右箭头意味着“具有分量”，右箭头下方的$\MO$意味着“在坐标系$\MO$”，坐标的顺序总是$t, x, y, z$（对应于数字指标$0, 1, 2, 3$）。符号$\xrightarrow[\MO]{ }$是为了强调区别向量本身与向量分量。向量$\Delta \vec{x}$是两事件之间的箭头，而向量分量是一组四个依赖于坐标系的数字。为了强调向量（以及之后的张量）的概念，我们称它们为\textbf{几何对象 (geometrical object)}：也就是不依赖于特定坐标系定义的东西。另一种重要的记号是
+\begin{equation}
+    \Delta \vec{x} \xrightarrow[\MO]{ } \{ \Delta x^\alpha \},
+\label{equ2.2}
+\end{equation}
+其中$\{ \Delta x^\alpha \}$代表所有$\Delta x^0, \Delta x^1, \Delta x^2, \Delta x^3$。为了表示这个向量在另一个坐标系$\MObar$的分量，我们写为
+\[
+    \Delta \vec{x} \xrightarrow[\MO]{ }  \{\Delta x^{\bar{\alpha}} \}.
+\]
+也就是带bar的坐标系对应的分量指标上面也带bar。向量$\Delta \vec{x}$自身是\textbf{不变的}，不需要随着更换坐标系而采用新记号，只有分量需要改变。\footnote{这是有些线性代数教材所说的“被动”变换：坐标改变了，而向量没变。} 新分量$\Delta x^{\bar{\alpha}}$\textbf{等于什么}？利用Lorentz变换可以求出它们：
+\[
+    \Delta x^{\bar{0}} = \frac{\Delta x^0}{\sqrt{1 - v^2}} - \frac{v \Delta x^1}{\sqrt{1 - v^2}}, \text{\ 等等。}
+\]
+Lorentz变换是线性的，上式可以写为
+\[
+    \Delta x^{\bar{0}} = \sum_{\beta = 0}^3 \Lambda\indices{^{\bar{0}}_\beta} \Delta x^{\beta},
+\]
+其中$\{ \Lambda\indices{^{\bar{0}}_\beta} \}$表示四个数，对应于$\beta$取0123，在上述情形中
+\begin{align*}
+    \Lambda\indices{^{\bar{0}}_0} &= \frac{1}{\sqrt{1 - v^2}}, \quad \Lambda\indices{^{\bar{0}}_1} = -\frac{v}{\sqrt{1 - v^2}}, \\
+    \Lambda\indices{^{\bar{0}}_2} &= \Lambda\indices{^{\bar{0}}_3} = 0.
+\end{align*}
+$\Delta x^{\bar{1}}$以及其它分量同理可得，这些结果可以表示为
+\begin{equation}
+    \Delta x^{\bar{\alpha}} = \sum_{\beta = 0}^3 \Lambda\indices{^{\bar{\alpha}}_\beta} \Delta x^\beta, \quad \forall\, \bar{\alpha}.
+\label{equ2.3}
+\end{equation}
+其中$\{ \Lambda\indices{^{\bar{\alpha}}_\beta} \}$是16个数的集合，它们是Lorentz变换的矩阵元，把指标写成上下并且错开的理由在之后学习微分几何的时候就会看到。下面来引入最后一个新记号——\textbf{爱因斯坦求和约定}：如果一个表达式含有\textbf{相同的}上下标，则自动意味着对该指标求和。例如
+\[
+    A_\alpha B^\alpha \quad \text{和} \quad T^\gamma E_{\gamma \alpha}
+\]
+是如下求和式的简写：
+\[
+    \sum_{\alpha = 0}^3 A_\alpha B^\alpha \quad \text{和} \quad \sum_{\gamma = 0}^3 T^\gamma E_{\gamma \alpha}.
+\]
+而
+\[
+    A_\alpha B^\beta, T^\gamma E_{\beta \alpha}, A_\beta A_\beta
+\]
+\textbf{不表示}对任何指标的求和。Lorentz变换\eqref{equ2.3}式简写为
+\begin{shaded}
+\begin{equation}
+    \Delta x^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_{\beta}} \Delta x^\beta,
+\label{equ2.4}
+\end{equation}
+\end{shaded}
+这省了很多麻烦。
+
+注意\eqref{equ2.4}式同样可以写为
+\[
+    \Delta x^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_{\gamma}} \Delta x^\gamma,
+\]
+因为只要是重复的上下指标（不论是$\beta$还是$\gamma$）都代表从0到3的求和，重复的指标本身是什么无所谓。这种重复表示求和的指标称为\textbf{哑指标 (dummy index)}（又称为\textbf{傀儡指标}），重命名哑指标（例如上面把$\beta$换成$\gamma$）是张量代数的常用技巧。注意不能用\textbf{拉丁字母}替换$\beta$，因为我们约定重复的拉丁字母指标表示对指标$1, 2, 3$（空间部分）求和，而重复的希腊字母（例如$\beta$）表示对所有指标$0, 1, 2, 3$求和。因此，表达式
+\[
+    \Lambda\indices{^{\bar{\alpha}}_\beta} \Delta x^\beta \text{和} \Lambda\indices{^{\bar{\alpha}}_i} \Delta x^i
+\]
+并不相同，实际上
+\begin{shaded}
+\begin{equation}
+    \Lambda\indices{^{\bar{\alpha}}_\beta} \Delta x^\beta  = \Lambda\indices{^{\bar{\alpha}}_0} \Delta x^0 +  \Lambda\indices{^{\bar{\alpha}}_i} \Delta x^i.
+\label{equ2.5}
+\end{equation}
+\end{shaded}
+
+\eqref{equ2.4}式表示了4个方程，对应于$\bar{\alpha} = 0, 1, 2, 3$。像$\bar{\alpha}$这样不进行求和的指标称为\textbf{自由指标 (free index)}。一个含有自由指标的方程只有对自由指标的\textbf{每个取值}都成立的时候才成立。与哑指标相似，自由指标也比较自由，例如\eqref{equ2.4}式可以写为
+\begin{equation*}
+    \Delta x^{\bar{\gamma}} = \Lambda\indices{^{\bar{\gamma}}_{\beta}} \Delta x^\beta,
+\end{equation*}
+上式与\eqref{equ2.4}式相同，因为$\bar{\gamma}, \bar{\alpha}$都有四个取值都表示四个方程。如果方程中一处的自由指标改变了，则处处都要改变，例如\eqref{equ2.4}式的如下修改是错误的：
+\begin{equation*}
+    \Delta x^{\bar{\gamma}} = \Lambda\indices{^{\bar{\alpha}}_{\beta}} \Delta x^\beta,
+\end{equation*}
+以上两式的差别在于，前者保证了无论$\bar{\gamma}$取什么值，等号两侧的$\Delta x^{\bar{\gamma}}$和$\Lambda\indices{^{\bar{\gamma}}_\beta}$总是对应\textbf{相同的}自由指标。第二的式子没有这种关系，因此它与\eqref{equ2.4}式不一样。
+
+一般地，\textbf{向量 (vector)}\footnote{这种有四个分量的向量有时称为\textbf{四维向量}以区分三维空间的三维向量。除非特别指出，我们所说的“向量”都是指四维向量，我们用箭头表示四维向量，例如$\vec{A}$，而用斜黑体表示三维向量，例如$\bm{A}$. }（在坐标系$\MO$的分量）定义为一组数：
+\begin{equation}
+    \vec{A} \xrightarrow[\MO]{ } (A^0, A^1, A^2, A^3) = \{ A^\alpha \},
+\label{equ2.6}
+\end{equation}
+并且向量分量的变换规律与坐标的变换规律相同，向量在$\MObar$系的分量的满足：
+\begin{equation}
+    A^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_\beta} A^{\beta}.
+\label{equ2.7}
+\end{equation}
+
+向量可以在某个坐标系中给定四个数字（例如$(10^8, -10^{-16}, 5.8368, \pi)$）来定义；给定了一个坐标系的分量之后，该向量在其它坐标系的分量也唯一确定。时空中的向量服从通常的运算规则：如果$\vec{A}, \vec{B}$是向量，$\mu$是常数，则$\vec{A} + \vec{B}$与$\mu \vec{A}$都是向量，它们的分量分别为
+\begin{equation}
+\left.
+\begin{split}
+    \vec{A} + \vec{B} &\xrightarrow[\MO]{ } (A^0+B^0, A^1+B^1, A^2+B^2, A^3+B^3), \\
+    \mu \vec{A} &\xrightarrow[\MO]{ } (\mu A^0, \mu A^1, \mu A^2, \mu A^3).
+\end{split}
+\right\}
+\label{equ2.8}
+\end{equation}
+即向量按照通常的平行四边形法则相加。注意在一个坐标系给定四个数就定义了一个向量，如果这些数具有量纲，则它们的量纲必须相等，这样才能够在坐标变换时相加。
+
 
 \section{向量代数}
 \label{sec2.2}
+
+\subsection*{基向量}
+任意惯性系$\MO$都有4个特别的向量，利用它们在$\MO$系的分量进行定义：
+\begin{equation}
+\left.
+\begin{split}
+    \vec{e}_0 &\xrightarrow[\MO]{ } (1, 0, 0, 0), \\
+    \vec{e}_1 &\xrightarrow[\MO]{ } (0, 1, 0, 0), \\
+    \vec{e}_2 &\xrightarrow[\MO]{ } (0, 0, 1, 0), \\
+    \vec{e}_3 &\xrightarrow[\MO]{ } (0, 0, 0, 1). \\
+\end{split}
+\right\}
+\label{equ2.9}
+\end{equation}
+它们是坐标系$\MO$的基向量。类似地，$\MObar$系的基向量为
+\[
+    \vec{e}_{\bar{0}} \xrightarrow[\MObar]{ } (1, 0, 0, 0), \text{等等。}
+\]
+一般而言$\vec{e}_{\bar{0}} \neq \vec{e}_0$，因为它们在不同的坐标系定义。读者不难验证上述基向量的定义等价于
+\begin{equation}
+    (\vec{e}_\alpha)^\beta = \delta\indices{_\alpha^\beta}.
+\label{equ2.10}
+\end{equation}
+也就是说，$\vec{e}_\alpha$的$\beta$分量是Kronecker $\delta$符号：如果$\beta = \alpha$则为1，如果$\beta \neq \alpha$则为0。
+
+任何向量可以表示为基向量的线性组合，任意向量$\vec{A}$在$\MO$系的分量为
+\[
+    \vec{A} \xrightarrow[\MO]{ } (A^0, A^1, A^2, A^3),
+\]
+则
+\begin{shaded}
+\begin{align}
+    \vec{A} &= A^0 \Ve_0 + A^1 \Ve_1 + A^2 \Ve_2 + A^3 \Ve_3, \notag \\
+    \vec{A} &= A^\alpha \Ve_\alpha. \label{equ2.11}
+\end{align}
+\end{shaded}
+其中最后一行利用了求和约定（$\Ve$的指标是\textbf{下标}正是为此）。\eqref{equ2.11}式的含义是向量$\vec{A}$是四个向量$A^0 \Ve_0, A^1 \Ve_1, \dots$的线性和。
+
+
+\subsection*{基向量的变换}
+\eqref{equ2.11}式对任意坐标系都成立，在$\MObar$系中：
+\[
+    \vec{A} = A^{\bar{\alpha}} \Ve_{\bar{\alpha}}.
+\]
+这意味着$\vec{A}$也是四个向量$A^{\bar{0}} \Ve_{\bar{0}}, A^{\bar{1}} \Ve_{\bar{1}}, \dots$之和，这四个向量与\eqref{equ2.11}式中的四个向量不同，因为它们与$\MObar$系的基向量平行而非与$\MO$系的基向量平行。尽管不同，但是它们的和等于同一个向量$\vec{A}$。注意，$A^\alpha \Ve_\alpha$与$A^{\bar{\alpha}} \Ve_{\bar{\alpha}}$并非简单地重命名哑指标，带bar与不带bar的指标不能互换，因为它们的含义不同。$\{ A^{\bar{\alpha}}\}$与$\{ A^\alpha \}$不同的两组数，就像$\{ \Ve_{\bar{\alpha}} \}$与$\{ \Ve_\alpha \}$是两组不同的向量那样。但是，根据定义，它们的和相同：
+\begin{equation}
+    A^\alpha \vec{e}_\alpha = A^{\bar{\alpha}} \Ve_{\bar{\alpha}},
+\label{equ2.12}
+\end{equation}
+上式有一个重要推论：从它可以导出基向量的变换规律，也就是$\{ \Ve_{\bar{\alpha}} \}$与$\{ \Ve_\alpha \}$之间的关系。利用\eqref{equ2.7}式可以将\eqref{equ2.12}写为
+\[
+    \Lambda\indices{^{\bar{\alpha}}_\beta} A^\beta \Ve_{\bar{\alpha}} = A^\alpha \Ve_\alpha.   
+\]
+等号左侧进行了\textbf{两次}求和。因为求和的各项都是有限的，因此求和次序无所谓。而由于$\Lambda\indices{^{\bar{\alpha}}_\beta}$和$A^\beta$\textbf{都只是}数字，因此它们的顺序可以改变，上式可以写为
+\[
+    A^\beta  \Lambda\indices{^{\bar{\alpha}}_\beta} \Ve_{\bar{\alpha}} = A^\alpha \Ve_\alpha.
+\]
+$\beta$和$\bar{\alpha}$都是哑指标，可以把$\beta$换成$\alpha$，$\bar{\alpha}$换成$\bar{\beta}$：
+\[
+    A^\alpha  \Lambda\indices{^{\bar{\beta}}_\alpha} \Ve_{\bar{\beta}} = A^\alpha \Ve_\alpha.
+\]
+上式化为
+\[
+    A^\alpha (\Lambda\indices{^{\bar{\beta}}_{\alpha}} \Ve_{\bar{\beta}} - \Ve_\alpha ) = 0,
+\]
+$\vec{A}$是任意向量，上式对所有$\{A^\alpha\}$都成立，由此可得
+\[
+    \Lambda\indices{^{\bar{\beta}}_{\alpha}} \Ve_{\bar{\beta}} - \Ve_\alpha = 0, \quad \forall\, \alpha,
+\]
+或者写成
+\begin{shaded}
+\begin{equation}
+    \Ve_\alpha = \Lambda\indices{^{\bar{\beta}}_\alpha} \Ve_{\bar{\beta}}.
+\label{equ2.13}
+\end{equation}
+\end{shaded}
+这就是基向量的在坐标变换下的变换规律。它\textbf{不同于}向量分量的变换律：上式将$\MO$系的基向量$\{ \Ve_\alpha \}$表示为$\MObar$系的基向量$\{ \Ve_{\bar{\alpha}} \}$的线性组合。上式与\eqref{equ2.7}式
+\[
+    A^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_\beta} A^{\beta}
+\]
+比较可得，它们确实不一样。
+
+上面的推导过程使用了一些新技巧，读者应该仔细掌握。注意求和规则省略了求和符号使得方程很整洁。还要注意推导过程的关键步骤在于哑指标重命名：它将彼此孤立的任意向量分量$A^\alpha$与方程的其余内容联系起来。
+
+\subsection*{例}
+设$\MObar$系相对于$\MO$系以速度$v$沿$x$轴运动，Lorentz变换矩阵$[\Lambda\indices{^{\bar{\beta}}_{\alpha}}]$为
+\[
+    (\Lambda\indices{^{\bar{\beta}}_{\alpha}}) = 
+    \begin{pmatrix}
+        \gamma & -v\gamma & 0 & 0 \\
+        -v \gamma & \gamma & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix},
+\]
+其中利用了标准记号
+\[
+    \gamma := \frac{1}{\sqrt{1 - v^2}}.
+\]
+如果$\vec{A} \xrightarrow[\MO]{ } (5, 0, 0, 2)$，则$\vec{A}$在$\MObar$系的分量为：
+\begin{align*}
+    A^{\bar{0}} &= \Lambda\indices{^{\bar{0}}_0} A^0 + \Lambda\indices{^{\bar{0}}_1} A^1 + \dots \\
+    &= \gamma \cdot 5 + (-v \gamma) \cdot 0 + 0 \cdot 0 + 0 \cdot 2 \\
+    &= 5\gamma.
+\end{align*}
+类似地可以算出
+\begin{align*}
+    A^{\bar{1}} &= -5v\gamma, \\
+    A^{\bar{2}} &= 0, \\
+    A^{\bar{3}} &= 2.
+\end{align*}
+因此$\vec{A} \xrightarrow[\MObar]{ } (5\gamma, -5v\gamma, 0, 2)$.
+
+基向量的变换律是
+\[
+    \Ve_\alpha = \Lambda\indices{^{\bar{\beta}}_\alpha} \Ve_{\bar{\beta}},
+\]
+或者展开写成
+\begin{align*}
+    \Ve_0 &= \Lambda\indices{^{\bar{0}}_0} \Ve_{\bar{0}} + \Lambda\indices{^{\bar{1}}_{0}} \Ve_{\bar{1}} + \dots \\
+    &= \gamma \Ve_{\bar{0}} - v \gamma \Ve_{\bar{1}}.
+\end{align*}
+类似可得
+\begin{align*}
+    \Ve_1 &= -v \gamma Ve_{\bar{0}} + \gamma \Ve_{\bar{1}}, \\
+    \Ve_2 &= \Ve_{\bar{2}}, \\
+    \Ve_3 &= \Ve_{\bar{3}}.
+\end{align*}
+这样用$\MObar$系的基向量表示了$\MO$的基向量。我们在$\MObar$系中画出了示意图（如图\ref{fig2.1}）：变换律保证了变换后的基向量沿着相应的坐标轴，可以将图\ref{fig2.1}与图1.5(b)进行比较。
+
+{
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig2.1.png}
+    \figcaption{\textit{ 在$\MObar$系中画出$\MO$系和$\MObar$系的基向量。 }}
+    \label{fig2.1}
+}
+
+
+
+\subsection*{逆变换}
+洛伦兹变换$\Lambda\indices{^{\bar{\beta}}_\alpha}$只依赖于两个坐标系之间的相对速度，下面将这种依赖关系写明：
+\[
+    \Lambda\indices{^{\bar{\beta}}_\alpha} = \Lambda\indices{^{\bar{\beta}}_\alpha} (\bm{v}).
+\]
+于是
+\begin{equation}
+    \Ve_\alpha = \Lambda\indices{^{\bar{\beta}}_\alpha} (\bm{v})\, \Ve_{\bar{\beta}}.
+\label{equ2.14}
+\end{equation}
+如果$\MO$的基向量是通过$\MObar$的基向量经过速度$\bm{v}$对应的Lorentz变换得到的，那么逆变换必然是$(-\bm{v})$对应的，即：
+\begin{equation}
+    \Ve_{\bar{\mu}} = \Lambda\indices{^\nu_{\bar{\mu}}}(-\bm{v}) \, \Ve_\nu.
+\label{equ2.15}
+\end{equation}
+上式采用新的$\bar{\mu}, \nu$以避免与上上式混淆，带bar的指标仍然是指$\MObar$系。矩阵$[\Lambda\indices{^\nu_{\bar{\mu}}}]$是矩阵$[\Lambda\indices{^{\bar{\beta}}_\alpha}]$将$\bm{v}$替换成$-\bm{v}$得到的。指标上的bar只是用来\textbf{标记}观测者：变换矩阵$[\Lambda]$相应的速度（$\bm{v}$或者$-\bm{v}$）\textbf{总是}\textit{上标对应的坐标系}相对于\textit{下标对应的坐标系}的速度。这在\eqref{equ2.14}和\eqref{equ2.15}式特别清楚，$\bm{v}$是$\MObar$系（\eqref{equ2.14}）式的上标坐标系）相对于$\MO$系的速度；而$-\bm{v}$是$\MO$系（\eqref{equ2.15}式的上标坐标系）相对于$\MObar$系的速度。本章习题11帮助读者进一步理解这一点。
+
+\eqref{equ2.15}式可以写为
+\[
+    \Ve_{\bar{\beta}} = \Lambda\indices{^\nu_{\bar{\beta}}}(-\bm{v}) \, \Ve_\nu.
+\]
+上式只是把$\bar{\mu}$替换成了$\bar{\beta}$，方程的含义没有任何改变，同样是$\bar{\beta}$的四个值对应四个方程。上式带入$\Ve_\alpha$的表达式\eqref{equ2.14}式中：
+\begin{equation}
+    \Ve_\alpha = \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) \, \Ve_{\bar{\beta}} = \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) \Lambda\indices{^\nu_{\bar{\beta}}}(-\bm{v}) \, \Ve_\nu.
+\label{equ2.16}
+\end{equation}
+上式只出现了$\MO$的基向量。因此它必然是对\textbf{所有}$\bm{v}$成立的恒等式。等式右侧含有两个求和，对$\bar{\beta}$和对$\nu$的。先计算对$\bar{\beta}$的求和，则等号右侧就是$\{ \Ve_\nu \}$的线性组合，每个$\Ve_\nu$对应的线性系数为：
+\begin{equation}
+    \sum_{\bar{\beta}} \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) \, \Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v}).
+\label{equ2.17}
+\end{equation}
+考虑\eqref{equ2.16}式中的某个固定的$\alpha$，等号成立意味着等号\textbf{右侧}的$\Ve_\alpha$的系数必须为1，而其余系数必须为0。用数学形式表示为
+\[
+    \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) \, \Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v}) = \delta\indices{^\nu_\alpha},
+\]
+其中$\delta\indices{^\nu_\alpha}$是Kronecker delta符号，这样可以导出
+\[
+    \Ve_\alpha = \delta\indices{^\nu_\alpha} \Ve_\nu,
+\]
+它是个恒等式。
+
+更换相乘顺序，将上面的关键公式写为
+\begin{shaded}
+\begin{equation}
+    \Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v}) \, \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) = \delta\indices{^\nu_\alpha}.
+\label{equ2.18}
+\end{equation}
+\end{shaded}
+上式意味着矩阵$[\Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v})]$和矩阵$[\Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v})]$\textbf{互逆}，因为对$\bar{\beta}$的求和意味着两个矩阵相乘。矩阵$(\delta\indices{^\nu_\alpha})$就是单位矩阵。
+
+向量分量的变换式
+\[
+    A^{\bar{\beta}} = \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) \, A^\alpha,
+\]
+也有相应的逆形式。等号两侧乘以$\Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v})$，对$\bar{\beta}$求和：
+\begin{align*}
+    \Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v})  \, A^{\bar{\beta}} &= \Lambda\indices{^\nu_{\bar{\beta}}} (-\bm{v}) \, \Lambda\indices{^{\bar{\beta}}_\alpha}(\bm{v}) \, A^\alpha \\
+    &= \delta\indices{^\nu_\alpha} A^\alpha \\
+    &= A^\nu.
+\end{align*}
+这意味着$\vec{A}$在$\MO$系的分量等于$\MObar$系的分量经过速度$-\bm{v}$对应的Lorentz变换得到，我们得到了正确结论。
+
+上述内容与读者熟悉的欧几里得空间中的向量代数类似，只是这里采用了新的指标记号，这种记号在本书其余的部分大用特用。读者应该掌握上述内容的几何意义以及代数依据。
+
+
 
 \section{四维速度}
 \label{sec2.3}

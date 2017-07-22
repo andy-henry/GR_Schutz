@@ -18,7 +18,7 @@
 % e.g. 920px width and 460px height.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt,fleqn,twoside]{book}
+\documentclass[10pt,fleqn,twoside]{book}
 \makeatletter	% @ is now a normal "letter" for TeX
 
 
@@ -91,6 +91,8 @@
 \input{structure}
 \usepackage{booktabs}
 
+\usepackage{syntonly}
+%\syntaxonly
 %----------------------------------------------------------------------------------------
 
 
@@ -127,7 +129,7 @@
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
 \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{background}}; % Background image
-\draw[anchor=north] (midpoint) node [fill=orange,fill opacity=0.2,text opacity=1,inner sep=1cm]{\Huge\centering\sffamily\parbox[c][][t]{\paperwidth}{\bf \centering \zihao{-0}  初练 \ding{73} 广义相对论 \\[1pt] % Book title
+\draw[anchor=north] (midpoint) node [fill=orange,fill opacity=0.2,text opacity=1,inner sep=1cm]{\Huge\centering\sffamily\parbox[c][][t]{\paperwidth}{\bf \centering \zihao{1} \quad \quad \quad 初练 \ding{73} 广义相对论 {\zihao{5}$\sim$イッハ゜ンソウタイセイリロン$\sim$}   \\[1pt] % Book title
 {\bf \zihao{3} 原著：Bernard Schutz}\\[1pt] % Author name
 {\bf \zihao{3} \chntoday}
 }};
@@ -151,8 +153,13 @@
 %	\AddToShipoutPicture{
 %	    \put(480,0){\makebox(-15,0)[bl]{\usebox{\mygraphic}}}}
 
-%\chapterimage{nozakikun.png}
-%\input{Preface}
+\chapterimage{aete.png}
+\input{HalfTitle}
+
+%\input{Dedication}
+
+\chapterimage{maya02.png}
+\input{Preface}
 
 \chapterimage{yushieru.png}
 \tableofcontents % Print the table of contents itself
@@ -183,6 +190,28 @@
 \chapterimage{minami.png}
 \input{./Chaps/Chap7}
 
+\chapterimage{eden.png}
+\input{./Chaps/Chap8}
+
+\chapterimage{0413.png}
+\input{./Chaps/Chap9}
+
+\chapterimage{rika.png}
+\input{./Chaps/Chap10}
+
+\chapterimage{nozomi.png}
+\input{./Chaps/Chap11}
+
+\chapterimage{zero.png}
+\input{./Chaps/Chap12}
+
+\appendix
+\chapterimage{tototo.png}
+\input{./Chaps/Appendix}
+
+\pagestyle{empty}
+\chapterimage{whj3.png}
+\input{Refs}
 
 \end{spacing}
 
