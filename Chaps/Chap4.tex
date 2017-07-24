@@ -475,15 +475,212 @@ $T^{ij}$的物理意义，简单来说，就是相邻流体元之间的力。之
 
 \section{理想流体}
 \label{sec4.6}
+最后来讨论一下最常用的流体模型。\textbf{相对论中的理想流体(perfect fluid)是在流体元的MCRF中没有粘性、没有热传导的流体。} 它是热力学“理想气体”概念的推广，理想流体只比“尘埃系统”复杂，是实际应用的最简单的流体模型。理想流体的两个限制条件大大简化了它的应力-能量张量，下面就来研究。
+
+\subsection*{没有热传导}
+根据$\mathbf{T}$的定义，没有热传导意味着在MCRF中，$T^{0i} = T^{i0} = 0$，只有粒子流动时能量才会流动。回顾一下，在讨论热力学第一定律的时候，我们证明了如果粒子数守恒，则比熵与热流的关系为\eqref{equ4.26}式。这意味着在理想流体中，如果满足粒子数守恒\eqref{equ4.35}式，则流体的熵$S$不随时间变化。后面会详细讨论这一守恒律。
+
+
+
+\subsection*{没有粘性}
+粘性力是平行于流体元界面的力，没有粘性意味着相互作用力总是垂直于界面，即$T^{ij}$只有在$i = j$时才不为零，在$i \neq j$时$T^{ij} = 0$，也就是说$T^{ij}$是对角矩阵。此外，$T^{ij}$必须在所有MCRF都是对角的，因为“没有粘性”的条件不依赖于空间坐标轴方向。唯一的在所有坐标系都是对角的矩阵是单位矩阵的常数倍：所有对角元都相等。因此，通过$x$表面的只有$x$方向的力，$y, z$同理。各平面的单位面积的力相等，称之为\textbf{压强}(pressure)，记作$p$。因此$T^{ij} = p \delta^{ij}$。对称的$3 \times 3$矩阵$T^{ij}$有6个独立变量，无粘性条件使得只余下一个变量——压强。
+
+
+\subsection*{$\mathbf{T}$的形式}
+根据上文的论述，在MCRF中，$\mathbf{T}$的分量为：
+\begin{equation}
+    (T^{\alpha \beta}) = 
+    \begin{pmatrix}
+        \rho & 0 & 0 & 0 \\
+        0 & p & 0 & 0 \\
+        0 & 0 & p & 0 \\
+        0 & 0 & 0 & p
+    \end{pmatrix}.
+\label{equ4.36}
+\end{equation}
+不难证明，在MCRF中：
+\begin{equation}
+    T^{\alpha \beta} = (\rho + p) U^\alpha U^\beta + p\eta^{\alpha \beta}.
+\label{equ4.37}
+\end{equation}
+例如，如果$\alpha = \beta = 0$，则$U^0 = 1, \eta^{00} = -1, T^{\alpha \beta} = (\rho + p) - p = \rho$，正如\eqref{equ4.36}所示。验证所有$\alpha, \beta$的取值可以证明\eqref{equ4.37}可以导出\eqref{equ4.36}。方程\eqref{equ4.37}的坐标系无关的形式为：
+\begin{shaded}
+\begin{equation}
+    \mathbf{T} = (\rho + p) \vec{U} \otimes \vec{U} + \rho \mathbf{g}^{-1}.
+\label{equ4.38}
+\end{equation}
+\end{shaded}
+这就是理想流体的应力-能量张量。
+
+\subsection*{压强的含义}
+比较\eqref{equ4.38}和\eqref{equ4.19}可以看出，“尘埃”是无压强的理想流体。这意味着只有理想流体的粒子\textbf{没有}随机运动，它的压强才为零。压强来自粒子的随机速度。即使是粒子之间可以视为无碰撞的稀薄气体仍然有压强，这是因为压强是动量流量，不论它来自于作用力或者粒子通过界面都可以。
+
+\subsection*{守恒律}
+根据\eqref{equ4.34}式可得
+\begin{equation}
+    T\indices{^{\alpha \beta}_{, \beta}} = \big[ (\rho + p)U^\alpha U^\beta + p \eta^{\alpha \beta} \big]_{, \beta} = 0.
+\label{equ4.39}
+\end{equation}
+这是张量微积分的第一个计算实例。上式代表4个方程，对应$\alpha$的4个取值。首先，假设粒子数守恒：
+\begin{equation}
+    (n U^\beta)_{, \beta} = 0,
+\label{equ4.40}
+\end{equation}
+将\eqref{equ4.39}式等号右侧第一项写为
+\begin{align}
+    \big[ (\rho + p)U^\alpha U^\beta \big]_{, \beta} &= \left[ \frac{\rho + p}{n} U^\alpha n U^\beta \right]_{, \beta} \notag \\
+    &= nU^\beta \left( \frac{\rho + p}{n} U^\alpha \right)_{, \beta}. \label{equ4.41}
+\end{align}
+由于$\eta^{\alpha \beta}$矩阵元都是常数，因此$\eta\indices{^{\alpha \beta}_{, \gamma}} = 0$。这可以导出：
+\begin{equation}
+    U\indices{^\alpha_{, \beta}} U_\alpha = 0.
+\label{equ4.42}
+\end{equation}
+上式的证明为，
+\begin{equation}
+    U^\alpha U_\alpha = -1 \quad \Rightarrow \quad (U^\alpha U_\alpha)_{, \beta} = 0,
+\label{equ4.43}
+\end{equation}
+或者
+\begin{equation}
+    (U^\alpha U^\gamma \eta_{\alpha \gamma})_{, \beta} = (U^\alpha U^\gamma)_{, \beta} \eta_{\alpha \gamma} = 2 U\indices{^\alpha_{, \beta}} U^\gamma \eta_{\alpha \gamma}.
+\label{equ4.44}
+\end{equation}
+最后一步利用了$\eta_{\alpha \beta}$的对称性，即$U\indices{^\alpha_{, \beta}} U^\gamma \eta_{\alpha \gamma} = U^\alpha U\indices{^\gamma_{, \beta}} \eta_{\alpha \gamma}$。最后，\eqref{equ4.44}式的最后一个表达式可以化为
+\[
+    2 U\indices{^\alpha_{, \beta}} U_\alpha.
+\]
+根据方程\eqref{equ4.43}可知上式为零，这就证明了\eqref{equ4.42}式。
+
+\eqref{equ4.42}式的作用如下。将\eqref{equ4.41}带入原方程\eqref{equ4.39}：
+\begin{equation}
+    nU^\beta \left( \frac{\rho + p}{n} U^\alpha \right)_{, \beta} + p_{, \beta} \eta^{\alpha \beta} = 0.
+\label{equ4.45}
+\end{equation}
+根据上式表示的四个方程，可以导出一个特别有用的出来。上式两侧乘以$U_\alpha$并对$\alpha$求和，这给出了\eqref{equ4.45}式在MCRF的时间分量：
+\begin{equation}
+    n U^\beta U_\alpha \left( \frac{\rho + p}{n} U^\alpha \right)_{, \beta} + p_{, \beta} \eta^{\alpha \beta} U_\alpha = 0.
+\label{equ4.46}
+\end{equation}
+上式最后一项等于
+\[
+    p_{, \beta} U^\beta
+\]
+它就是压强$p$沿着流体元世界线的导数$\rd p / \rd \tau$. 
+
+根据\eqref{equ4.42}式，$U^\alpha$对$\beta$求导数的项等于零，因此
+\begin{equation}
+    U^\beta \left[ -n \left( \frac{\rho + p}{n} \right)_{, \beta} + p_{, \beta} \right] = 0,
+\label{equ4.47}
+\end{equation}
+（其中利用了$U^\alpha U_\alpha = -1$）
+
+上式可以化为
+\begin{equation}
+    -U^\beta \left[ \rho_{, \beta} - \frac{\rho + p}{n} n_{, \beta} \right] = 0.
+\label{equ4.48}
+\end{equation}
+用另一种形式写为
+\begin{equation}
+    \frac{\rd \rho}{\rd \tau} - \frac{\rho + p}{n} \frac{\rd n}{\rd \tau} = 0.
+\label{equ4.49}
+\end{equation}
+将它与\eqref{equ4.25}比较可得
+\begin{shaded}
+\begin{equation}
+    U^\alpha S_{, \alpha} = \frac{\rd S}{\rd \tau} = 0.
+\label{equ4.50}
+\end{equation}
+\end{shaded}
+因此，粒子数守恒的理想流体流动过程中的比熵守恒，这称为\textbf{绝热的 (adiabatic)}。由于流体元的熵在流动过程中不变，因此一般不需要考虑它。然而需要记住，热力学的能量守恒定律体现在守恒方程\eqref{equ4.39}当中，parallel to $U^\alpha$。\footnote{最后一句没看懂（捂脸}
+
+方程\eqref{equ4.39}的其余三个空间分量按如下方式处理。将\eqref{equ4.45}式写为
+\[
+    n U^\beta \left( \frac{\rho + p}{n} U^\alpha \right)_{, \beta} + p_{, \beta} \eta^{\alpha \beta} = 0,
+\]
+在MCRF中，$U^i = 0$，但是$U\indices{^i_{, \beta}} \neq 0$。在MCRF中，上式与$U_\alpha$缩并的结果就是的取上式的零分量，前面已经计算过了。因此现在只需要考虑$i$分量：
+\begin{equation}
+    n U^\beta \left( \frac{\rho + p}{n} U^i \right)_{, \beta} + p_{, \beta} \eta^{i \beta} = 0.
+\label{equ4.51}
+\end{equation}
+因为$U^i = 0$，而$(\rho + p) / n$的$\beta$导数没有贡献，因此
+\begin{equation}
+    (\rho + p) U\indices{^i_{, \beta}} U^\beta = p_{, \beta} \eta^{i \beta} = 0.
+\label{equ4.52}
+\end{equation}
+为了更容易理解，将$i$指标降低，因为$\eta\indices{_i^\beta} = \delta\indices{_i^\beta}$，因此
+\begin{equation}
+    (\rho + p) U_{i, \beta} U^\beta + p_{, i} = 0.
+\label{equ4.53}
+\end{equation}
+最后，注意到$U_{i, \beta} U^\beta$是四维加速度$a_i$的定义：
+\begin{shaded}
+\begin{equation}
+    (\rho + p) a_i + p_{, i} = 0.
+\label{equ4.54}
+\end{equation}
+\end{shaded}
+熟悉非相对论性流体力学的读者会发现上式就是流体的欧拉方程：
+\begin{equation}
+    \rho \bm{a} + \nabla p = 0, \label{equ4.55}
+\end{equation}
+的推广。其中
+\begin{equation}
+    \bm{a} = \dot{\bm{v}} + (\bm{v} \cdot \nabla) \bm{v}.
+\label{equ4.56}
+\end{equation}
+唯一的不同是$\rho$在相对论推广的形式为$(\rho + p)$。在相对论中，$(\rho + p)$起到了“惯性质量密度”的作用，根据方程\eqref{equ4.54}，$(\rho + p)$越大，物体加速越困难。\eqref{equ4.54}是本质上与$\bm{F} = m\bm{a}$相似，$-p_{, i}$是流体元单位体积所受的力。粗略地说，$p$是流体元对它附近体元施加的力，故而$-p$是流体元所受的力。但是相反一侧的体元也会给它施加反向的力，因此如果$p$随着位置的不同而变化，就会造成使流体元加速的净作用力，这就是$-\nabla p$作为力出现的原因。
+
 
 \section{对于广义相对论的重要性}
 \label{sec4.7}
+广义相对论是引力的相对论性理论。如果没有很好地理解张量、SR中的流体力学，以及弯曲空间，就不能理解广义相对论。目前还没有学习曲率（下一步就要讲），不过现在可以向前展望，认识一下这个理论的大致轮廓。
+
+首先是$\mathbf{T}$在GR中超级重要的地位。牛顿理论的引力场源是质量密度$\rho$，它与我们的$\rho_0$很像。但是从相对论的观点看，只把静质量作为引力场源是很奇怪的，因为静质量与能量可以相互转化。实际上，一些高精度实验与这种理论不符（后面会讲）。因此引力场源应该是\textbf{所有}能量——总质能密度$T^{00}$。但是如果引力场源只是张量的一个分量，那么不可能得到具有不变性的引力理论：因为总要选择一个坐标系来计算$T^{00}$。因此爱因斯坦猜测，引力场源是$\mathbf{T}$：所有应力、压强与动量都是引力场源。这个猜想，结合弯曲空间的深刻认识，使他建立了广义相对论。
+
+第二，压强在GR中的地位比在牛顿理论中更加基本。其一，因为压强是一种引力场源；其二，压强出现在了\eqref{equ4.54}式当中。考虑一个高密度恒星，它的强引力场要求具有很大的压强梯度，梯度的大小与如果压强消失则流体元具有的加速度$a_i$有关。给定引力场，也就确定了$a_i$，相应的压强梯度抵消了引力造成的加速度：
+\[
+    -a_i = \frac{p_{,i}}{\rho + p}.
+\]
+这就得到了压强梯度$p_i$。因为$(\rho + p)$比$\rho$大，因此相对论计算得到的压强梯度比牛顿理论大。此外，由于$\mathbf{T}$的所有分量都是引力场源，压强更大引力场也更强，这就使得维持恒星所需的压强（比牛顿理论的计算结果）更大。对于$p \ll \rho$的恒星（见下文），相对论与牛顿理论的差别不大。但如果$p$与$\rho$差不多，则压强的增加使得压强梯度\textbf{不可能}维持恒星，必然会发生引力坍缩。当然，上述内容含有大量计算过程，但从中可以看到即使研究SR中的流体也能看出GR对引力的一些根本变化。
+
+现在考虑一下$p$和$\rho$的相对大小。从第一章习题1可见，一般情况下$p \ll \rho$。实际上，只有对密度很大的物质（例如中子星）或者温度很高、粒子热运动速度接近光速（“相对论性”气体）才有$p \approx \rho$。
 
 \section{高斯定律}
 \label{sec4.8}
+关于流体的最后一个内容是积分形式的守恒律，它的微分形式是\eqref{equ4.34}和\eqref{equ4.35}式。就像三维向量分析那样，SR也有同样的高斯定律：散度的体积分可以化为面积分。定理的证明与三维情形类似，这里就不证了，只给出它的形式：
+\begin{shaded}
+\begin{equation}
+    \int V\indices{^\alpha_{, \alpha}} \, \rd^4 x = \oint V^\alpha n_\alpha \,\rd^3 S,
+\label{equ4.57}
+\end{equation}
+\end{shaded}
+其中$\tilde{n}$是\ref{sec4.3}节介绍的单位法向1形式，$\rd^3 S$表示四维体积分区域的三维超表面的三维面元。与三维情形相同，法向1形式指向区域\textbf{外部}。
+
+{
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig4.9.png}
+    \figcaption{\textit{一块时空区域的边界}}
+    \label{fig4.9}
+}
+
+为了说明\eqref{equ4.57}式，图\ref{fig4.9}画出了一块简单的四维区域，该积分区域的表面由四对超平面组成，分别是等$t, x, y, z$面，图中只画出了两对（因为是二次元平面图）。$t_2$平面的法向1形式是$\trd t$，而$t_1$平面的法向1形式是$-\trd t$，因为$t_1$面“指向区域外”的方向是$-t$方向。$x_2$面的法向是$\trd x$，$x_1$的是$-\trd x$。因此\eqref{equ4.57}式的面积分等于
+\begin{align*}
+    &\int_{t_2} V^0 \,\rd x \rd y \rd z + \int_{t_1} (-V^0)\, \rd x \rd y \rd z \\
+    + &\int_{x_2} V^x \,\rd t \rd y \rd z + \int_{x_1} (-V^x) \,\rd t\rd y \rd z \\
+    + &\text{其它边界面的类似的项。}
+\end{align*}
+上式整理为
+\begin{align}
+    \int \big[ V^0 (t_2) - V^0 (t_1) \big]\, \rd x \rd y \rd z + \int \big[ V^x (x_2) - V^x (x_1) \big]\, \rd t \rd y \rd z + \dots . \label{equ4.58}
+\end{align}
+如果$\vec{V}$取为$\vec{N}$，则$N\indices{^\alpha_{, \alpha}} = 0$意味着上式为零，也就是说三维体元中的粒子数变化（第一个积分）是由穿过边界面的流量引起的（后面几项）。如果要讨论能量守恒，就把$N^\alpha$换成$T^{0 \alpha}$并利用$T\indices{^{0 \alpha}_{, \alpha}} = 0$，并且可以得出与\eqref{equ4.58}式相似的解释。高斯定律是能量守恒的积分表述。
+
+
 
 \section{扩展阅读}
 \label{sec4.9}
+连续介质力学与守恒律在大部分GR教材都有所讲述，例如Misner \textit{et al.} (1973)。需要补习热力学或流体力学的读者可以分别参考 Fermi (1956) and Landau and Lifshitz (1959)。除了本章习题25之外，我们没有讨论电磁学，但电磁场也有应力-能量张量以及相应的守恒律，见Landau and Lifshitz (1962) or Jackson (1975)。 考虑耗散的相对论流体有着内禀的复杂性，尚有待进一步研究，这方面可见Israel and Stewart (1980)。连续介质的另一种模型是无碰撞气体，Andréasson (2005)介绍了如何在GR中描述这种系统。
 
 \section{习题}
 \label{sec4.10}
