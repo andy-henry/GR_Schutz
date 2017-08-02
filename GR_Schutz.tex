@@ -19,17 +19,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[10pt,fleqn,twoside]{book}
-\makeatletter	% @ is now a normal "letter" for TeX
+%\makeatletter	% @ is now a normal "letter" for TeX
 
 
-
+\usepackage{syntonly}
+%\syntaxonly
 
 \usepackage{longtable}
 \usepackage{pifont}
 \newcommand\cirfootnote{\ding{\numexpr171+\value{footnote}}}
 \usepackage{ctex,amsmath}
 \usepackage{mathrsfs}
-\usepackage[per-mode=symbol,inter-unit-product=\ensuremath{{}\cdot{}}]{siunitx}
+\usepackage{siunitx}
 \DeclareSIUnit[number-unit-product=\,]\degreeF{\degree F}
 \DeclareSIUnit[number-unit-product=\,]\degreeR{\degree R}
 \DeclareSIUnit[number-unit-product=\,]\calorie{cal}
@@ -93,6 +94,7 @@
 
 \usepackage{syntonly}
 %\syntaxonly
+
 %----------------------------------------------------------------------------------------
 
 
@@ -103,6 +105,7 @@
 \newcommand\trd{\tilde{\mathrm{d}}}
 \newcommand{\Ve}{\vec{e}}
 \newcommand{\MP}{\mathcal{P}}
+\newcommand{\TOmg}{\tilde{\omega}}
 \DeclareMathOperator{\tr}{\mathrm{tr}}
 \DeclareMathOperator{\Sinh}{\mathrm{sinh}}
 \DeclareMathOperator{\Cosh}{\mathrm{cosh}}

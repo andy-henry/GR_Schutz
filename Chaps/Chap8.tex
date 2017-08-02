@@ -1,2 +1,440 @@
 \chapter{爱因斯坦场方程}
 \label{chap8}
+
+\section{场方程的 Purpose and justification}
+\label{sec8.1}
+引力及其对物质的影响是用带度规的弯曲流形描述的，为了建立完整的理论，必须给出引力场源确定度规的定律。牛顿理论中的相应定律是
+\begin{equation}
+    \nabla^2 \phi = 4\pi G \rho,
+\label{equ8.1}
+\end{equation}
+其中$\rho$是质量密度。质点$m$对应的解为（见本章习题1）
+\begin{equation}
+    \phi = -\frac{G m}{r},
+\label{equ8.2}
+\end{equation}
+在$c = 1$的单位制下，$\phi$是无量纲的。
+
+牛顿理论的引力场源是质量密度，引力的相对论性理论必须包含它，“质量”本身不是相对论性的概念，因此要考虑其它量。一个显然的推广是含有静质量的总能量。第\ref{chap4}章把在流体元的MCRF中流体元的总能量密度记作$\rho$，$\rho$作为相对论性引力场源好不好啊？不太好，因为$\rho$只是MCRF一种参考系观测到的能量密度，其他观测者在他们自己的参考系观测的能量密度是分量$T^{00}$。如果$\rho$是场源，则意味着有一组更优越的参考系（他们的能量密度是$\rho$，而其他的只能叫$T^{00}$）。前面强调过\textbf{所有}参考系平权，因此这种看法不行，$\rho$不能作为场源，牛顿理论的质量密度在相对论的推广应该是$T^{00}$。
+
+不过，如果只有$T^{00}$是引力场源，那么总得选一个坐标系以计算$T^{00}$。要构造一个具有不变性的、不偏爱任何坐标系的理论，只有把\textbf{整个}应力-能量张量$\mathbf{T}$作为引力场源。\eqref{equ8.1}式推广到相对论的形式为
+\begin{equation}
+    \mathbf{O} (\mathbf{g}) = k \mathbf{T},
+\label{equ8.3}
+\end{equation}
+其中$k$是待定常数，$\mathbf{O}$是作用于$\mathbf{g}$的微分算符，方程\eqref{equ7.8}已经剧透了$\mathbf{g}$是$\phi$的推广。\eqref{equ8.3}式有10个独立分量（并非16个，因为$\mathbf{T}$是对称的），分别表示10个微分方程，而牛顿理论只有一个\eqref{equ8.1}式。
+
+类比\eqref{equ8.1}式可得，$\mathbf{O}$应该是二阶微分算符。由于\eqref{equ8.3}式中的$\mathbf{T}$是$\binom{2}{0}$张量，因此$\mathbf{O}$作用于$\mathbf{g}$所得结果也应该如此。也就是说，$\{ O^{\alpha \beta} \}$是$\binom{2}{0}$张量的分量，由$g_{\mu \nu, \lambda \sigma}$、$g_{\mu \nu, \lambda}$和$g_{\mu \nu}$组成。第\ref{chap6}章推导了Ricci张量$R^{\alpha \beta}$满足这种要求。实际上，具有如下形式的\textbf{任意}张量都可以：
+\begin{equation}
+    O^{\alpha \beta} = R^{\alpha \beta} + \mu g^{\alpha \beta }R + \Lambda g^{\alpha \beta},
+\label{equ8.4}
+\end{equation}
+其中$\mu, \Lambda$是常数。
+
+为了确定$\mu$，要用到$T^{\alpha \beta}$的一个尚未使用过的性质——\textbf{爱因斯坦等效原理}，这要求能量动量局域守恒（\eqref{equ7.6}式）:
+\begin{shaded}
+\[
+    T\indices{^{\alpha \beta}_{; \beta} } = 0.
+\]
+\end{shaded}
+上式必须对\textbf{所有}度规张量成立，因此根据\eqref{equ8.3}式可得
+\begin{equation}
+    O\indices{^{\alpha \beta}_{; \beta} } = 0
+\label{equ8.5}
+\end{equation}
+也要对所有度规成立。结合$g\indices{^{\alpha \beta}_{; \mu} } = 0$，由\eqref{equ8.4}式可得
+\begin{equation}
+    (R^{\alpha \beta} + \mu g^{\alpha \beta} R)_{; \beta} = 0.
+\label{equ8.6}
+\end{equation}
+上式与方程\eqref{equ6.98}比较可得$\mu = -\frac{1}{2}$。上面一通分析得到的方程为
+\begin{shaded}
+\begin{equation}
+    G^{\alpha \beta} + \Lambda g^{\alpha \beta} = kT^{\alpha \beta},
+\label{equ8.7}
+\end{equation}
+\end{shaded}
+其中$\Lambda, k$是待定常数。上式用无指标形式写为
+\begin{shaded}
+\begin{equation}
+    \mathbf{G} + \Lambda \mathbf{g} = k \mathbf{T}.
+\label{equ8.8}
+\end{equation}
+\end{shaded}
+这称为GR的场方程，或者叫爱因斯坦场方程。后面会看到，常数$k$可以通过退化到牛顿理论的要求来确定，而$\Lambda$仍然是任取的。
+
+现在先总结一下目前的进度。方程\eqref{equ8.7}是通过如下要求“导出”的：
+\begin{enumerate}
+    \item[(i)] 与方程\eqref{equ8.1}相似并且将它推广，
+    \item[(ii)] 不涉及钦点的坐标系，
+    \item[(iii)] 保证能量-动量的局域守恒对任意度规张量都成立。
+\end{enumerate}
+\eqref{equ8.7}式不是唯一满足(i)-(iii)的方程。人们提出了很多其它形式，有些甚至在爱因斯坦得到\eqref{equ8.7}式之前。近年来，随着技术的进步，爱因斯坦场方程可以得到高精度的验证。即使是对太阳系的弱引力场也有着爱因斯坦的替代理论，有些理论是为了在即将进行的太阳系实验中与GR的结论保持一致，而在强引力场中不同。GR的竞争理论总是比爱因斯坦场方程复杂，在美学层面上就不会吸引大量物理学家，除非某一天发现爱因斯坦方程与实验不符。Misner \textit{et al}. (1973), Will (1993), and Will (2006) 介绍了一些替代理论，以及1960年以来精度越来越高的实验是如何排除某些理论的。（第\ref{chap11}章要讨论GR的两个经典实验验证。）爱因斯坦场方程与这些检验符合的非常好，本书不讨论GR的替代理论，在这一点上，我们与诺贝尔奖得主、天体物理学家S. Chandrasekhar (1980)的看法一致：
+
+\begin{quote}
+The element of controversy and doubt, that have continued to shroud the general theory of relativity to this day, derives precisely from this fact, namely that in the formulation of his theory Einstein incorporates aesthetic criteria; and every critic feels that he is entitled to his own differing aesthetic and philosophic criteria. Let me simpy say that I do not share these doubts; and I shall leave it at that.
+\end{quote}
+
+尽管爱因斯坦的理论目前是没有挑战的，但仍然存在证据表明GR并非终极理论，因此还需要进行实验检验。爱因斯坦的理论并非量子理论，已经有大量的工作致力于建立一致的量子引力理论。我们预计，在某个实验精度上可以观测到GR的量子修正，这可能来自与度规耦合的额外的场，这种场的源必然违背爱因斯坦等效原理，也可能产生额外形式的引力波。原则上，GR与量子引力理论的任何预言都应该不同。有朝一日，高精度的引力实验会给量子引力理论提供线索。然而，尽管它很有趣，但是这种理论超出了本书范围，本书不讨论GR的其它替代理论。
+
+\subsection*{几何单位制}
+方程\eqref{equ8.7}中的常数$k$尚未确定，它的地位如同\eqref{equ8.1}式中的$4 \pi G$一样。在确定它之前，下面先来建立一种更简单的单位制，在其中$G = 1$。前面看到，在SR中选择单位制使得基本常量$c = 1$带来了很多便利，在引力理论中选择$G = 1$的单位制也一样。$c = G = 1$的单位制称为几何单位制(geometrized units)，它与SI单位制之间常用的转换因子为
+\begin{equation}
+    1 = \frac{G}{c^2} = 7.425 \times 10^{-28}\, \mathrm{m}\, \mathrm{kg}^{-1}.
+\label{equ8.9}
+\end{equation}
+利用上式可以将质量单位千克(kg)化为长度单位米(m)。表格8.1列出了一些常量在SI和集合单位制的值。本章习题2有助于读者掌握新的单位制。
+
+\begin{table}[h]
+\centering
+\begin{tabular}{l l l}
+\toprule
+常量 & SI值 & 几何值 \\
+\midrule
+$c$ & $2.998 \times 10^8\, \mathrm{ms}^{-1}$ & 1 \\
+$G$ & $6.674 \times 10^{-11} \,\mathrm{m}^3 \mathrm{kg}^{-1}\mathrm{s}^{-2} $ & 1 \\
+$\hbar$ & $1.055 \times 10^{-34} \,\mathrm{kg}\, \mathrm{m}^2\, \mathrm{s}^{-1} $ & $\SI{2.612e-70}{m^2}$ \\
+$m_e$ & $\SI{9.109e-31}{kg} $ & $\SI{6.764e-58}{m} $ \\
+$m_p$ & $\SI{1.673e-27}{kg} $ & $\SI{1.242e-54}{m} $ \\
+$M_{\odot}$ & $\SI{1.988e30}{kg} $ & $\SI{1.476e3}{m} $ \\
+$M_{\oplus}$ & $\SI{5.972e24}{kg} $ & $\SI{4.434e-3}{m} $ \\
+$L_{\odot}$ & $\SI{3.84e26}{kg.m^{2}.s^{-3}} $ & $1.06 \times 10^{-26}$ \\
+\bottomrule
+\end{tabular}
+\caption{SI与几何单位制中基本常量的取值对比}
+\label{tab8.1}
+\end{table}
+\textit{注：符号$m_e$和$m_p$分别代表电子和质子的静质量；$M_{\odot}$和$M_{\oplus}$分别代表太阳和地球的质量；$L_{\odot}$表示太阳的光度（其SI单位等于焦耳每秒）。最多保留四位有效数字（即使精度更高），数据来自 Yao (2006). }
+
+\ 
+
+几何单位制在引力理论中的本质地位可以通过$M_{\oplus}$在两种单位制的值来说明。地球的质量是通过观测卫星轨道并利用开普勒定律得到的。它测量了牛顿引力势能——含有因子$GM_\oplus$，这等于$c^2$乘以质量的\textbf{几何单位制}的值。地球卫星轨道的激光跟踪实验的结果具有十位有效数字。由于光速$c$具有\textbf{确定的}值，因此它没有不确定度，于是$M_\oplus$的几何值具有十位有效数字。然而，$G$的值是在实验室测量的，引力很弱，实验的不确定度较大。 The conversion factor $G/c^2$ is uncertain by two parts in $10^5$, so that is
+also the accuracy of the SI value of $M_\oplus$。类似地，利用行星的雷达精确跟踪实验(precise radar tracking of the planets)观测的太阳质量的几何值有着9位有效数字，而它用千克表示的值的不确定度却大得多。
+
+\section{爱因斯坦方程}
+\label{sec8.2}
+爱因斯坦方程的分量形式——\eqref{equ8.7}式在$\Lambda = 0$（目前采用这种简化假设，后面会重新考虑$\Lambda$）、$k = 8\pi$的情况下：
+\begin{equation}
+    G^{\alpha \beta} = 8 \pi T^{\alpha \beta}.
+\label{equ8.10}
+\end{equation}
+常数$\Lambda$称为\textbf{宇宙学常数 (cosmological constant)}，爱因斯坦最初没有引入$\Lambda$，而是在几年后为了得到静态宇宙解（描述宇宙大尺度行为的解）才引入，那时他对此很满意。然而之后观测到的宇宙膨胀现象使得爱因斯坦放弃了$\Lambda$并后悔引入它。再然而…近年来的天文观测强烈暗示$\Lambda$的取值很小但不为零。第\ref{chap12}章讨论含$\Lambda$的情况，而目前设$\Lambda = 0$。这样做的理由，以及潜在的危险性在本章习题18进行讨论。
+
+$k = 8\pi$是通过要求爱因斯坦方程预言太阳系的行星运动与牛顿理论一致而得到的。在太阳系的这种牛顿极限环境下，必须要求GR的预言与牛顿理论一致，因为后者是饱经实验检验的理论。在本章最后一节会看到，牛顿运动所对应的度规正是\eqref{equ7.8}式。本章的任务之一就是证明爱因斯坦方程\eqref{equ8.10}式在弱引力场的情况下的解是\eqref{equ7.8}式（见本章习题3）。当然，讲道理的话，现在应该认为$k$是任意的，在导出\eqref{equ7.8}式那样的解之后再得到$k$的值，不过提前把$k$的值设为$8 \pi$是很方便的，只要到时候证明这个值是正确的就好。
+
+方程\eqref{equ8.10}是10个耦合的微分方程（并非16个，因为$T^{\alpha \beta}$和$G^{\alpha \beta}$都是对称的）。在给定场源$T^{\alpha \beta}$之后求解度规$g_{\alpha \beta}$的十个独立分量。这些方程是非线性的，但是它们有着良好的初值结构——即，在初始值给定之后$g_{\alpha \beta}$之后的值也随之确定。然而，必须指出一点：由于$\{ g_{\alpha \beta} \}$是张量在某个坐标系的分量，因此坐标变换会造成$\{ g_{\alpha \beta} \}$的变换，由于有4个坐标，于是这10个$g_{\alpha \beta}$有着4个任意的函数自由度。因此，根据任意初始条件确定所有的10个$g_{\alpha \beta}$是不可能的，因为初始状态以后的坐标可以任意变换。实际上，爱因斯坦方程也具有这种性质：Bianchi恒等式
+\begin{equation}
+    G\indices{^{\alpha \beta}_{; \beta}} = 0
+\label{equ8.11}
+\end{equation}
+意味着10个$G^{\alpha \beta}$之中存在4个微分恒等式（分别对应$\alpha = 0, 1, 2, 3$），这10个$G^{\alpha \beta}$也不是独立的，因而10个爱因斯坦方程中实际上只有6个独立方程，对于10个$g_{\alpha \beta}$中的6个分量求解，描述不依赖于坐标系的几何性质。
+
+上述内容在考虑系统从某个初态开始随时间演化的时候特别重要。本书第\ref{chap9}章将会以一种有限的方式来处理引力波。由于爱因斯坦方程很复杂，它的动力学状况通常通过数值求解。数值相对论领域已经建立了明确的方法以将$g_{\alpha \beta}$的坐标自由度和真正的几何与动力学自由度区分开来。这在更高阶的教材中有所描述，例如 Misner et al. (1973), or Hawking and Ellis (1973), see also Choquet-Bruhat and York (1980) or the more recent review by Cook (2000). 这里只需要理解实际只有关于$g_{\alpha \beta}$中6个量的6个方程，以及爱因斯坦方程允许完整的选择坐标系的自由度。
+
+\section{弱引力场的爱因斯坦方程}
+\label{sec8.3}
+
+\subsection*{近Lorentz坐标系}
+没有引力的时空是平直的，弱引力场的时空是“近”平直的。“近”平直的流形的含义是，存在坐标系使得度规在其中的分量为
+\begin{shaded}
+\begin{equation}
+    g_{\alpha \beta} = \eta_{\alpha \beta} + h_{\alpha \beta},
+\label{equ8.12}
+\end{equation}
+\end{shaded}
+其中
+\begin{equation}
+    |h_{\alpha \beta}| \ll 1
+\label{equ8.13}
+\end{equation}
+在时空的任意点成立。这种坐标系称为近Lorentz坐标系(nearly Lorentz coordinates)。注意，上述定义要求“存在坐标系”而非“对所有坐标系”，因为即使是Minkowski时空也可以有奇怪的坐标系使得其中的度规分量$g_{\alpha \beta}$并非$\eta_{\alpha \beta}$那样简单的对角矩阵$(-1, +1, +1, +1)$。另一方面，如果方程\eqref{equ8.12}和\eqref{equ8.13}式在某一坐标系成立，则存在许多这样的坐标系。存在着两种保证近Lorentz坐标系经变换后仍然是近Lorentz的坐标变换：背景Lorentz变换和规范变换。
+
+前面既然说过爱因斯坦方程允许完整的选择坐标系的自由度、其理论预言在所有坐标系中都相同，那么为啥要考虑这种特别的近Lorentz坐标系？当然，所有坐标系的计算结果相同，但是在不合适的坐标系中的计算过程十分困难。（例如在球坐标系求解自由下落粒子的牛顿方程，或者在不能用分离变量法的坐标系中求解Poisson方程。） 也许在一个不合适的坐标系中可能求解，只是鱼唇的人类没有足够的创造和洞察力来得到相应的预言结果。因此，在GR中求解任何问题的第一步是找到使计算最简单的坐标系。正是因为爱因斯坦方程具有完整的坐标自由度，因此我们才可以机智地利用这一点在最简单的坐标系求解。构造有用的坐标系是一门艺术，它有着相当的复杂性。不过，在本节的情形中，由于$\eta_{\mu \nu}$是平直时空度规的最简单形式，因此方程\eqref{equ8.12}和\eqref{equ8.13}是“近平(nearly flat)”度规分量的最简单、最自然形式。
+
+\subsection*{背景Lorentz变换}
+SR的Lorentz变换矩阵为
+\begin{equation}
+    (\Lambda\indices{^{\bar{\alpha}}_{\beta}}) = 
+    \begin{pmatrix}
+        \gamma & -v\gamma & 0 & 0 \\
+        -v\gamma & \gamma & 0 & 0 \\
+        0 & 0 & 1 & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}, \quad \gamma = (1 - v^2)^{-1/2}
+\label{equ8.14}
+\end{equation}
+（对应于$x$方向速度$v$的boost变换）。
+
+对弱引力场，定义“背景Lorentz变换(background Lorentz transformation)”为：
+\begin{equation}
+    x^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_\beta} x^\beta
+\label{equ8.15}
+\end{equation}
+其中$(\Lambda\indices{^{\bar{\alpha}}_\beta})$就是SR中的Lorentz变换矩阵，它的矩阵元在各处都是常数。当然，弱引力场的时空不同于SR，因此背景Lorentz变换只是所有坐标变换中的一种。它有一个很好的性质，对度规张量进行变换：
+\begin{equation}
+    g_{\bar{\alpha} \bar{\beta}} = \Lambda\indices{^\mu_{\bar{\alpha}}} \Lambda\indices{^\nu_{\bar{\beta}}} g_{\mu \nu} = \Lambda\indices{^\mu_{\bar{\alpha}}} \Lambda\indices{^\nu_{\bar{\beta}}} \eta_{\mu \nu} + \Lambda\indices{^\mu_{\bar{\alpha}}} \Lambda\indices{^\nu_{\bar{\beta}}} h_{\mu \nu}.
+\label{equ8.16}
+\end{equation}
+Lorentz变换满足条件
+\begin{equation}
+    \Lambda\indices{^\mu_{\bar{\alpha}}} \Lambda\indices{^\nu_{\bar{\beta}}} \eta_{\mu \nu} = \eta_{\bar{\alpha} \bar{\beta}},
+\label{equ8.17}
+\end{equation}
+由此可得
+\begin{equation}
+    g_{\bar{\alpha} \bar{\beta}} = \eta_{\bar{\alpha} \bar{\beta}} + h_{\bar{\alpha} \bar{\beta}},
+\label{equ8.18}
+\end{equation}
+其中
+\begin{shaded}
+\begin{equation}
+    h_{\bar{\alpha} \bar{\beta}} :=  \Lambda\indices{^\mu_{\bar{\alpha}}} \Lambda\indices{^\nu_{\bar{\beta}}} h_{\mu \nu}.
+\label{equ8.19}
+\end{equation}
+\end{shaded}
+由此可见，在背景Lorentz变换下，$h_{\mu \nu}$\textbf{就像}SR中的张量那样进行变换！当然，$h_{\mu \nu}$不是张量，而是$g_{\mu \nu}$的一部分。背景Lorentz变换的性质产生了一种方便的虚拟看法：轻微弯曲的时空可以视为定义于\textbf{平直}时空的“张量”$h_{\mu \nu}$。所有的物理场——例如$R_{\mu \nu \alpha \beta}$——都通过$h_{\mu \nu}$表示，它们也“看起来像”定义在平直背景时空的场。然而，必须记住，弱引力场的时空是真真正正弯曲的，上述的虚拟看法是由于只考虑一类坐标变换而导致的。下面会看到，这种虚拟在计算过程中十分有用。
+
+\subsection*{规范变换}
+保持\eqref{equ8.12}和\eqref{equ8.13}式形式不变的另一种重要的坐标变换是——坐标系进行如下微小的变化
+\[
+    x^{\alpha'} = x^\alpha + \xi^\alpha (x^\beta),
+\]
+这种变化是由“向量”$\xi^\alpha$产生的，向量分量$\xi^\alpha$是时空的函数。如果要求$\xi^\alpha$是小量，满足$| \xi\indices{^\alpha_{, \beta}}| \ll 1$，则有
+\begin{align}
+    \Lambda\indices{^{\alpha'}_\beta} &= \frac{\partial x^{\alpha'}}{\partial x^\beta} = \delta\indices{^\alpha_\beta} + \xi\indices{^\alpha_{, \beta}}, \label{equ8.20} \\
+    \Lambda\indices{^\alpha_{\beta'}} &= \delta\indices{^\alpha_\beta} - \xi\indices{^\alpha_{, \beta}} + 0(|\xi\indices{^\alpha_{, \beta}}|^2). \label{equ8.21}
+\end{align}
+容易证明，保留到一阶小量时：
+\begin{equation}
+    g_{\alpha' \beta'} = \eta_{\alpha \beta} + h_{\alpha \beta} - \xi_{\alpha, \beta} - \xi_{\beta, \alpha}
+\label{equ8.22}
+\end{equation}
+其中\textbf{定义}了
+\begin{equation}
+    \xi_\alpha := \eta_{\alpha \beta} \xi^\beta.
+\label{equ8.23}
+\end{equation}
+\eqref{equ8.22}式意味着坐标变换对$h_{\alpha \beta}$的改变为
+\begin{shaded}
+\begin{equation}
+    h_{\alpha \beta} \to h_{\alpha \beta} - \xi_{\alpha, \beta} - \xi_{\beta, \alpha}
+\label{equ8.24}
+\end{equation}
+\end{shaded}
+如果所有的$|\xi\indices{^\alpha_{, \beta}}|$都是小量，则新的$h_{\alpha \beta}$仍是小量，变换后的坐标系仍是近Lorentz系。这种坐标变换称为\textbf{规范变换 (gauge transformation)}，这个名字来源于\eqref{equ8.24}式与电磁学中规范变换的相似性，在本章习题11详细讨论。爱因斯坦方程的坐标自由度意味着\eqref{equ8.24}中的$\xi^\alpha$可以是任意（小量）“向量”。后面会利用这种自由度大大简化方程。
+
+有必要对方程\eqref{equ8.21}和\eqref{equ8.22}中$\alpha', \beta'$这样的指标进行说明，有些初学者对此不太明白。指标带撇或带bar是为了表示是哪个在坐标系的分量，例如，$g_{\alpha' \beta'}$是张量$\mathbf{g}$在$\{ x^{\nu'} \}$坐标系中的分量。这些指标的取值仍然是$(0, 1, 2, 3)$。
+
+方程\eqref{equ8.22}等号右侧的指标不带撇，因为右侧的所有量都定义在不带撇的坐标系中。方程\eqref{equ8.22}的$\alpha = \beta = 0$的分量的含义为：张量$\mathbf{g}$在带撇坐标系中的0-0分量，等于在\textit{不带撇坐标系中}$\bm{\eta}$ \textit{的0-0分量}加上\textit{不带撇坐标系中} $h_{\alpha \beta}$ \textit{的0-0“分量”} 减去 \textit{两个$\xi_0$关于不带撇坐标$x^0$的导数项（按照\eqref{equ8.23}式定义）}。方程\eqref{equ8.22}看起来比较奇怪，因为与\eqref{equ8.15}不同，它等号两侧的指标不“匹配”。但是这可以接受，因为\eqref{equ8.22}式\textbf{并非}所说的张量方程，它只是表示了同一张量在两个特别的坐标系的分量之间的关系，而不表示一般的、具有坐标系不变性的关系。
+
+\subsection*{Riemann张量}
+利用\eqref{equ8.12}式容易证明，保留到$h_{\mu \nu}$的一阶小量时，Riemann张量用$h_{\mu \nu}$表示为：
+\begin{shaded}
+\begin{equation}
+    \mathbf{R}_{\alpha \beta \mu \nu} = \frac{1}{2} (h_{\alpha \nu, \beta \mu} + h_{\beta \mu, \alpha \nu} - h_{\alpha \mu, \beta \nu} - h_{\beta \nu, \alpha \mu} ).
+\label{equ8.25}
+\end{equation}
+\end{shaded}
+推导作为本章习题5。这些Riemann分量与规范\textbf{无关}，也就是说在\eqref{equ8.24}式的变化下不变。因为在坐标变换下$\mathbf{R}$的分量变换为原来分量的线性组合，一个微小的坐标变换——规范变换——将分量变化了很小一部分；由于这些分量本身就是小量，因此分量的变化量是二阶小量，从而不改变一阶近似\eqref{equ8.25}式的结构。
+
+\subsection*{弱场爱因斯坦方程}
+下面总是采用前文介绍的虚构观点：$h_{\alpha \beta}$是“背景”Minkowski时空上的张量，即SR中的张量。这样的方程是SR的张量方程，而对一般的坐标变换不一定有效。规范变换也是允许的，但是我们不把它们视为坐标变换。规范变换定义了一组等效的对称张量$h_{\alpha \beta}$：任何由方程\eqref{equ8.24}联系着的两个$h_{\alpha \beta}$产生的物理效果相同。
+
+在这种观点下，\textbf{定义}指标上升的量为
+\begin{align}
+    h\indices{^\mu_\beta} &:= \eta^{\mu \alpha} h_{\alpha \beta}, \label{equ8.26} \\
+    h^{\mu \nu} &:= \eta^{\nu \beta} h\indices{^\mu_\beta}, \label{equ8.27}
+\end{align}
+相应的迹
+\begin{equation}
+    h := h\indices{^\alpha_\alpha}, \label{equ8.28}
+\end{equation}
+定义$h_{\alpha \beta}$相应的trace reverse 张量为：
+\begin{equation}
+    \bar{h}^{\alpha \beta} := h^{\alpha \beta} - \frac{1}{2} \eta^{\alpha \beta} h.
+\label{equ8.29}
+\end{equation}
+“trace reverse”这一名字是因为
+\begin{equation}
+    \bar{h} := \bar{h}\indices{^\alpha_\alpha} = -h. \label{equ8.30}
+\end{equation}
+此外，可以证明方程\eqref{equ8.29}的逆也具有相同的形式：
+\begin{equation}
+    h^{\alpha \beta} = \bar{h}^{\alpha \beta} - \frac{1}{2} \eta^{\alpha \beta} \bar{h}.
+\label{equ8.31}
+\end{equation}
+
+在定义了上述内容之后，从方程\eqref{equ8.25}出发，不难证明爱因斯坦张量为
+\begin{equation}
+\begin{split}
+    G_{\alpha \beta} = -\frac{1}{2} \big[ \bar{h}\indices{_{\alpha \beta, \mu}^{, \mu}} + \eta_{\alpha \beta} \bar{h}\indices{_{\mu \nu}^{, \mu \nu}} - \bar{h}\indices{_{\alpha \mu, \beta}^{, \mu}} - \bar{h}\indices{_{\beta \mu, \alpha}^{, \mu}} + 0(h_{\alpha \beta}^2) \big]. 
+\end{split}
+\label{equ8.32}
+\end{equation}
+（对任意函数$f$，$f^{, \mu} := \eta^{\mu \nu} f_{, \nu}$。）
+
+显然，如果
+\begin{equation}
+    \bar{h}\indices{^{\mu \nu}_{, \nu}} = 0 \label{equ8.33}
+\end{equation}
+成立，则\eqref{equ8.32}式会大大简化。
+
+上式代表4个方程，由于我们有4个自由的规范函数$\xi^\alpha$，因此要尝试找到一个规范使得方程\eqref{equ8.33}成立，下面会证明总是可以找到这样合适的规范。因此，\eqref{equ8.33}式是一个规范条件，称为\textbf{Lorentz规范}条件，满足该式的$h_{\mu \nu}$称为是在Lorentz规范下的。这种规范的名字来源于电磁学的相似内容（见本章习题11）。这种规范在文献中出现的其它名字还有谐和规范( harmonic gauge)、de Donder规范。
+
+Lorentz规范存在性的证明如下。对于一般的$\bar{h}^{\text{(old)}}_{\mu \nu}$，$\bar{h}\indices{^{\text{(old)} \mu \nu}_{, \nu}} \neq 0$，在规范变换\eqref{equ8.24}之下，$\bar{h}_{\mu \nu}$变换为（作为本章习题12）：
+\begin{equation}
+    \bar{h}^{\text{(new)}}_{\mu \nu} = \bar{h}^{\text{(old)}}_{\mu \nu} - \xi_{\mu, \nu} - \xi_{\nu, \mu} + \eta_{\mu \nu} \xi\indices{^\alpha_{, \alpha}} \label{equ8.34}
+\end{equation}
+它的散度为
+\begin{equation}
+    \bar{h}\indices{^{\text{(new)} \mu \nu}_{, \nu}} = \bar{h}\indices{^{\text{(old)} \mu \nu}_{, \nu}} - \xi\indices{^{\mu, \nu}_{, \nu}} \label{equ8.35}
+\end{equation}
+满足$\bar{h}\indices{^{\text{(new)} \mu \nu}_{, \nu}} = 0$的规范的$\xi^\mu$根据下式确定：
+\begin{equation}
+    \square \xi^\mu = \xi\indices{^{\mu, \nu}_{, \nu}} = \bar{h}\indices{^{\text{(old)} \mu \nu}_{, \nu}} \label{equ8.36}
+\end{equation}
+其中$\square$是Laplacian的四维推广：
+\begin{equation}
+    \square f = f\indices{^{, \mu}_{, \mu}} = \eta^{\mu \nu} f_{, \mu \nu} = \left( -\frac{\partial^2}{\partial t^2} + \nabla^2 \right) f. \label{equ8.37}
+\end{equation}
+$\square$称为\textbf{D'Alembertian}或者波动算符，有时也记作$\Delta$。方程
+\begin{equation}
+    \square f = g \label{equ8.38}
+\end{equation}
+是三维非齐次波动方程，对于（性质良好的）任意$g$都有解（参见Choquet–Bruhat \textit{et al.}, 1977），因此总存在$\xi^\mu$使得任意$h_{\mu \nu}$变换到Lorentz规范。实际上，$\xi^\mu$并非唯一的，任何满足齐次波动方程的$\eta^\mu$:
+\begin{equation}
+    \square \eta^\mu = 0 \label{equ8.39}
+\end{equation}
+都可以加到$\xi^\mu$上而不产生影响：
+\begin{equation}
+    \square (\xi^\mu + \eta^\mu) = \bar{h}\indices{^{\text{(old)} \mu \nu}_{, \nu}} \label{equ8.40}
+\end{equation}
+因此仍然在Lorentz规范下。所以Lorentz规范实际上是一类规范。
+
+在Lorentz规范下，方程\eqref{equ8.32}化为（作为本章习题10）：
+\begin{equation}
+    G^{\alpha \beta} = -\frac{1}{2} \square \bar{h}^{\alpha \beta}. \label{equ8.41}
+\end{equation}
+于是弱场爱因斯坦方程为
+\begin{shaded}
+\begin{equation}
+    \square \bar{h}^{\mu \nu} = -16 \pi T^{\mu \nu}. \label{equ8.42}
+\end{equation}
+\end{shaded}
+上式称为“\textbf{线性化理论}”的场方程，因为上式对$h_{\alpha \beta}$是线性的。
+
+
+
+\section{牛顿引力场}
+\label{sec8.4}
+
+
+\subsection*{牛顿极限}
+牛顿引力理论在引力场很弱、粒子速度远小于光速的时候有效：$|\phi| \ll 1, |\bm{v}| \ll 1$。在这种情况下，GR必须得到与牛顿理论一致的预言。对分量$T^{\alpha \beta}$而言，速度很小通常意味着$|T^{00} \gg |T^{0i}| \gg |T^{ij}|$，“通常”的含义是在某些特殊情况下$T^{0i} = 0$，因此第二个不等式失效。但是在高速旋转的、可以用牛顿理论描述的恒星中，$T^{0i}$远大于任何$T^{ij}$。
+
+上述不等式通过方程\eqref{equ8.42}化为关于$\bar{h}_{\alpha \beta}$的不等式：$|\bar{h}^{00}| \gg |\bar{h}^{0i}| \gg |\bar{h}^{ij}|$。与上面相似，这个不等关系也是有限制的：\eqref{equ8.42}式左侧可以添加任何满足$\square a^{\mu \nu} = 0$的齐次项，这种方程解的分量大小不受$T^{\alpha \beta}$大小关系的限制。下一章会看到，这些齐次项对应引力波。因此关于$\bar{h}_{\alpha \beta}$分量的大小关系$|\bar{h}^{00}| \gg |\bar{h}^{0i}| \gg |\bar{h}^{ij}|$只适用于没有引力辐射的情形。当然，牛顿理论是没有引力波的，因此上述不等式在牛顿近似的过程中有效。于是，描述“牛顿”引力场的主导性的场方程为
+\begin{equation}
+    \square \bar{h}^{00} = -16 \pi \rho, \label{equ8.43}
+\end{equation}
+其中利用了$T^{00} = \rho + 0(\rho v^2)$。场的变化只是由于源的运动（速度$\bm{v}$）产生的，因此$\partial / \partial t$ 与$v \partial / \partial x$是同阶量，因此
+\begin{equation}
+    \square = \nabla^2 + 0(v^2 \nabla^2). \label{equ8.44}
+\end{equation}
+于是\eqref{equ8.43}式化为（只保留最低阶）：
+\begin{equation}
+    \nabla^2 \bar{h}^{00} = -16\pi \rho. \label{equ8.45}
+\end{equation}
+上式与牛顿方程\eqref{equ8.1}
+\[
+    \nabla^2 \phi = 4 \pi \rho \quad (\text{with} \ G = 1)
+\]
+比较可得：
+\begin{equation}
+    \bar{h}^{00} = -4 \phi. \label{equ8.46}
+\end{equation}
+因为$\bar{h}^{\alpha \beta}$的其它所有分量都是高阶小量，因此
+\begin{equation}
+    h = h\indices{^\alpha_\alpha} = - \bar{h}\indices{^\alpha_\alpha} = \bar{h}^{00}, \label{equ8.47}
+\end{equation}
+由此导出
+\begin{align}
+    h^{00} &= -2 \phi, \label{eq8.48} \\
+    h^{xx} &= h^{yy} = h^{zz} = -2\phi, \label{equ8.49}
+\end{align}
+线元的形式为
+\begin{equation}
+    \rd s^2 = - (1 + 2\phi) \rd t^2 + (1 - 2\phi) (\rd x^2 + \rd y^2 + \rd z^2). \label{equ8.50}
+\end{equation}
+这就是方程\eqref{equ7.8}剧透的度规。我们看到，这个度规给出了正确的牛顿运动定律，它是场方程在牛顿极限下导出的，因此证明了牛顿理论是GR的极限形式。另外，上述推导也验证了爱因斯坦方程的系数$k$的正确值是$8\pi$。
+
+大部分天体系统可以用牛顿理论做一阶近似描述，但是仍有很多系统的重要内容在牛顿理论之外的修正当中，这称为后牛顿效应，本章习题19、20讨论了其中两种。太阳系中的后牛顿效应是广义相对论最著名的实验验证之一，例如水星近日点的进动、太阳的光线偏折，第\ref{chap11}章对这两者进行研究。太阳系之外最重要的后牛顿效应是脉冲双星的轨道收缩，它确认了广义相对论在引力辐射存在情况下的理论预言（见第\ref{chap9}章）。因此，后牛顿效应提供了广义相对论的重要的高精度实验检验，目前已经建立了描述这些效应的良好理论，更高阶的近似也可以计算(Blanchet 2006, Futamase and
+Itoh 2007)。
+
+\subsection*{静态相对论性场源的远处引力场}
+考虑爱因斯坦方程的完整形式，对于任何处在有界区域的场源（“局域化”源），在距离该源很远的地方引力场为弱场，线性化理论可以应用于远处区域。我们称这种时空是\textbf{渐近平直 (asymptotically flat)}的：时空在距离场源很远的地方逐渐近于平直。
+
+能否采用上文的推导、得出结论说远处的引力场可以用关于牛顿势$\phi$的方程\eqref{equ8.50}描述？不行。第一，\eqref{equ8.50}式的推导过程假设了时空各处的引力场都很弱，包括引力场源内部的区域，因为推导过程中的关键一步是在场源之内将\eqref{equ8.45}与\eqref{equ8.1}式进行对应。而本节的情况没有假设源内部的引力场也是弱场。第二个原因是，高度相对论性的源的牛顿势$\phi$无从定义，因此\eqref{equ8.50}式没法解释。
+
+
+因此，我们应该从线性化的场方程出发。由于已经假设了引力场源$T^{\mu \nu}$是静态的（即与时间无关），因此可以假设远离场源处的$h_{\mu \nu}$与时间无关。（之后会放宽这个假设。）于是在远处\eqref{equ8.42}式化为
+\begin{equation}
+    \nabla^2 \bar{h}^{\mu \nu} = 0, \label{equ8.51}
+\end{equation}
+上式具有解
+\begin{equation}
+    \bar{h}^{\mu \nu} = \frac{A^{\mu \nu}}{r} + 0(r^{-2}), \label{equ8.52}
+\end{equation}
+其中$A^{\mu \nu}$是常数。此外还要满足规范条件\eqref{equ8.33}式：
+\begin{equation}
+    0 = \bar{h}\indices{^{\mu \nu}_{, \nu}} = \bar{h}\indices{^{\mu j}_{, j}} = -A^{\mu j} n_j / r^2 + 0(r^{-3}), \label{equ8.53}
+\end{equation}
+其中对$\nu$的求和化为了对$j$的求和，因为$\bar{h}^{\mu \nu}$与时间无关。$n_j$是单位径向分量：
+\begin{equation}
+    n_j = \frac{x_j}{r}. \label{equ8.54}
+\end{equation}
+方程\eqref{equ8.53}对所有$x^i$都成立，因此
+\begin{equation}
+    A^{\mu j} = 0, \quad \forall\, \mu , j. \label{equ8.55}
+\end{equation}
+这意味着\textbf{只有}分量$\bar{h}^{00}$非零（高阶小量被省略），换句话说，在远离场源的地方
+\begin{equation}
+    |\bar{h}^{00}| \gg |\bar{h}^{ij}|, \quad |\bar{h}^{00}| \gg |\bar{h}^{0j}|. \label{equ8.56}
+\end{equation}
+这些条件保证了远处的引力场与牛顿引力场的性质相似，因此可以反过来利用导出\eqref{equ8.46}式的对应关系，将任意静态场源远处引力场的“牛顿势”\textbf{定义}为
+\begin{equation}
+    (\phi)_{\text{relativistic far field}} := -\frac{1}{4} (\bar{h}^{00})_{\text{far field}}. \label{equ8.57}
+\end{equation}
+在这种对应之下，方程\eqref{equ8.50}也变得有意义，它描述了远离场源的引力场。
+
+\subsection*{相对论性系统的质量定义}
+在距离牛顿引力源很远的地方，引力势等于
+\begin{equation}
+    (\phi)_{\text{Newtonian far field}} = -\frac{M}{r} + 0(r^{-2}), \label{equ8.58}
+\end{equation}
+其中$M$是源的质量(with $G = 1$)。因此，如果将\eqref{equ8.52}式当中的常数$A^{00}$重命名为$4M$，则根据对应关系\eqref{equ8.57}式可得
+\begin{equation}
+    (\phi)_{\text{relativistic far field}} = -\frac{M}{r}. \label{equ8.59}
+\end{equation}
+Any small body, for example a planet, that falls freely in the relativistic source's gravitational field but stays far away from it will follow the geodesics of the metric, Eq. (8.50), with $\phi$ given by Eq. (8.59). 在第\ref{chap7}章中已经看到，相应的测地线服从质量为$M$物体引力场的开普勒定律。因此将常量$M$\textbf{定义为}相对论性引力场源的\textbf{总质量}。
+
+注意，这个定义并非是对引力源整体的积分：并没有将构成引力源的所有粒子的质量相加，而只是通过引力源对远处测试物体的运动轨道的影响效果来测量（“称量”）源的质量，天文学家就是用这种方法测量地球、太阳和行星的质量。在这样的定义下，方程\eqref{equ8.50}可以写成描述\textbf{任何}静态引力源远场的形式：
+\begin{align}
+    \rd s^2 = &- \left[ 1 - \frac{2M}{r} + 0(r^{-2}) \right] \, \rd t^2 \notag \\
+    & + \left[ 1 + \frac{2M}{r} + 0(r^{-2}) \right]\, (\rd x^2 + \rd y^2 + \rd z^2). \label{equ8.60}
+\end{align}
+还是要牢记，由于这种质量并非是对引力源进行积分来定义的，因此场源的远处引力场常量$M$会与牛顿理论中的质量相当不同，例如黑洞，还可以参考本章习题20对\textbf{有效引力质量 (active gravitational mass)}的讨论。
+
+将波动方程\eqref{equ8.42}简化为Laplace方程\eqref{equ8.51}的必要假设是静态引力源。随时间变化的源可以发射引力波，下一章会看到，引力波以光速向外传播，并且不服从\eqref{equ8.56}的不等式，因此无法当作牛顿引力场处理。然而，在一些情况下仍然可以方便地使用上面定义的质量：如果引力波很弱，则与波动部分相比，静态部分$\bar{h}^{00}$占据主导，或者引力场源在遥远的过去是静态的，这样总可以选择足够大的$r$使得任何波动都还来不及传到大于$r$的区域。随时间变化的源的质量定义在高阶教材中有详述，例如Misner \textit{et al}. (1973) or Wald (1985).
+
+
+\section{扩展阅读}
+\label{sec8.5}
+有很多方法可以“导出”（实际上只是justify）爱因斯坦场方程，参见下面列举的教材。弱场方程（或者称为线性化场方程）在研究中更为常用，因为完整的场方程太难解了，后面的章节会对线性化方程大用特用，大部分教材都是这么干的。本章处理牛顿极限的方法具有启发性、探索性，但是存在着更加严格的方法可以解释牛顿方程的几何本质(Misner \textit{et al}. 1973, Cartan 1923)以及牛顿极限的渐近本质(Damour 1987, Futamase and Schutz 1983)。Blanchet (2006) 以及 Futamase and Itoh (2007) 是描述后牛顿理论的综述文献。爱因斯坦本人导出场方程的方法不如本章的方法直接，学者们研究过他的笔记发现，他考虑过的一些背景假设最终被证明是错误的，参见 Renn (2007) 编辑的纪念碑性质的文集。
+
+下面应该列举几本广泛采用的GR教材，以读者需要的背景知识与内容的复杂程度分类。有些教材只需要很少的背景知识——Hartle (2003), Rindler (2006)；有些是一年级研究生的教材——Carroll (2003), Glendenning (2007), Gron and Hervik (2007), Hobson, et al. (2006), 一部分 Misner et al. (1973), Møller (1972), Stephani (2004), Weinberg (1972), and Woodhouse (2007)；还有一些假设读者已经身经百战见得多了——Hawking and Ellis (1973),Landau and Lifshitz (1962), 大部分 Misneretal.(1973), Synge (1960), and Wald (1984)。掌握了本书的内容之后应该可以阅读上面即使是最难的教材。
+
+做习题是学习一门理论不可缺少的，习题集 Lightman \textit{et al}. (1975)尽管年代久远，但仍然是出色的补充材料。Schutz(2003)是一本涉及不多数学的导论教材。
+
+
+\section{习题}
+\label{sec8.6}

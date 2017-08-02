@@ -1,2 +1,209 @@
 \chapter{狭义相对论中的张量分析}
 \label{chap3}
+
+\section{度规张量}
+\label{sec3.1}
+向量$\vec{A}, \vec{B}$在某个坐标系$\MO$的基向量$\{ \Ve_\alpha \}$当中表示为：
+\[
+    \vec{A} = A^\alpha \Ve_\alpha, \quad \vec{B} = B^\beta \Ve_\beta.
+\]
+它们的标量积为
+\[
+    \vec{A} \cdot \vec{B} = (A^\alpha \Ve_\alpha) \cdot (B^\beta \Ve_\beta),
+\]
+（注意要用\textbf{不同的}哑指标$\alpha, \beta$表示两个求和。）
+
+根据第\ref{chap2}章习题34，上式可以化为
+\[
+    \vec{A} \cdot \vec{B} = A^\alpha B^\beta (\Ve_\alpha \cdot \Ve_\beta),
+\]
+再由\eqref{equ2.27}式可得
+\begin{shaded}
+\begin{equation}
+    \vec{A} \cdot \vec{B} = A^\alpha B^\beta \eta_{\alpha \beta}.
+\label{equ3.1}
+\end{equation}
+\end{shaded}
+上式是$(-A^0 B^0 + A^1 B^1 + A^2 B^2 + A^3 B^3)$的\textbf{坐标系不变性}的表示法。$\eta_{\alpha \beta}$称为“度规张量的分量”，后面会说明这个名字。度规提供了将两个张量$\vec{A}, \vec{B}$结合为一个\textbf{数字}的“规则”——二重求和$A^\alpha B^\beta \eta_{\alpha \beta}$。这种规则是“张量”的核心含义，下面就来讨论。
+
+\section{张量的定义}
+\label{sec3.2}
+张量的定义：
+\begin{quote}
+    \textit{$\binom{0}{N}$张量是将$N$个向量变成实数的函数，并且它对这$N$个参数都是线性的。}
+\end{quote}
+这个定义的含义是什么？现在只需要暂时接受符号$\binom{0}{N}$，它的含义在本章后面解释。\eqref{equ3.1}式的标量积规则符合上面的$\binom{0}{2}$张量的定义，这个规则描述了如何将两个向量$\vec{A}, \vec{B}$变成一个实数$\vec{A} \cdot \vec{B}$。第\ref{chap2}章习题34证明了线性性，$\vec{A} \cdot \vec{B}$对第一个参数的线性性意味着
+\begin{equation}
+\left.
+\begin{split}
+    (\alpha \vec{A}) \cdot \vec{B} &= \alpha (\vec{A} \cdot \vec{B}), \\
+    \text{以及} (\vec{A} + \vec{B}) \cdot \vec{C} &= \vec{A} \cdot \vec{C} + \vec{B} \cdot \vec{C},
+\end{split}
+\right\}
+\label{equ3.2}
+\end{equation}
+而对第二个参数的线性性意味着
+\begin{align*}
+    \vec{A} \cdot (\beta \vec{B}) &= \beta (\vec{A} \cdot \vec{B}), \\
+    \vec{A} \cdot (\vec{B} + \vec{C}) &= \vec{A} + \vec{B} + \vec{A} \cdot \vec{C}.
+\end{align*}
+线性性在张量代数中位于重要的核心地位，读者要仔细理解。
+
+为了具体表示点积产生的张量，我们引入相应的名称与符号。$\mathbf{g}$称为\textbf{度规张量  (metric tensor)}，定义为
+\begin{equation}
+    \mathbf{g} (\vec{A}, \vec{B}) := \vec{A} \cdot \vec{B}.
+\label{equ3.3}
+\end{equation}
+$\mathbf{g} (\ , \ )$视为两个参数的线性函数：
+\begin{equation}
+    \mathbf{g} (\alpha \vec{A} + \beta \vec{B}, \vec{C}) = \alpha \mathbf{g} (\vec{A}, \vec{C}) + \beta \mathbf{g} (\vec{B}, \vec{C}),
+\label{equ3.4}
+\end{equation}
+第二个参数同理。$\mathbf{g}$作用于两个参数的值——记作$\mathbf{g} (\vec{A}, \vec{B})$——是它们的点积，也就是一个实数。
+
+注意，张量的定义没有涉及向量分量。张量是一种规则，无论在哪个坐标系计算向量的分量，这种规则总给出相同的、与坐标系无关的实数。上一章已经证明了\eqref{equ3.1}式符合这个要求。张量是向量本身、而非向量分量的函数，这一点有时在概念上十分有帮助。
+
+\subsection*{特典：数学术语“函数(function)”的使用说明}
+最熟悉的函数记号是表达式
+\[
+    y = f(x),
+\]
+其中$y, x$是实数。上式更精确的说法是，$f$是一种“规则”（称为“映射”），它将一个实数（符号为$y$）与另一个实数(符号为$x$）——$f$的参数相联系。函数本身\textbf{不是}$f(x)$，因为$f(x)$就是$y$（一个实数，称为函数的“值”）。函数本身的符号应该是$f$，为了强调它有一个参数，也可以记作$f (\ )$。
+
+在代数学中，上述内容有点吹毛求疵，因为$x, y$被视为同时有两种含义：一种是特定实数，另一种是一般而任意的实数的\textbf{代称}。在张量微积分中，应该把符号说明清楚：$\vec{A}, \vec{B}$表示\textbf{特定}向量，$\vec{A} \cdot \vec{B}$是\textbf{特定}实数，符号$\mathbf{g}$是将$\vec{A} \cdot \vec{B}$与$\vec{A}, \vec{B}$联系起来的函数的名字。
+
+\subsection*{张量的分量}
+就像向量那样，张量也有分量，其定义为：
+\begin{quote}
+    \textit{$\binom{0}{N}$张量在坐标系$\MO$的分量，是该张量作用于$\MO$系基向量$\{ \Ve_\alpha \}$的函数值。}
+\end{quote}
+可见，张量分量是依赖于坐标系（因为上述定义涉及了具体坐标系）的实数。根据定义，度规张量的分量为
+\begin{shaded}
+\begin{equation}
+    \mathbf{g} (\Ve_\alpha, \Ve_\beta) = \Ve_\alpha \cdot \Ve_\beta = \eta_{\alpha \beta}.
+\label{equ3.5}
+\end{equation}
+\end{shaded}
+因此，之前引入的矩阵$\eta_{\alpha \beta}$可以视为度规张量$\mathbf{g}$在相应坐标基下的分量排列成的矩阵。另一组基下的张量分量可能不同，后面会列举相关例子。下面首先来研究一类重要的张量。
+
+
+\section{$\binom{0}{1}$张量：1形式}
+\label{sec3.3}
+$\binom{0}{1}$张量称为余向量(covector)、协变向量(covariant vector)或者1形式(one-form)，这些名字都很常用，同一文献或教材中也会交替使用它们。
+
+\subsection*{一般性质}
+设$\tilde{p}$是一个任意的1形式。（用符号$\tilde{ }$表示1形式，就像用$\vec{ }$表示向量那样。）$\tilde{p}$将一个向量作为参数，输出一个实数：$\tilde{p} (\vec{A})$。设$\tilde{q}$是另一个1形式，定义1形式的加法与数乘
+\begin{align*}
+    \tilde{s} &= \tilde{p} + \tilde{q}, \\
+    \tilde{r} &= \alpha \tilde{p},
+\end{align*}
+为：（参数$\vec{A}$是任意向量）
+\begin{equation}
+\left.
+\begin{split}
+    \tilde{s} &= \tilde{p} (\vec{A}) + \tilde{q} (\vec{A}), \\
+    \tilde{r} &= \alpha \tilde{p} (\vec{A}).
+\end{split}
+\right\}
+\label{equ3.6}
+\end{equation}
+这样定义了加法与数乘的全体1形式构成的集合满足向量空间的定义，这个空间叫做“对偶向量空间(dual vector space)”以区分所有$\vec{A}$这样的向量组成的空间。
+
+关于向量的重要内容是向量的分量以及分量变换律。下面来考虑1形式$\tilde{p}$的相应内容。$\tilde{p}$的分量记作$p_\alpha$：
+\begin{equation}
+    p_\alpha := \tilde{p} (\Ve_\alpha).
+\label{equ3.7}
+\end{equation}
+按照惯例，\textbf{任何}带有单个下标的量都是1形式的分量；而上指标表示向量的分量。$\tilde{p} (\vec{A})$用分量表示为
+\begin{align}
+    \tilde{p} (\vec{A}) &= \tilde{p} (A^\alpha \Ve_\alpha) \notag \\
+    &= A^\alpha \tilde{p} (\Ve_\alpha), \notag \\
+    \tilde{p} (\vec{A}) &= A^\alpha p_\alpha. \label{equ3.8}
+\end{align}
+第二个等式利用了张量定义的核心——线性性。由上式可见实数$\tilde{p} (\vec{A})$等于求和$A^0 p_0 + A^1 p_1 + A^2 p_2 + A^3 p_3$，注意\textbf{所有}项都是正号，这种操作称为$\vec{A}$和$\tilde{p}$的\textbf{缩并 (contraction)}，在张量分析中，它是比标量积更重要的操作，因为缩并是在任意1形式与向量之间进行、不涉及其它张量的。前面已经看到两个向量的标量积必须在第三个张量——度规——的帮助下进行。
+
+$\tilde{p}$在基$\{ \Ve_{\bar{\beta}} \}$中的分量为
+\begin{align}
+    p_{\bar{\beta}} :&= \tilde{p} (\Ve_{\bar{\beta}}) = \tilde{p} (\Lambda\indices{^\alpha_{\bar{\beta}}} \Ve_\alpha) \notag \\
+    &= \Lambda\indices{^\alpha_{\bar{\beta}}} \tilde{p} (\Ve_\alpha) = \Lambda\indices{^\alpha_{\bar{\beta}}} p_\alpha. \label{equ3.9}
+\end{align}
+上式与基向量的变换律比较：
+\[
+    \Ve_{\bar{\beta}} = \Lambda\indices{^\alpha_{\bar{\beta}}} \Ve_\alpha,
+\]
+可见1形式分量与基向量的坐标变换律相同，而与向量分量相反。“相反”的意思是互为逆变换。这种互逆的变换保证了$A^\alpha p_\alpha$对任意$\vec{A}, \tilde{p}$都是不依赖坐标系的量，这一性质十分重要，值得详细证明：
+\begin{subequations}
+\begin{alignat}{2}
+    A^{\bar{\alpha}} p_{\bar{\alpha}} &= (\Lambda\indices{^{\bar{\alpha}}_\beta} A^\beta) (\Lambda\indices{^\mu_{\bar{\alpha}}} p_\mu), && \label{equ3.10a} \\
+    &= \Lambda\indices{^\mu_{\bar{\alpha}}} \Lambda\indices{^{\bar{\alpha}}_\beta} A^\beta p_\mu, && \label{equ3.10b} \\
+    &= \delta\indices{^\mu_\beta} A^\beta p_\mu, && \label{equ3.10c} \\
+    &= A^\beta p_\beta. \label{equ3.10d} 
+\end{alignat}
+\end{subequations}
+（证明过程与$A^\alpha \Ve_\alpha$的坐标不变性证明相同。）互逆的变换规律是“对偶向量空间”中“对偶”一词的来历。1形式分量与基向量\textbf{同样}的变换规律是“协变向量”中“\textbf{协变}”的来历，“余向量”是简称。因为向量分量的变换规律与基向量相反（为了保证$A^\beta \Ve_\beta$不变），所以向量分量被称作“逆变向量 (contravariant vector)”。这些名称大部分都是过时的，“向量”、“对偶向量”和“1形式”是现代名称。“协变”“逆变”的说法不被采纳的原因是，它们混淆了两种非常不同的情况：基向量的变换是用\textbf{旧基}表示\textbf{新的}向量；分量的变换是\textbf{同一个}量在新基中的表达式。读者在继续阅读之前一定要思考清楚这一点。
+
+\subsection*{1形式基}
+因为所有1形式的集合是向量空间，因此任意四个线性无关的1形式都是一组1形式基。（线性无关的1形式组：这组1形式的线性组合等于零1形式\textbf{当且仅当}所有线性系数为零。零1形式作用于任意向量所得结果都是零。）不过，上一小节已经利用基向量$\{ \Ve_\alpha \}$定义了1形式的分量，这意味着可以利用基向量定义相应的1形式基$\{ \tilde{\omega}^\alpha, \alpha = 0, \dots ,3 \}$，称它是与向量基$\{ \Ve_\alpha \}$\textbf{对偶}的1形式基，1形式在这组基下的分量为上文定义的\eqref{equ3.7}式。我们要找到一组$\{ \tilde{\omega}^\alpha \}$使得
+\begin{equation}
+    \tilde{p} = p_\alpha \tilde{\omega}^\alpha.
+\label{equ3.11}
+\end{equation}
+（注意1形式基$\tilde{\omega}^\alpha$用上标表示从而与求和约定一致。） $\{ \tilde{\omega}^\alpha \}$是\textbf{四个不同的}1形式，就像$\{ \Ve_\alpha \}$是四个不同的向量那样。上式意味着对任意向量$\vec{A}$与1形式$\tilde{p}$：
+\[
+    \tilde{p} (\vec{A}) = p_\alpha A^\alpha.
+\]
+而根据\eqref{equ3.11}式可得
+\begin{align*}
+    \tilde{p} (\vec{A}) &= p_\alpha \tilde{\omega}^\alpha (\vec{A}) \\
+    &= p_\alpha \tilde{\omega}^\alpha (A^\beta \Ve_\beta) \\
+    &= p_\alpha A^\beta \tilde{\omega}^\alpha (\Ve_\beta).
+\end{align*}
+注意第二行的$\vec{A}$的求和哑指标为$\beta$，与另一个哑指标$\alpha$不同。）最后一行要与$p_\alpha A^\alpha$相等（对于任意的$A^\beta$和$p_\alpha$），因此
+\begin{shaded}
+\begin{equation}
+    \tilde{\omega}^\alpha (\Ve_\beta) = \delta\indices{^\alpha_\beta}. \label{equ3.12}
+\end{equation}
+\end{shaded}
+与方程\eqref{equ3.7}比较可以发现，上式给出了第$\alpha$个1形式基的$\beta$分量，因此\textbf{定义了}第$\alpha$个1形式基，具体为：
+\begin{align*}
+    \tilde{\omega}^0 & \xrightarrow[\MO]{ } (1, 0, 0, 0), \\
+    \tilde{\omega}^1 & \xrightarrow[\MO]{ } (0, 1, 0, 0), \\
+    \tilde{\omega}^2 & \xrightarrow[\MO]{ } (0, 0, 1, 0), \\
+    \tilde{\omega}^3 & \xrightarrow[\MO]{ } (0, 0, 0, 1).
+\end{align*}
+下面指出两点重要内容。第一，方程\eqref{equ3.12}利用$\{ \Ve_\beta \}$定义了1形式基$\{ \tilde{\omega}^\alpha \}$。一组向量基可以导出唯一的、方便的1形式基。当然，1形式基不止这一组，但这组是最方便的，之后一直采用这组基\eqref{equ3.12}。方程\eqref{equ3.12}表示的两组基之间的关系并非一对一的，例如$\tilde{\omega}^0$与$\Ve_0$，也就是说，如果改变$\Ve_0$而其余的$\Ve_1, \Ve_2, \Ve_3$不变，则一般而言，不仅$\tilde{\omega}^0$改变，而且$\TOmg^1, \TOmg^2, \TOmg^3$都变化。
+
+第二，尽管向量与1形式都是通过给定四个分量来描述的，但是它们的几何意义非常不同。读者务必牢记：分量只含有一部分内容，其余内容蕴含在基当中。即，一组数$(0, 2, -1, 5)$没有定义任何东西，为了让它定义某个东西，必须说明它是在哪组向量基或者1形式基下的分量。
+
+$\{ \TOmg^\alpha \}$在坐标变换下的变换律尚未推导。每个坐标系都有自己唯一的$\{ \TOmg^\alpha \}$，不同的两个系之间的1形式基的关系是什么？它的推导过程与向量基类似，其结果就是把指标位置做适当调整：
+\begin{equation}
+    \TOmg^{\bar{\alpha}} = \Lambda\indices{^{\bar{\alpha}}_{\beta}} \TOmg^\beta. \label{equ3.13}
+\end{equation}
+这与向量分量的变换律相同，而与1形式分量的变换律相反。
+
+\subsection*{1形式的图像}
+
+
+\subsection*{函数的梯度是1形式}
+
+
+\section{$\binom{0}{2}$张量}
+\label{sec3.4}
+
+\section{度规乃向量到1形式之映射也}
+\label{sec3.5}
+
+\section{终曲：$\binom{M}{N}$张量}
+\label{sec3.6}
+
+\section{指标“升”“降”}
+\label{sec3.7}
+
+\section{张量的微分}
+\label{sec3.8}
+
+\section{扩展阅读}
+\label{sec3.9}
+
+\section{习题}
+\label{sec3.10}
