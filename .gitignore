@@ -1,0 +1,7 @@
+! *.tex
+GR_Schutz.pdf
+*.aux
+*.log
+*.gz
+*.toc
+*.idx
