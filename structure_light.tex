@@ -18,6 +18,24 @@
 \definecolor{ocre}{RGB}{0,0,0} % Define the favorite color used for highlighting throughout the book
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		resolve the conflicts of \framed command		
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\renameenviron}[1]{%
+  \expandafter\let\csname exam-#1\expandafter\endcsname
+      \csname #1\endcsname
+  \expandafter\let\csname endexam-#1\expandafter\endcsname
+      \csname end#1\endcsname
+  \expandafter\let\csname #1\endcsname\relax
+  \expandafter\let\csname end#1\endcsname\relax
+}
+\renameenviron{framed}
+\renameenviron{shaded}
+\renameenviron{leftbar}
+
+
+
 \usepackage{framed}
 %\usepackage[dvipsnames]{color}
 %\definecolor{shadecolor}{named}{Gray}
