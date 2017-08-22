@@ -1,0 +1,66 @@
+\usepackage[top=2cm,bottom=2cm,left=3cm,right=3cm,headsep=10pt,a4paper]{geometry} % Page margins
+
+\usepackage{graphicx} % Required for including pictures
+\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
+
+\usepackage{lipsum} % Inserts dummy text
+
+\usepackage{tikz} % Required for drawing custom shapes
+
+\usepackage[english]{babel} % English language/hyphenation
+
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{ocre}{RGB}{0,0,0} % Define the favorite color used for highlighting throughout the book
+
+
+\usepackage{framed}
+%\usepackage[dvipsnames]{color}
+%\definecolor{shadecolor}{named}{Gray}
+\definecolor{shadecolor}{rgb}{0.92,0.92,0.92}
+%----------------------------------------------------------------------------------------
+%	FONTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{avant} % Use the Avantgarde font for headings
+%\usepackage{times} % Use the Times font for headings
+%\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+
+%\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+
+%----------------------------------------------------------------------------------------
+%	HYPERLINKS IN THE DOCUMENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage[colorlinks,linkcolor=black,anchorcolor=blue,citecolor=black,urlcolor=black]{hyperref}
+\hypersetup{hidelinks,colorlinks=true,breaklinks=true,urlcolor= ocre,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\usepackage{bookmark}
+\bookmarksetup{
+open,
+numbered,
+addtohook={%
+\ifnum\bookmarkget{level}=0 % chapter
+\bookmarksetup{bold}%
+\fi
+\ifnum\bookmarkget{level}=-1 % part
+\bookmarksetup{color=ocre,bold}%
+\fi
+}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	CHINESE SETTING
+%----------------------------------------------------------------------------------------
+\usepackage{caption}
+\captionsetup{font={scriptsize}}
+\captionsetup{figurename={图}, tablename={表}}
+%\addto{\captionsenglish}{\renewcommand{\contentsname}{目\quad录}}
+\def\chntoday{\the\year~年~\the\month~月~\the\day~日}
+
